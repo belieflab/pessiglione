@@ -1,3 +1,5 @@
+let workerID = prompt("Enter your subject id" );
+
 /* choose stimulus set A or B */
 // let version = 'A'
 // if(version == 'A') {
@@ -11,6 +13,8 @@
 
 /* create timeline */
 let timeline = [];
+
+/* define selection buttons */
 let button_left = '1';
 let button_right = '2';
 
@@ -43,13 +47,14 @@ let instructions_text = [
       '<p>Press the spacebar continue.</p>'
 ];
 let instructions = [];
+
 for (let i = 0; i < instructions_text.length; i++) {
   instructions.push({
     type: "html-keyboard-response",
     stimulus: instructions_text[i],
     choices: [32]
   });
-  timeline.push(instructions[i]);
+  // timeline.push(instructions[i]);
   }
 
 let announce_practice = {
@@ -64,27 +69,34 @@ let practice_pairs =      ["ab" ,"ef"];
 let practice_validity =   [1.0  ,1.0];
 let practice_good_stim =  ["a"  ,"e"];
 let practice_trial_type = ["win:stay","avoid:lose"];
+
 let pracA = ["Field4","Field10","Field13","Field17"];
 let pracB = ["African_landscape","closeWater_pines_mountains","Trees_with_flowers","wheat_with_farmhouse"];
+
 let stimA = [];
-let stimB = [];
 for (let i=0; i<pracA.length; i++) {
     stimA.push("stim/a/"+pracA[i]+".bmp")
-}
+};
+
+let stimB = [];
 for (let i=0; i<pracB.length; i++) {
     stimB.push("stim/b/"+pracB[i]+".jpg")
-}
+};
+
 let prac_stimA = [
-    {stimulusL: stimA[0], stimulusR: stimA[1], data: {test_part: 'practice',pair: practice_pairs[0], validity: practice_validity[0], good_stim: practice_good_stim[0], trial_type: practice_trial_type[0], correct_response: ''}},
-    {stimulusL: stimA[2], stimulusR: stimA[3], data: {test_part: 'practice',pair: practice_pairs[1], validity: practice_validity[1], good_stim: practice_good_stim[1], trial_type: practice_trial_type[1], correct_response: ''}}
+    {stimulus: stimA[0], stimulus2: stimA[1]},
+    // {stimulusL: stimA[2], stimulusR: stimA[3], data: {test_part: 'practice',pair: practice_pairs[1], validity: practice_validity[1], good_stim: practice_good_stim[1], trial_type: practice_trial_type[1], correct_response: ''}}
 ];
+
 let prac_stimB = [
     {stimulusL: stimB[0], stimulusR: stimB[1], data: {test_part: 'practice',pair: practice_pairs[0], validity: practice_validity[0], good_stim: practice_good_stim[0], trial_type: practice_trial_type[0], correct_response: ''}},
     {stimulusL: stimB[2], stimulusR: stimB[3], data: {test_part: 'practice',pair: practice_pairs[1], validity: practice_validity[1], good_stim: practice_good_stim[1], trial_type: practice_trial_type[1], correct_response: ''}}
 ];
 //let shuffle_stimA = jsPsych.randomization.repeat(prac_stimA, 1);
 // change this variable to either prac_stimA or prac_stimB
-let practice = prac_stimA;
+// let practice = prac_stimA;
+
+//create fixation point
 let fixation = {
     type: 'html-keyboard-response',
     stimulus: '<div style="color:black; font-size:60px;">+</div>',
@@ -93,15 +105,14 @@ let fixation = {
 }
 
 let stimuli = {
-    type: 'image-keyboard-response',
+    type: 'html-keyboard-response',
     choices: [button_left, button_right],
     trial_duration: 2000, 
-    // stimulus: function(){
-    //     var htmlpractice="<img src='"+jsPsych.timelineVariable('stimulusL', true)+"'>" +
-    //     "<img src='"+jsPsych.timelineVariable('stimulusR', true)+"'>";
-    //     return htmlpractice;
-    //     }
-    stimulus: [stimA[0],stimA[2]]
+    stimulus: function(){
+      var html="<img src='"+jsPsych.timelineVariable('stimulus', true)+"'>" +
+      "<img src='"+jsPsych.timelineVariable('stimulus2', true)+"'>";
+      return html;
+}, 
 //    data: jsPsych.timelineVariable('data')
 }
 let feedback = {
@@ -124,6 +135,16 @@ let practice_procedure = {
     timeline_variable: prac_stimA,
 }
 timeline.push(practice_procedure);
+
+
+
+
+
+
+
+
+
+
 
 let training_pairs =      ["ab" ,"cd" ,"ef" ,"gh"];
 let training_validity =   [0.9  ,0.8  ,0.9  ,0.8];
@@ -169,7 +190,7 @@ function getParamFromURL(name)
   else
     return results[1];
 }
-let workerID = prompt("Enter your subject id" );
+
 
 /* start the experiment */
 function startExperiment(){
