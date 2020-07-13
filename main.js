@@ -54,7 +54,7 @@ for (let i = 0; i < instructions_text.length; i++) {
     stimulus: instructions_text[i],
     choices: [32]
   });
-  // timeline.push(instructions[i]);
+  timeline.push(instructions[i]);
   }
 
 let announce_practice = {
@@ -70,71 +70,129 @@ let practice_validity =   [1.0  ,1.0];
 let practice_good_stim =  ["a"  ,"e"];
 let practice_trial_type = ["win:stay","avoid:lose"];
 
-let pracA = ["Field4","Field10","Field13","Field17"];
-let pracB = ["African_landscape","closeWater_pines_mountains","Trees_with_flowers","wheat_with_farmhouse"];
+
+
+
+/* START TRAINING TRIAL FOR PARTICIPANTS */
+let pracA = ['Field4','Field10','Field13','Field17'];
+let pracB = ['African_landscape','closeWater_pines_mountains','Trees_with_flowers','wheat_with_farmhouse'];
 
 let stimA = [];
 for (let i=0; i<pracA.length; i++) {
-    stimA.push("stim/a/"+pracA[i]+".bmp")
-};
+    stimA.push('stim/a/'+pracA[i]+'.bmp');
+}
 
 let stimB = [];
 for (let i=0; i<pracB.length; i++) {
-    stimB.push("stim/b/"+pracB[i]+".jpg")
+    stimB.push('stim/b/'+pracB[i]+'.jpg');
+}
+
+
+let stimA_array = [
+  {stimulus: stimA[0], stimulus2: stimA[1], data: {test_part: 'practice', correct_response: 49}}, // 0 key
+  {stimulus: stimA[2], stimulus2: stimA[3], data: {test_part: 'practice', correct_response: 50}}, // 0 key
+]
+
+let stimB_array = [
+  {stimulus: stimB[0], stimulus2: stimB[1], data: {test_part: 'practice', correct_response: 49}}, // 0 key
+  {stimulus: stimB[2], stimulus2: stimB[3], data: {test_part: 'practice', correct_response: 50}}, // 0 key
+]
+
+// let stimB_array = [
+//     {stimulusL: stimB[0], stimulusR: stimB[1], data: {test_part: 'practice',pair: practice_pairs[0], validity: practice_validity[0], good_stim: practice_good_stim[0], trial_type: practice_trial_type[0], correct_response: ''}},
+//     {stimulusL: stimB[2], stimulusR: stimB[3], data: {test_part: 'practice',pair: practice_pairs[1], validity: practice_validity[1], good_stim: practice_good_stim[1], trial_type: practice_trial_type[1], correct_response: ''}},
+// ]
+
+
+let stimA_shuffle = jsPsych.randomization.repeat(stimA_array, 1); //shuffled array no repeats
+let stimB_shuffle = jsPsych.randomization.repeat(stimB_array, 1); //shuffled array no repeats
+
+
+// create fixation point
+let fixation = {
+  data: {test_part: 'fixation'},
+  type: 'html-keyboard-response',
+  stimulus: '<div style="color:black; font-size:60px;">+</div>',
+  choices: jsPsych.NO_KEYS,
+  trial_duration: 500,
+}
+
+// create  trials
+let stimuli = {
+  type: "html-keyboard-response",
+  stimulus: function(){
+            var html="<img src='"+jsPsych.timelineVariable('stimulus', true)+"'>" +
+            "<img src='"+jsPsych.timelineVariable('stimulus2', true)+"'>";
+            return html;
+  }, 
+  
+  // jsPsych.timelineVariable('stimulus'),
+  choices: [49, 50], // [0 key , 1 key]
+  trial_duration: 3000,
+  response_ends_trial: true,
+  data: jsPsych.timelineVariable('data'),
+  on_finish: function(data){
+    // data.practice = jsPsych.pluginAPI.convertKeyCodeToKeyCharacter(data.key_press);
+    // data.practice = data.key_press == jsPsych.pluginAPI.convertKeyCharacterToKeyCode(data.correct_response);
+    if (data.key_press == data.correct_response) {
+      data.accuracy = 1
+    } else {
+      data.accuracy = 0
+    }
+  }
 };
 
-let prac_stimA = [
-    {stimulus: stimA[0], stimulus2: stimA[1]},
-    // {stimulusL: stimA[2], stimulusR: stimA[3], data: {test_part: 'practice',pair: practice_pairs[1], validity: practice_validity[1], good_stim: practice_good_stim[1], trial_type: practice_trial_type[1], correct_response: ''}}
-];
 
-let prac_stimB = [
-    {stimulusL: stimB[0], stimulusR: stimB[1], data: {test_part: 'practice',pair: practice_pairs[0], validity: practice_validity[0], good_stim: practice_good_stim[0], trial_type: practice_trial_type[0], correct_response: ''}},
-    {stimulusL: stimB[2], stimulusR: stimB[3], data: {test_part: 'practice',pair: practice_pairs[1], validity: practice_validity[1], good_stim: practice_good_stim[1], trial_type: practice_trial_type[1], correct_response: ''}}
-];
-//let shuffle_stimA = jsPsych.randomization.repeat(prac_stimA, 1);
-// change this variable to either prac_stimA or prac_stimB
-// let practice = prac_stimA;
+// inter-stimulus interval
+let isi = [1000, 5000];
 
-//create fixation point
-let fixation = {
-    type: 'html-keyboard-response',
-    stimulus: '<div style="color:black; font-size:60px;">+</div>',
-    choices: jsPsych.NO_KEYS,
-    trial_duration: 500
-}
-
-let stimuli = {
-    type: 'html-keyboard-response',
-    choices: [button_left, button_right],
-    trial_duration: 2000, 
-    stimulus: function(){
-      var html="<img src='"+jsPsych.timelineVariable('stimulus', true)+"'>" +
-      "<img src='"+jsPsych.timelineVariable('stimulus2', true)+"'>";
-      return html;
-}, 
-//    data: jsPsych.timelineVariable('data')
-}
+// create feedback trials
 let feedback = {
-    type: 'html-keyboard-response',
-    choices: jsPsych.NO_KEYS,
-    trial_duration: 2000, 
-    stimulus: function(){
-        var html="<img src='"+jsPsych.timelineVariable('stimulusL', true)+"'>" +
-        "<img src='"+jsPsych.timelineVariable('stimulusR', true)+"'>";
-        return html;
-        }
-//    data: jsPsych.timelineVariable('data') 
-    // on_load: function(){
-    //   let feedback = document.getElementById("feedbackGenerator");
-    //   feedback.innerHTML = feedbackLogic;
-    // }
+  data: {test_part: 'feedback'},
+  type: 'html-keyboard-response',
+  // stimulus: function() {
+  //     let last_trial_accuracy = jsPsych.data.get().last(1).values()[0].accuracy;
+  //     if (last_trial_accuracy == 1) {
+  //         return '<div style="color:red; font-size:60px;">ALLERGIC REACTION!</div>'
+  //     } else {
+  //         return '<div style="color:green; font-size:60px;">NO REACTION</div>'
+  //     }
+  //   },
+  stimulus: function() {
+    let participantResponse = jsPsych.data.get().last(1).values()[0].key_press;
+    if (participantResponse == 49) { // if last correct_response == 49 (1 key)
+      return "<img style='border: 5px solid #555;'src='"+jsPsych.timelineVariable('stimulus', true)+"'>" +
+             "<img src='"+jsPsych.timelineVariable('stimulus2', true)+"'>";
+    } else if (participantResponse == 50) { // if last correct_response == 48 (0 key)
+      return "<img src='"+jsPsych.timelineVariable('stimulus', true)+"'>"+
+             "<img style='border: 5px solid #555;'src='"+jsPsych.timelineVariable('stimulus2', true)+"'>";
+    }
+  },
+  choices: jsPsych.NO_KEYS,
+  trial_duration: 1000,
+  response_ends_trial: false,
+  // post_trial_gap: jsPsych.randomization.sampleWithReplacement(isi, 5, [5,1]),
+  post_trial_gap: 1000, //ISI
+  on_finish: function(data){
+    // data.practice = jsPsych.pluginAPI.convertKeyCodeToKeyCharacter(data.key_press)
+    // data.c1 = data.key_press == jsPsych.pluginAPI.convertKeyCharacterToKeyCode(data.correct_response);
+    
   }
+};
+
 let practice_procedure = {
-    timeline: [fixation,stimuli],
-    timeline_variable: prac_stimA,
+  timeline: [fixation, stimuli, feedback],
+  timeline_variables: stimA_array,
+  randomize_order: false,
 }
+
 timeline.push(practice_procedure);
+
+
+
+
+
+
 
 
 
@@ -197,6 +255,7 @@ function startExperiment(){
   jsPsych.init({
     timeline: timeline,
     show_progress_bar: true,
+    preload_images: [stimA, stimB],
     on_finish: function(){ saveData("pessiglione" + workerID, jsPsych.data.get().csv()); }
     //on_finish: function(){
       //jsPsych.data.get().filter([{test_part: 'test'},{test_part: 'prediction'},{test_part: 'c2_test'}]).localSave("csv", `test-self-deception-data.csv`);

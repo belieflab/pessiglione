@@ -1,5 +1,6 @@
 img {
-  float:left;
+  float:center;
+  padding: 25px 25px 25px 25px;
 }
 
 body {
