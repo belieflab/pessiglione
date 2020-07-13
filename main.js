@@ -15,8 +15,8 @@ let workerID = prompt("Enter your subject id" );
 let timeline = [];
 
 /* define selection buttons */
-let button_left = '1';
-let button_right = '2';
+let button_left = 49;
+let button_right = 50;
 
 /* feed instructions to timeline */
 let instructions_text = [
@@ -32,7 +32,7 @@ let instructions_text = [
       '<p>B) allow you to keep the money you\'ve already earned.</p>'+
       '<p>Press the spacebar continue.</p>',
   '<p>On those trials where you can A) win money, you will want to select the picture most likely to earn a nickel:</p>'+
-      '<img src="stim/win.bmp"></img>'+
+      '<img style="height:100px; width:100px" src="stim/win.bmp"></img>'+
       '<p>Because if you keep seeing this feedback:</p>'+
       '<h3 style="color:red;">Not a winner. Try again. =[</h3>'+
       '<p>you probably aren\'t selecting the best picture...</p>'+
@@ -40,7 +40,7 @@ let instructions_text = [
   '<p>On those trials where you can B) lose money, you will want to select the picture most likely to give this feedback:</p>'+
       '<h3 style="color:blue;">Keep your money.</h3>'+
       '<p>Because if you keep seeing this:</p>'+
-      '<img src="stim/lose.bmp"></img>'+
+      '<img style="height:100px; width:100px" src="stim/lose.bmp"></img>'+
       '<p>you probably aren\'t selecting the best picture...</p>',
   '<p>Press the LEFT button to select the picture on the LEFT.</p>'+
       '<p>Press the RIGHT button to select the picture on the RIGHT.</p>'+
@@ -65,10 +65,10 @@ let announce_practice = {
 timeline.push(announce_practice);
 
 
-let practice_pairs =      ["ab" ,"ef"];
+let practice_pairs =      ['ab' ,'ef'];
 let practice_validity =   [1.0  ,1.0];
-let practice_good_stim =  ["a"  ,"e"];
-let practice_trial_type = ["win:stay","avoid:lose"];
+let practice_good_stim =  ['a'  ,'e'];
+let practice_trial_type = ['win:stay','avoid:lose'];
 
 
 
@@ -89,13 +89,17 @@ for (let i=0; i<pracB.length; i++) {
 
 
 let stimA_array = [
-  {stimulus: stimA[0], stimulus2: stimA[1], data: {test_part: 'practice', correct_response: 49}}, // 0 key
-  {stimulus: stimA[2], stimulus2: stimA[3], data: {test_part: 'practice', correct_response: 50}}, // 0 key
+  {stimulus: stimA[0], stimulus2: stimA[1], feedback: feedbackA[0], data: {test_part: 'practice', correct_response: button_left}}, // 0 key
+  {stimulus: stimA[2], stimulus2: stimA[3], feedback: feedbackA[0], data: {test_part: 'practice', correct_response: button_right}}, // 0 key
+  {stimulus: stimA[1], stimulus2: stimA[0], feedback: feedbackA[0], data: {test_part: 'practice', correct_response: button_right}}, // 0 key
+  {stimulus: stimA[3], stimulus2: stimA[2], feedback: feedbackA[0], data: {test_part: 'practice', correct_response: button_left}}, // 0 key
 ]
-
+let feedbackA = [
+  {stimulus: stimA[0], stimulus2: stimA[1], feedback}
+]
 let stimB_array = [
-  {stimulus: stimB[0], stimulus2: stimB[1], data: {test_part: 'practice', correct_response: 49}}, // 0 key
-  {stimulus: stimB[2], stimulus2: stimB[3], data: {test_part: 'practice', correct_response: 50}}, // 0 key
+  {stimulus: stimB[0], stimulus2: stimB[1], data: {test_part: 'practice', correct_response: button_left}}, // 0 key
+  {stimulus: stimB[2], stimulus2: stimB[3], data: {test_part: 'practice', correct_response: button_right}}, // 0 key
 ]
 
 // let stimB_array = [
@@ -128,7 +132,6 @@ let stimuli = {
   
   // jsPsych.timelineVariable('stimulus'),
   choices: [49, 50], // [0 key , 1 key]
-  trial_duration: 3000,
   response_ends_trial: true,
   data: jsPsych.timelineVariable('data'),
   on_finish: function(data){
@@ -160,12 +163,12 @@ let feedback = {
   //   },
   stimulus: function() {
     let participantResponse = jsPsych.data.get().last(1).values()[0].key_press;
-    if (participantResponse == 49) { // if last correct_response == 49 (1 key)
-      return "<img style='border: 5px solid #555;'src='"+jsPsych.timelineVariable('stimulus', true)+"'>" +
+    if (participantResponse == button_left) { // if last correct_response == 49 (1 key)
+      return "<img style='border: 5px solid #f90909;'src='"+jsPsych.timelineVariable('stimulus', true)+"'>" +
              "<img src='"+jsPsych.timelineVariable('stimulus2', true)+"'>";
-    } else if (participantResponse == 50) { // if last correct_response == 48 (0 key)
+    } else if (participantResponse == button_right) { // if last correct_response == 48 (0 key)
       return "<img src='"+jsPsych.timelineVariable('stimulus', true)+"'>"+
-             "<img style='border: 5px solid #555;'src='"+jsPsych.timelineVariable('stimulus2', true)+"'>";
+             "<img style='border: 5px solid #f90909;'src='"+jsPsych.timelineVariable('stimulus2', true)+"'>";
     }
   },
   choices: jsPsych.NO_KEYS,
