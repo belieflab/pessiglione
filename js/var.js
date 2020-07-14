@@ -1,7 +1,7 @@
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////
-/*  make sure you know what you are doing with these rods and levers; you may break the experiment  */
-/////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////
+ /*  make sure you know what you are doing with these buttons and levers; you may break the experiment  */
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // declare global timeline variable
 let stimVersion;
@@ -38,17 +38,18 @@ let feedbackB = [];
 
 /* fixation dot */
 
-let fixationDot = 'stim/dot_green.png';
-let blankDot = 'stim/dot_white.png';
+let fixationDot = 'stim/fixation.png';
+let blankDot = 'stim/blank.png';
 
 
 /* version A stimuli objects */
 
 let A = [
-  {stimulusLeft: stimA[0], stimulusRight: stimA[1], feedbackLeft: feedbackA, feedbackRight: feedbackA, fixation: fixationDot, data: {test_part: 'practice', correct_response: leftASCII}}, // 0 key
+  {stimulusLeft: stimA[1], stimulusRight: stimA[0], feedbackLeft: feedbackA, feedbackRight: feedbackA, fixation: fixationDot, data: {test_part: 'practice', correct_response: leftASCII}}, // 0 key
   {stimulusLeft: stimA[2], stimulusRight: stimA[3], feedbackLeft: feedbackA, feedbackRight: feedbackA, fixation: fixationDot, data: {test_part: 'practice', correct_response: rightASCII}}, // 0 key
-  {stimulusLeft: stimA[1], stimulusRight: stimA[0], feedbackLeft: feedbackA, feedbackRight: feedbackA, fixation: fixationDot, data: {test_part: 'practice', correct_response: rightASCII}}, // 0 key
   {stimulusLeft: stimA[3], stimulusRight: stimA[2], feedbackLeft: feedbackA, feedbackRight: feedbackA, fixation: fixationDot, data: {test_part: 'practice', correct_response: leftASCII}}, // 0 key
+  {stimulusLeft: stimA[0], stimulusRight: stimA[1], feedbackLeft: feedbackA, feedbackRight: feedbackA, fixation: fixationDot, data: {test_part: 'practice', correct_response: rightASCII}}, // 0 key
+
 ]
 
 /* version B stimuli objects */

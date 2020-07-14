@@ -30,7 +30,7 @@ let fixation = {
   choices: jsPsych.NO_KEYS,
   trial_duration: 500,
   stimulus: function(){
-    var html="<img style='width:10px; height:10px;' src='"+jsPsych.timelineVariable('fixation', true)+"'>";
+    var html="<img style='width:200px; height:200px; margin-left: 95px; margin-right: 95px;' src='"+jsPsych.timelineVariable('fixation', true)+"'>";
     return html;
   }, 
 };
@@ -40,7 +40,7 @@ let stimuli = {
   type: "html-keyboard-response",
   stimulus: function(){
             var html="<img src='"+jsPsych.timelineVariable('stimulusLeft', true)+"'>" +
-            "<img style='width:10px; height:10px; margin-bottom: 95px;' src='"+jsPsych.timelineVariable('fixation', true)+"'>" +
+            "<img style='width:200px; height:200px; margin-bottom: 0px;' src='"+jsPsych.timelineVariable('fixation', true)+"'>" +
             "<img src='"+jsPsych.timelineVariable('stimulusRight', true)+"'>";
             return html;
   }, 
@@ -85,12 +85,12 @@ let feedback = {
     let participantResponse = jsPsych.data.get().last(1).values()[0].key_press;
     if (participantResponse == leftASCII) { // if last correct_response == 49 (1 key)
       var html = "<img style='border: 5px solid #808080;' src='"+jsPsych.timelineVariable('stimulusLeft', true)+"'>" +
-      "<img style='width:10px; height:10px; margin-bottom: 95px;' src='stim/dot_white.png'>" +
+      "<img style='width:200px; height:200px; margin-bottom: 0px;' src='stim/blank.png'>" +
              "<img style='border: 5px solid #ffffff;  padding-left:15px;' src='"+jsPsych.timelineVariable('stimulusRight', true)+"'>";
              return html
     } else if (participantResponse == rightASCII) { // if last correct_response == 48 (0 key)
       var html = "<img style='border: 5px solid #ffffff; padding-right:15px;' src='"+jsPsych.timelineVariable('stimulusLeft', true)+"'>"+
-      "<img style='width:10px; height:10px; margin-bottom: 95px;' src='stim/dot_white.png'>" +
+      "<img style='width:200px; height:200px; margin-bottom: 0px;' src='stim/blank.png'>" +
              "<img style='border: 5px solid #808080;'src='"+jsPsych.timelineVariable('stimulusRight', true)+"'>";
              return html
     }
@@ -111,7 +111,9 @@ let feedback = {
 let practiceProcedure = {
     timeline: [fixation, stimuli, feedback],
     timeline_variables: stimVersion,
-    randomize_order: false,
+    randomize_order: true,
+    type: 'fixed-repititions',
+    repetitions: 3
   };
 timeline.push(practiceProcedure);
 
