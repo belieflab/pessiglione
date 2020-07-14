@@ -67,7 +67,7 @@ let B = [
 let shuffleA = jsPsych.randomization.repeat(A, 1); //shuffled array no repeats
 let shuffleB = jsPsych.randomization.repeat(B, 1); //shuffled array no repeats
 
-
+let stimVersion;
 
 /* EXPERMENTAL CONFIG *///
 

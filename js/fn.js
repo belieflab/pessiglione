@@ -49,9 +49,9 @@ function saveData(name, data){
 
 function versionSelect() {
     if (version == 'A') {
-        version = A;
+        stimVersion = A;
     } else if (version =='B') {
-        version = B;
+        stimVersion = B;
     } else {
         prompt("enter 'A' or 'B'");
     }

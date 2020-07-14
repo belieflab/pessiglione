@@ -18,7 +18,8 @@ for (let i = 0; i < instructionsText.length; i++) {
 let practiceStart = {
   type:  "html-keyboard-response",
   stimulus: '<p>First you will do some practice trials.</p> <p>Press either button when you are ready to begin.</p>',
-  choices: [leftASCII, rightASCII]
+  choices: [leftASCII, rightASCII],
+  on_finish: versionSelect(),
 };
 timeline.push(practiceStart);
 
@@ -109,7 +110,7 @@ let feedback = {
 /* practice trials */
 let practiceProcedure = {
     timeline: [fixation, stimuli, feedback],
-    timeline_variables: B,
+    timeline_variables: stimVersion,
     randomize_order: false,
   };
 timeline.push(practiceProcedure);
