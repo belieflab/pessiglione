@@ -12,6 +12,7 @@ function getParamFromURL(name)
     return results[1];
 }
 
+
 /* start the experiment */
 function startExperiment(){
   jsPsych.init({
@@ -26,7 +27,7 @@ function startExperiment(){
   });
 }
 
-/* insert instructions into timeline */
+/* insert instructions */
 function pushInstructions() {
 for (let i = 0; i < instructionsText.length; i++) {
     instructions.push({
