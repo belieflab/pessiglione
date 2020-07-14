@@ -114,7 +114,7 @@ let practiceProcedure = {
   };
 timeline.push(practiceProcedure);
 
-/* COMPLETION MESSAGE: Completed Classification Phase */
+/* completion */
 let thankYou = {
   type: "html-keyboard-response",
   stimulus: '<p">Thank you.</p>', 
