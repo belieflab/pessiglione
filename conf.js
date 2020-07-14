@@ -70,7 +70,6 @@ let trainingInstructionsText = [
         '<p>You will not be able to keep your money every time you choose the "best" picture;</p>'+
         '<p>However, one picture allows you to keep your money much more often than the other picture.</p>'+
         '<p>Press the spacebar continue.</p>'
-
 ];
 
 let testInstructionsText = [
@@ -85,7 +84,6 @@ let testInstructionsText = [
         '<p>please choose the object that "feels" like more of a winner based on what you have learned during the previous blocks.</p>'+
         '<p>If you\'re not sure which object to pick, just go with your gut instinct!</p>'+
         '<p>Press the spacebar continue.</p>'
-
 ];
 
 let startTextText = [

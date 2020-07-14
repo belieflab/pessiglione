@@ -51,10 +51,21 @@ let stimuli = {
     // data.practice = jsPsych.pluginAPI.convertKeyCodeToKeyCharacter(data.key_press);
     // data.practice = data.key_press == jsPsych.pluginAPI.convertKeyCharacterToKeyCode(data.correct_response);
     if (data.key_press == data.correct_response) {
+      upcoming_feedback = jsPsych.data.get().last().values()[0].trial_type;
       data.accuracy = 1
+      if (upcoming_feedback == 'win:stay') {
+        feedbackContainer.push(feedbackOptions[0]); //they get a nickel
+      } else if (upcoming_feedback == 'avoid:lose') {
+        feedbackContainer.push(feedbackOptions[1]); //they lose nothing
+      };
     } else {
       data.accuracy = 0
-    }
+      if (upcoming_feedback == 'win:stay') {
+        feedbackContainer.push(feedbackOptions[2]); //they keep their money
+      } else if (upcoming_feedback == 'avoid:lose') {
+        feedbackContainer.push(feedbackOptions[3]); //they lose their money
+      };
+    };
     switch(data.key_press){
       case leftASCII:
         while(choiceA.length > 0 && choiceB.length > 0) {
@@ -110,7 +121,7 @@ let feedback = {
 /* practice trials */
 let practiceProcedure = {
     timeline: [fixation, stimuli, feedback],
-    timeline_variables: stimVersion,
+    timeline_variables: practiceStimVersion,
     randomize_order: true,
     type: 'fixed-repititions',
     repetitions: 3

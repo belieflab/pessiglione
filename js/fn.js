@@ -18,7 +18,7 @@ function startExperiment(){
   jsPsych.init({
     timeline: timeline,
     show_progress_bar: true,
-    preload_images: [stimA, stimB, choiceA, choiceB, trialFeedback],
+    preload_images: [pracStimA, pracStimB, trainStimA, trainStimB, testStimA, testStimB, choiceA, choiceB, feedbackContainer],
     on_finish: function(){ saveData("pessiglione" + workerID, jsPsych.data.get().csv()); }
     //on_finish: function(){
       //jsPsych.data.get().filter([{test_part: 'test'},{test_part: 'prediction'},{test_part: 'c2_test'}]).localSave("csv", `test-self-deception-data.csv`);
@@ -49,9 +49,11 @@ function saveData(name, data){
 
 function versionSelect() {
     if (version == 'A') {
-        stimVersion = A;
+        practiceStimVersion = practiceA;
+        trainingStimVersion = trainingA;
     } else if (version =='B') {
-        stimVersion = B;
+        practiceStimVersion = practiceB;
+        trainingStimVersion = trainingB;
     } else {
         prompt("enter 'A' or 'B'");
     }
