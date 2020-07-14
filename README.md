@@ -30,7 +30,7 @@ refactor or Pessiglionne ePrime task from uMaryland
         sudo chmod -R 777 pessiglionne/
         
 #### Start experiment:     
-9. Click this link: [http://localhost:8080/pessiglionne](http://localhost:8080/pessiglionne)
+9. Click this URL: [http://localhost:8080/pessiglionne](http://localhost:8080/pessiglionne)
         
 10. BRAVO! You're a XAMPP master.
         
