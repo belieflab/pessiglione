@@ -109,7 +109,7 @@ let feedback = {
 /* practice trials */
 let practiceProcedure = {
     timeline: [fixation, stimuli, feedback],
-    timeline_variables: A,
+    timeline_variables: versionA,
     randomize_order: false,
   };
 timeline.push(practiceProcedure);
