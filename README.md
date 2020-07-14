@@ -25,12 +25,12 @@ refactor or Pessiglionne ePrime task from uMaryland
         git clone https://github.com/belieflab/pessiglionne.git
 
 #### Modifty permissions:
-8. Enter in Terminal:
+8. Copy this text into your terminal from the htdocs folder (the folder you are already in).
 
         sudo chmod -R 777 pessiglionne/
         
 #### Start experiment:     
-8. Copy this url to your web broswer:
+9. Copy this url to your web broswer:
 
         http://locaolhost:8080/pessiglionne
         
