@@ -24,6 +24,7 @@ file_put_contents($name, $data);
   <footer>
     <script type="text/javascript" src="js/consent.js"></script>
     <script type="text/javascript" src="js/fn.js"></script>
+    <script type="text/javascript" src="js/var.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-git.js"></script>
   </footer>
