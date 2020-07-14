@@ -3,6 +3,9 @@
 /*  make sure you know what you are doing with these rods and levers; you may break the experiment  */
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// declare global timeline variable
+let stimVersion;
+
 /* PRACTICE CONFIG *///
 
 let practice_pairs =      ['ab' ,'ef'];
@@ -66,8 +69,6 @@ let B = [
 
 let shuffleA = jsPsych.randomization.repeat(A, 1); //shuffled array no repeats
 let shuffleB = jsPsych.randomization.repeat(B, 1); //shuffled array no repeats
-
-let stimVersion;
 
 /* EXPERMENTAL CONFIG *///
 
