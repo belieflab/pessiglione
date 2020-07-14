@@ -1,24 +1,25 @@
 
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////
- /*  make sure you know what you are doing with these buttons and levers; you may break the experiment  */
-/////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ /// *  make sure you know what you are doing with these buttons and levers; you may break the experiment  * ///
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // declare global timeline variable
 let stimVersion;
 
+  /////////////////////////
+ // * PRACTICE CONFIG * //
+/////////////////////////
 
-/* PRACTICE CONFIG *///
-
-let practice_pairs =      ['ab' ,'ef'];
-let practice_validity =   [1.0  ,1.0];
-let practice_good_stim =  ['a'  ,'e'];
-let practice_trial_type = ['win:stay','avoid:lose'];
+let practice_pairs =      ['ab', 'ef'];
+let practice_validity =   [1.0, 1.0];
+let practice_good_stim =  ['a', 'e'];
+let practice_trial_type = ['win:stay', 'avoid:lose'];
 
 /* practice stim versions A & B */
-let pracA = ['Field4','Field10','Field13','Field17'];
-let pracB = ['African_landscape','closeWater_pines_mountains','Trees_with_flowers','wheat_with_farmhouse'];
-let trainA = ['Field3','Field5','Field14','Field11','Field9','Field12','Field15','Field16'];
-let trainB = ['3d-landscape-background-10','2822landscape','lsingeltree_tallergrass_clouds','orangey_field','water_fall_images','water_pines_distantMountains','water_pines_snowy_moutain','waterfall_waterBelow'];
+const pracA = ['Field4','Field10','Field13','Field17'];
+const pracB = ['African_landscape','closeWater_pines_mountains','Trees_with_flowers','wheat_with_farmhouse'];
+const trainA = ['Field3','Field5','Field14','Field11','Field9','Field12','Field15','Field16'];
+const trainB = ['3d-landscape-background-10','2822landscape','lsingeltree_tallergrass_clouds','orangey_field','water_fall_images','water_pines_distantMountains','water_pines_snowy_moutain','waterfall_waterBelow'];
 
 /* stim paths */
 let pracStimA = [];
@@ -31,11 +32,11 @@ for (let i=0; i<pracB.length; i++) {
 }
 
 
-/* feedback stimu paths passed by reference */
+/* particpant choice containers */
 let choiceA = [];
 let choiceB = [];
 
-/* feedback stimu paths passed by reference */
+
 let feedbackOptions = ['stim/win.bmp', 'stim/not_winner.png', 'stim/keep_money.png', 'stim/lose.bmp'];
 let feedbackContainer = [];
 let upcoming_feedback;
@@ -47,23 +48,24 @@ let blankDot = 'stim/blank.png';
 /* version A stimuli objects */
 
 let practiceA = [
-  {stimulusLeft: pracStimA[0], stimulusRight: pracStimA[1], chooseLeft: choiceA, chooseRight: choiceA, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'practice', pair: practice_pairs[0], pair_validity: practice_validity[0], good_stim: practice_good_stim[0], trial_type: practice_trial_type[0], correct_response: leftASCII}}, // 0 key
-  {stimulusLeft: pracStimA[1], stimulusRight: pracStimA[0], chooseLeft: choiceA, chooseRight: choiceA, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'practice', pair: practice_pairs[0], pair_validity: practice_validity[0], good_stim: practice_good_stim[0], trial_type: practice_trial_type[0], correct_response: rightASCII}}, // 0 key
-  {stimulusLeft: pracStimA[2], stimulusRight: pracStimA[3], chooseLeft: choiceA, chooseRight: choiceA, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'practice', pair: practice_pairs[1], pair_validity: practice_validity[1], good_stim: practice_good_stim[1], trial_type: practice_trial_type[1], correct_response: leftASCII}}, // 0 key
-  {stimulusLeft: pracStimA[3], stimulusRight: pracStimA[2], chooseLeft: choiceA, chooseRight: choiceA, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'practice', pair: practice_pairs[1], pair_validity: practice_validity[1], good_stim: practice_good_stim[1], trial_type: practice_trial_type[1], correct_response: rightASCII}}, // 0 key
+  {stimulusLeft: pracStimA[0], stimulusRight: pracStimA[1], chooseLeft: choiceA, chooseRight: choiceA, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'practice', pair: practice_pairs[0], pair_validity: practice_validity[0], good_stim: practice_good_stim[0], reward_type: practice_trial_type[0], correct_response: leftASCII}}, // 0 key
+  {stimulusLeft: pracStimA[1], stimulusRight: pracStimA[0], chooseLeft: choiceA, chooseRight: choiceA, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'practice', pair: practice_pairs[0], pair_validity: practice_validity[0], good_stim: practice_good_stim[0], reward_type: practice_trial_type[0], correct_response: rightASCII}}, // 0 key
+  {stimulusLeft: pracStimA[2], stimulusRight: pracStimA[3], chooseLeft: choiceA, chooseRight: choiceA, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'practice', pair: practice_pairs[1], pair_validity: practice_validity[1], good_stim: practice_good_stim[1], reward_type: practice_trial_type[1], correct_response: leftASCII}}, // 0 key
+  {stimulusLeft: pracStimA[3], stimulusRight: pracStimA[2], chooseLeft: choiceA, chooseRight: choiceA, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'practice', pair: practice_pairs[1], pair_validity: practice_validity[1], good_stim: practice_good_stim[1], reward_type: practice_trial_type[1], correct_response: rightASCII}}, // 0 key
 ]
 
 /* version B stimuli objects */
 
 let practiceB = [
-  {stimulusLeft: pracStimB[0], stimulusRight: pracStimB[1], chooseLeft: choiceB, chooseRight: choiceB, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'practice', pair: practice_pairs[0], pair_validity: practice_validity[0], good_stim: practice_good_stim[0], trial_type: practice_trial_type[0], correct_response: leftASCII}}, // 0 key
-  {stimulusLeft: pracStimB[1], stimulusRight: pracStimB[0], chooseLeft: choiceB, chooseRight: choiceB, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'practice', pair: practice_pairs[0], pair_validity: practice_validity[0], good_stim: practice_good_stim[0], trial_type: practice_trial_type[0], correct_response: rightASCII}}, // 0 key
-  {stimulusLeft: pracStimB[2], stimulusRight: pracStimB[3], chooseLeft: choiceB, chooseRight: choiceB, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'practice', pair: practice_pairs[1], pair_validity: practice_validity[1], good_stim: practice_good_stim[1], trial_type: practice_trial_type[1], correct_response: leftASCII}}, // 0 key
-  {stimulusLeft: pracStimB[3], stimulusRight: pracStimB[2], chooseLeft: choiceB, chooseRight: choiceB, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'practice', pair: practice_pairs[1], pair_validity: practice_validity[1], good_stim: practice_good_stim[1], trial_type: practice_trial_type[1], correct_response: rightASCII}}, // 0 key
+  {stimulusLeft: pracStimB[0], stimulusRight: pracStimB[1], chooseLeft: choiceB, chooseRight: choiceB, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'practice', pair: practice_pairs[0], pair_validity: practice_validity[0], good_stim: practice_good_stim[0], reward_type: practice_trial_type[0], correct_response: leftASCII}}, // 0 key
+  {stimulusLeft: pracStimB[1], stimulusRight: pracStimB[0], chooseLeft: choiceB, chooseRight: choiceB, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'practice', pair: practice_pairs[0], pair_validity: practice_validity[0], good_stim: practice_good_stim[0], reward_type: practice_trial_type[0], correct_response: rightASCII}}, // 0 key
+  {stimulusLeft: pracStimB[2], stimulusRight: pracStimB[3], chooseLeft: choiceB, chooseRight: choiceB, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'practice', pair: practice_pairs[1], pair_validity: practice_validity[1], good_stim: practice_good_stim[1], reward_type: practice_trial_type[1], correct_response: leftASCII}}, // 0 key
+  {stimulusLeft: pracStimB[3], stimulusRight: pracStimB[2], chooseLeft: choiceB, chooseRight: choiceB, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'practice', pair: practice_pairs[1], pair_validity: practice_validity[1], good_stim: practice_good_stim[1], reward_type: practice_trial_type[1], correct_response: rightASCII}}, // 0 key
 ]
 
-
-/* EXPERMENTAL CONFIG *///
+  /////////////////////////
+ // * TRAINING CONFIG * //
+/////////////////////////
 
 let training_pairs =      ["ab" ,"cd" ,"ef" ,"gh"];
 let training_validity =   [0.9  ,0.8  ,0.9  ,0.8];
@@ -84,35 +86,37 @@ for (let i=0; i<trainB.length; i++) {
 /* version A stimuli objects */
 
 let trainingA = [
-  {stimulusLeft: trainStimA[0], stimulusRight: trainStimA[1], chooseLeft: choiceA, chooseRight: choiceA, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[0], pair_validity: training_validity[0], good_stim: training_good_stim[0], trial_type: training_trial_type[0], correct_response: leftASCII}}, // 0 key
-  {stimulusLeft: trainStimA[1], stimulusRight: trainStimA[0], chooseLeft: choiceA, chooseRight: choiceA, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[0], pair_validity: training_validity[0], good_stim: training_good_stim[0], trial_type: training_trial_type[0], correct_response: rightASCII}}, // 0 key
-  {stimulusLeft: trainStimA[2], stimulusRight: trainStimA[3], chooseLeft: choiceA, chooseRight: choiceA, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[1], pair_validity: training_validity[1], good_stim: training_good_stim[1], trial_type: training_trial_type[1], correct_response: leftASCII}}, // 0 key
-  {stimulusLeft: trainStimA[3], stimulusRight: trainStimA[2], chooseLeft: choiceA, chooseRight: choiceA, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[1], pair_validity: training_validity[1], good_stim: training_good_stim[1], trial_type: training_trial_type[1], correct_response: rightASCII}}, // 0 key
-  {stimulusLeft: trainStimA[4], stimulusRight: trainStimA[5], chooseLeft: choiceA, chooseRight: choiceA, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[2], pair_validity: training_validity[2], good_stim: training_good_stim[2], trial_type: training_trial_type[2], correct_response: leftASCII}}, // 0 key
-  {stimulusLeft: trainStimA[5], stimulusRight: trainStimA[4], chooseLeft: choiceA, chooseRight: choiceA, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[2], pair_validity: training_validity[2], good_stim: training_good_stim[2], trial_type: training_trial_type[2], correct_response: rightASCII}}, // 0 key
-  {stimulusLeft: trainStimA[6], stimulusRight: trainStimA[7], chooseLeft: choiceA, chooseRight: choiceA, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[3], pair_validity: training_validity[3], good_stim: training_good_stim[3], trial_type: training_trial_type[3], correct_response: leftASCII}}, // 0 key
-  {stimulusLeft: trainStimA[7], stimulusRight: trainStimA[6], chooseLeft: choiceA, chooseRight: choiceA, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[3], pair_validity: training_validity[3], good_stim: training_good_stim[3], trial_type: training_trial_type[3], correct_response: rightASCII}}, // 0 key
+  {stimulusLeft: trainStimA[0], stimulusRight: trainStimA[1], chooseLeft: choiceA, chooseRight: choiceA, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[0], pair_validity: training_validity[0], good_stim: training_good_stim[0], reward_type: training_trial_type[0], correct_response: leftASCII}}, // 0 key
+  {stimulusLeft: trainStimA[1], stimulusRight: trainStimA[0], chooseLeft: choiceA, chooseRight: choiceA, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[0], pair_validity: training_validity[0], good_stim: training_good_stim[0], reward_type: training_trial_type[0], correct_response: rightASCII}}, // 0 key
+  {stimulusLeft: trainStimA[2], stimulusRight: trainStimA[3], chooseLeft: choiceA, chooseRight: choiceA, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[1], pair_validity: training_validity[1], good_stim: training_good_stim[1], reward_type: training_trial_type[1], correct_response: leftASCII}}, // 0 key
+  {stimulusLeft: trainStimA[3], stimulusRight: trainStimA[2], chooseLeft: choiceA, chooseRight: choiceA, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[1], pair_validity: training_validity[1], good_stim: training_good_stim[1], reward_type: training_trial_type[1], correct_response: rightASCII}}, // 0 key
+  {stimulusLeft: trainStimA[4], stimulusRight: trainStimA[5], chooseLeft: choiceA, chooseRight: choiceA, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[2], pair_validity: training_validity[2], good_stim: training_good_stim[2], reward_type: training_trial_type[2], correct_response: leftASCII}}, // 0 key
+  {stimulusLeft: trainStimA[5], stimulusRight: trainStimA[4], chooseLeft: choiceA, chooseRight: choiceA, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[2], pair_validity: training_validity[2], good_stim: training_good_stim[2], reward_type: training_trial_type[2], correct_response: rightASCII}}, // 0 key
+  {stimulusLeft: trainStimA[6], stimulusRight: trainStimA[7], chooseLeft: choiceA, chooseRight: choiceA, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[3], pair_validity: training_validity[3], good_stim: training_good_stim[3], reward_type: training_trial_type[3], correct_response: leftASCII}}, // 0 key
+  {stimulusLeft: trainStimA[7], stimulusRight: trainStimA[6], chooseLeft: choiceA, chooseRight: choiceA, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[3], pair_validity: training_validity[3], good_stim: training_good_stim[3], reward_type: training_trial_type[3], correct_response: rightASCII}}, // 0 key
 ]
 
 /* version B stimuli objects */
 
 let trainingB = [
-  {stimulusLeft: trainStimB[0], stimulusRight: trainStimB[1], chooseLeft: choiceB, chooseRight: choiceB, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[0], pair_validity: training_validity[0], good_stim: training_good_stim[0], trial_type: training_trial_type[0], correct_response: leftASCII}}, // 0 key
-  {stimulusLeft: trainStimB[1], stimulusRight: trainStimB[0], chooseLeft: choiceB, chooseRight: choiceB, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[0], pair_validity: training_validity[0], good_stim: training_good_stim[0], trial_type: training_trial_type[0], correct_response: rightASCII}}, // 0 key
-  {stimulusLeft: trainStimB[2], stimulusRight: trainStimB[3], chooseLeft: choiceB, chooseRight: choiceB, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[1], pair_validity: training_validity[1], good_stim: training_good_stim[1], trial_type: training_trial_type[1], correct_response: leftASCII}}, // 0 key
-  {stimulusLeft: trainStimB[3], stimulusRight: trainStimB[2], chooseLeft: choiceB, chooseRight: choiceB, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[1], pair_validity: training_validity[1], good_stim: training_good_stim[1], trial_type: training_trial_type[1], correct_response: rightASCII}}, // 0 key
-  {stimulusLeft: trainStimA[4], stimulusRight: trainStimA[5], chooseLeft: choiceA, chooseRight: choiceA, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[2], pair_validity: training_validity[2], good_stim: training_good_stim[2], trial_type: training_trial_type[2], correct_response: leftASCII}}, // 0 key
-  {stimulusLeft: trainStimA[5], stimulusRight: trainStimA[4], chooseLeft: choiceA, chooseRight: choiceA, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[2], pair_validity: training_validity[2], good_stim: training_good_stim[2], trial_type: training_trial_type[2], correct_response: rightASCII}}, // 0 key
-  {stimulusLeft: trainStimA[6], stimulusRight: trainStimA[7], chooseLeft: choiceA, chooseRight: choiceA, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[3], pair_validity: training_validity[3], good_stim: training_good_stim[3], trial_type: training_trial_type[3], correct_response: leftASCII}}, // 0 key
-  {stimulusLeft: trainStimA[7], stimulusRight: trainStimA[6], chooseLeft: choiceA, chooseRight: choiceA, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[3], pair_validity: training_validity[3], good_stim: training_good_stim[3], trial_type: training_trial_type[3], correct_response: rightASCII}}, // 0 key
+  {stimulusLeft: trainStimB[0], stimulusRight: trainStimB[1], chooseLeft: choiceB, chooseRight: choiceB, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[0], pair_validity: training_validity[0], good_stim: training_good_stim[0], reward_type: training_trial_type[0], correct_response: leftASCII}}, // 0 key
+  {stimulusLeft: trainStimB[1], stimulusRight: trainStimB[0], chooseLeft: choiceB, chooseRight: choiceB, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[0], pair_validity: training_validity[0], good_stim: training_good_stim[0], reward_type: training_trial_type[0], correct_response: rightASCII}}, // 0 key
+  {stimulusLeft: trainStimB[2], stimulusRight: trainStimB[3], chooseLeft: choiceB, chooseRight: choiceB, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[1], pair_validity: training_validity[1], good_stim: training_good_stim[1], reward_type: training_trial_type[1], correct_response: leftASCII}}, // 0 key
+  {stimulusLeft: trainStimB[3], stimulusRight: trainStimB[2], chooseLeft: choiceB, chooseRight: choiceB, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[1], pair_validity: training_validity[1], good_stim: training_good_stim[1], reward_type: training_trial_type[1], correct_response: rightASCII}}, // 0 key
+  {stimulusLeft: trainStimA[4], stimulusRight: trainStimA[5], chooseLeft: choiceA, chooseRight: choiceA, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[2], pair_validity: training_validity[2], good_stim: training_good_stim[2], reward_type: training_trial_type[2], correct_response: leftASCII}}, // 0 key
+  {stimulusLeft: trainStimA[5], stimulusRight: trainStimA[4], chooseLeft: choiceA, chooseRight: choiceA, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[2], pair_validity: training_validity[2], good_stim: training_good_stim[2], reward_type: training_trial_type[2], correct_response: rightASCII}}, // 0 key
+  {stimulusLeft: trainStimA[6], stimulusRight: trainStimA[7], chooseLeft: choiceA, chooseRight: choiceA, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[3], pair_validity: training_validity[3], good_stim: training_good_stim[3], reward_type: training_trial_type[3], correct_response: leftASCII}}, // 0 key
+  {stimulusLeft: trainStimA[7], stimulusRight: trainStimA[6], chooseLeft: choiceA, chooseRight: choiceA, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[3], pair_validity: training_validity[3], good_stim: training_good_stim[3], reward_type: training_trial_type[3], correct_response: rightASCII}}, // 0 key
 ]
 
-
-/* TEST CONFIG *///
+  /////////////////////
+ // * TEST CONFIG * //
+/////////////////////
 
 let test_pairs =          ["ab" ,"ae" ,"af" ,"ag" ,"ah" ,"be" ,"bg" ,"cd" ,"ce" ,"cf" ,"cg" ,"ch" ,"de" ,"dg" ,"ef" ,"gh"];
 let test_good_stim =      ["a"  ,"a"  ,"a"  ,"a"  ,"a"  ,"e"  ,"g"  ,"c"  ,"c"  ,"c"  ,"c"  ,"c"  ,"e"  ,"g"  ,"e"  ,"g"];
 
+// paths are identicalpassed by reference to avoid naming confusion
 let testStimA = trainStimA;
 let testStimB = trainStimB;
 

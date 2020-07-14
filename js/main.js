@@ -48,24 +48,33 @@ let stimuli = {
   response_ends_trial: true,
   data: jsPsych.timelineVariable('data'),
   on_finish: function(data){
-    // data.practice = jsPsych.pluginAPI.convertKeyCodeToKeyCharacter(data.key_press);
-    // data.practice = data.key_press == jsPsych.pluginAPI.convertKeyCharacterToKeyCode(data.correct_response);
-    if (data.key_press == data.correct_response) {
-      upcoming_feedback = jsPsych.data.get().last().values()[0].trial_type;
-      data.accuracy = 1
-      if (upcoming_feedback == 'win:stay') {
+    feedbackValidity = jsPsych.data.get().last().values()[0].reward_type;
+    if (feedbackValidity === 'win:stay') {
+      if (data.key_press === data.correct_response) {
+        console.log('correct');
+        data.accuracy = 1;
+        feedbackContainer.pop();
         feedbackContainer.push(feedbackOptions[0]); //they get a nickel
-      } else if (upcoming_feedback == 'avoid:lose') {
+      } else if (data.key_press !== data.correct_response) {
+        feedbackContainer.pop();
         feedbackContainer.push(feedbackOptions[1]); //they lose nothing
-      };
-    } else {
-      data.accuracy = 0
-      if (upcoming_feedback == 'win:stay') {
+        console.log('incorrect');
+        data.accuracy = 0;
+      }
+   } else if (feedbackValidity === 'avoid:lose') {
+      if (data.key_press === data.correct_response) {
+        console.log('correct');
+        data.accuracy = 1;
+        feedbackContainer.pop();
         feedbackContainer.push(feedbackOptions[2]); //they keep their money
-      } else if (upcoming_feedback == 'avoid:lose') {
+      } else if (data.key_press !== data.correct_response) {
+        feedbackContainer.pop();
         feedbackContainer.push(feedbackOptions[3]); //they lose their money
-      };
-    };
+        console.log('incorrect');
+        data.accuracy = 0;
+      }
+    }
+
     switch(data.key_press){
       case leftASCII:
         while(choiceA.length > 0 && choiceB.length > 0) {
@@ -94,6 +103,7 @@ let feedback = {
   type: 'html-keyboard-response',
   stimulus: function() {
     let participantResponse = jsPsych.data.get().last(1).values()[0].key_press;
+    console.log(participantResponse)
     if (participantResponse == leftASCII) { // if last correct_response == 49 (1 key)
       var html = "<img style='border: 5px solid #808080;' src='"+jsPsych.timelineVariable('stimulusLeft', true)+"'>" +
       "<img style='width:200px; height:200px; margin-bottom: 0px;' src='"+jsPsych.timelineVariable('trialFeedback', true)+"'>" +
