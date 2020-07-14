@@ -13,8 +13,8 @@ const version = 'A';
 let leftASCII= 49;
 let rightASCII = 50;
 
-let leftKeycap = '1';
-let rightKeycap = '2';
+let leftKey = '1';
+let rightKey = '2';
 
 // define inter-stimulus interval
 let isi = [1000, 5000];
@@ -49,8 +49,8 @@ let instructionsText = [
         '<img style="height:100px; width:100px" src="stim/lose.bmp"></img>'+
         '<p>you probably aren\'t selecting the best picture...</p>',
 
-    '<p>Press the LEFT button to select the picture on the LEFT.</p>'+
-        '<p>Press the RIGHT button to select the picture on the RIGHT.</p>'+
+    '<p>Press the '+leftKey+' key on your keyboard to select the picture on the LEFT.</p>'+
+        '<p>Press the '+rightKey+' key on your keyboard to select the picture on the RIGHT.</p>'+
         '<p>Press the spacebar continue.</p>'
 ];
 

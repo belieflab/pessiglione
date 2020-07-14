@@ -27,7 +27,7 @@ function startExperiment(){
   });
 }
 
-/* insert instructions */
+/* insert instructions122 */
 function pushInstructions() {
 for (let i = 0; i < instructionsText.length; i++) {
     instructions.push({
