@@ -31,10 +31,15 @@ for (let i=0; i<pracB.length; i++) {
     stimB.push('stim/b/'+pracB[i]+'.jpg');
 }
 
+
 /* feedback stimu paths passed by reference */
 
-let feedbackA = [];
-let feedbackB = [];
+let choiceA = [];
+let choiceB = [];
+
+/* feedback stimu paths passed by reference */
+
+let trialFeedback = ['stim/keep_money.png', 'stim/lose.bmp', 'stim/win.bmp', 'stim/not_winner.png'];
 
 /* fixation dot */
 
@@ -45,20 +50,20 @@ let blankDot = 'stim/blank.png';
 /* version A stimuli objects */
 
 let A = [
-  {stimulusLeft: stimA[1], stimulusRight: stimA[0], feedbackLeft: feedbackA, feedbackRight: feedbackA, fixation: fixationDot, data: {test_part: 'practice', correct_response: leftASCII}}, // 0 key
-  {stimulusLeft: stimA[2], stimulusRight: stimA[3], feedbackLeft: feedbackA, feedbackRight: feedbackA, fixation: fixationDot, data: {test_part: 'practice', correct_response: rightASCII}}, // 0 key
-  {stimulusLeft: stimA[3], stimulusRight: stimA[2], feedbackLeft: feedbackA, feedbackRight: feedbackA, fixation: fixationDot, data: {test_part: 'practice', correct_response: leftASCII}}, // 0 key
-  {stimulusLeft: stimA[0], stimulusRight: stimA[1], feedbackLeft: feedbackA, feedbackRight: feedbackA, fixation: fixationDot, data: {test_part: 'practice', correct_response: rightASCII}}, // 0 key
+  {stimulusLeft: stimA[1], stimulusRight: stimA[0], chooseLeft: choiceA, chooseRight: choiceA, fixation: fixationDot, trialFeedback: trialFeedback[0], data: {test_part: 'practice', correct_response: leftASCII}}, // 0 key
+  {stimulusLeft: stimA[2], stimulusRight: stimA[3], chooseLeft: choiceA, chooseRight: choiceA, fixation: fixationDot, trialFeedback: trialFeedback[1], data: {test_part: 'practice', correct_response: rightASCII}}, // 0 key
+  {stimulusLeft: stimA[3], stimulusRight: stimA[2], chooseLeft: choiceA, chooseRight: choiceA, fixation: fixationDot, trialFeedback: trialFeedback[2], data: {test_part: 'practice', correct_response: leftASCII}}, // 0 key
+  {stimulusLeft: stimA[0], stimulusRight: stimA[1], chooseLeft: choiceA, chooseRight: choiceA, fixation: fixationDot, trialFeedback: trialFeedback[3], data: {test_part: 'practice', correct_response: rightASCII}}, // 0 key
 
 ]
 
 /* version B stimuli objects */
 
 let B = [
-  {stimulusLeft: stimB[0], stimulusRight: stimB[1], feedbackLeft: feedbackA, feedbackRight: feedbackA, fixation: fixationDot, data: {test_part: 'practice', correct_response: leftASCII}}, // 0 key
-  {stimulusLeft: stimB[2], stimulusRight: stimB[3], feedbackLeft: feedbackA, feedbackRight: feedbackA, fixation: fixationDot ,data: {test_part: 'practice', correct_response: rightASCII}}, // 0 key
-  {stimulusLeft: stimB[1], stimulusRight: stimB[0], feedbackLeft: feedbackA, feedbackRight: feedbackA, fixation: fixationDot, data: {test_part: 'practice', correct_response: leftASCII}}, // 0 key
-  {stimulusLeft: stimB[3], stimulusRight: stimB[2], feedbackLeft: feedbackA, feedbackRight: feedbackA, fixation: fixationDot, data: {test_part: 'practice', correct_response: rightASCII}}, // 0 key
+  {stimulusLeft: stimB[0], stimulusRight: stimB[1], chooseLeft: choiceB, chooseRight: choiceB, fixation: fixationDot, trialFeedback: trialFeedback, data: {test_part: 'practice', correct_response: leftASCII}}, // 0 key
+  {stimulusLeft: stimB[2], stimulusRight: stimB[3], chooseLeft: choiceB, chooseRight: choiceB, fixation: fixationDot, trialFeedback: trialFeedback, data: {test_part: 'practice', correct_response: rightASCII}}, // 0 key
+  {stimulusLeft: stimB[1], stimulusRight: stimB[0], chooseLeft: choiceB, chooseRight: choiceB, fixation: fixationDot, trialFeedback: trialFeedback, data: {test_part: 'practice', correct_response: leftASCII}}, // 0 key
+  {stimulusLeft: stimB[3], stimulusRight: stimB[2], chooseLeft: choiceB, chooseRight: choiceB, fixation: fixationDot, trialFeedback: trialFeedback, data: {test_part: 'practice', correct_response: rightASCII}}, // 0 key
 ]
 
 // let stimB_array = [
