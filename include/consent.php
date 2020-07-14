@@ -1,3 +1,12 @@
+<script>
+  // show page when loaded 
+  window.onload = function() {
+    $(".loading").css({display: "none"});
+    $(".consent").css({display: "block"});
+    $(".buttonHolder").css({display: "block"});
+  };
+</script>
+
 <div class="loading centeredDiv">
     <h1 class="loading">Loading...</h1>
   </div>
@@ -51,7 +60,6 @@
       <u><b>Questions or Concerns</b></u>
       <br>
       If you have any questions or concerns regarding the experiment, you may contact us here at the lab by emailing BLAMLabRequester@gmail.com If you have general questions about your rights as a research participant, you may contact the Yale University Human Investigation Committee at 203-785-4688 or human.subjects@yale.edu (HSC# 2000026290).
-
     </p>
   </div>
 
@@ -72,3 +80,4 @@
   <div id="nextButtonHolder" class="buttonHolder">
   <button id="nextButton" onclick="startExperiment()">CONSENT/NEXT</button>
 </div>
+
