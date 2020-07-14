@@ -56,7 +56,7 @@ let stimuli = {
       data.accuracy = 0
     }
     switch(data.key_press){
-      case 49:
+      case leftASCII:
         while(choiceA.length > 0 && choiceB.length > 0) {
           choiceA.pop();
           choiceB.pop();
@@ -64,7 +64,7 @@ let stimuli = {
         choiceA.push(jsPsych.timelineVariable('stimulusLeft', true))
         choiceB.push(jsPsych.timelineVariable('stimulusLeft', true))
         break;
-      case 50:
+      case rightASCII:
         while(choiceA.length > 0 && choiceB.length > 0) {
           choiceA.pop();
           choiceB.pop();
