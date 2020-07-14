@@ -20,7 +20,11 @@ refactor or Pessiglionne ePrime task from uMaryland
 
         cd C://xampp//htdocs
 
-7. Clone  into htdocs:
+7. Clone into htdocs:
 
         git clone https://github.com/belieflab/pessiglionne.git
+
+8. Modify permissions:
+
+        sudo chmod -R 777 pessiglionne/
 
