@@ -21,7 +21,6 @@ let rightKey = '2';
 // define inter-stimulus interval
 let isi = [1000, 5000];
 
-/* feed instructions into timeline */
 let instructionsText = [
 
     '<h3 style="color:#0ed145;">Welcome to the experiment!</h3>'+
@@ -54,6 +53,51 @@ let instructionsText = [
     '<p>Press the '+leftKey+' key on your keyboard to select the picture on the LEFT.</p>'+
         '<p>Press the '+rightKey+' key on your keyboard to select the picture on the RIGHT.</p>'+
         '<p>Press the spacebar continue.</p>'
+];
+
+let trainingInstructionsText = [
+
+    '<p>Great!</p> <p>Press the spacebar continue.</p>',
+    
+    '<p>Now you will see some more pictures.</p>'+
+        '<p>Do as before by pressing the '+leftKey+' to choose the picture on the left, and pressing the '+rightKey+' to choose the picture on the right.</p>'+
+        '<p>Press the spacebar continue.</p>',
+
+    '<h3 style="color:red;">For the picture pairs where you can win money:</h3>'+
+        '<p>You will not win every time you choose the "best" picture;</p>'+
+        '<p>However, one picture gets rewarded much more often than the other picture.</p>'+
+        '<h3 style="color:red;">For the picture pairs where the best you can do is keep your money:</h3>'+
+        '<p>You will not be able to keep your money every time you choose the "best" picture;</p>'+
+        '<p>However, one picture allows you to keep your money much more often than the other picture.</p>'+
+        '<p>Press the spacebar continue.</p>'
+
+];
+
+let testInstructionsText = [
+
+    '<p>Great!</p> <p>Press the spacebar continue.</p>',
+    
+    '<p>It\'s time to test what you\'ve learned!</p>'+
+        '<p>During this block of trials you will not be shown whether the object you choose wins money.</p>'+
+        '<p>Press the spacebar continue.</p>',
+    
+    '<p>If you see new combinations of objects in this next block,</p>'+
+        '<p>please choose the object that "feels" like more of a winner based on what you have learned during the previous blocks.</p>'+
+        '<p>If you\'re not sure which object to pick, just go with your gut instinct!</p>'+
+        '<p>Press the spacebar continue.</p>'
+
+];
+
+let startTextText = [
+
+    '<p>Press either button when you are ready to begin.</p>'
+
+];
+    
+let startNewBlockText = [
+
+    '<p>Starting a new block of trials.</p> <p>Press either button when you are ready to begin.</p>'
+    
 ];
 
 // Qualtrics survery link 
