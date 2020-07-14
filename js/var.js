@@ -86,4 +86,3 @@ let test_good_stim =      ["a"  ,"a"  ,"a"  ,"a"  ,"a"  ,"e"  ,"g"  ,"c"  ,"c"  
 
 //var randNum = Math.random() * 1000
 //var randNumRounded = Math.floor(randNum+1)
-
