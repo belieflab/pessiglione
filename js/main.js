@@ -84,14 +84,14 @@ let feedback = {
   stimulus: function() {
     let participantResponse = jsPsych.data.get().last(1).values()[0].key_press;
     if (participantResponse == leftASCII) { // if last correct_response == 49 (1 key)
-      var html = "<img style='border: 5px solid #f90909;' src='"+jsPsych.timelineVariable('stimulusLeft', true)+"'>" +
+      var html = "<img style='border: 5px solid #808080;' src='"+jsPsych.timelineVariable('stimulusLeft', true)+"'>" +
       "<img style='width:10px; height:10px; margin-bottom: 95px;' src='stim/dot_white.png'>" +
              "<img style='border: 5px solid #ffffff;  padding-left:15px;' src='"+jsPsych.timelineVariable('stimulusRight', true)+"'>";
              return html
     } else if (participantResponse == rightASCII) { // if last correct_response == 48 (0 key)
       var html = "<img style='border: 5px solid #ffffff; padding-right:15px;' src='"+jsPsych.timelineVariable('stimulusLeft', true)+"'>"+
       "<img style='width:10px; height:10px; margin-bottom: 95px;' src='stim/dot_white.png'>" +
-             "<img style='border: 5px solid #f90909;'src='"+jsPsych.timelineVariable('stimulusRight', true)+"'>";
+             "<img style='border: 5px solid #808080;'src='"+jsPsych.timelineVariable('stimulusRight', true)+"'>";
              return html
     }
   },
