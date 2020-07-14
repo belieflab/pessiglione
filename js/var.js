@@ -41,7 +41,7 @@ let blankDot = 'stim/dot_white.png';
 
 /* version A stimuli objects */
 
-let versionA = [
+let A = [
   {stimulusLeft: stimA[0], stimulusRight: stimA[1], feedbackLeft: feedbackA, feedbackRight: feedbackA, fixation: fixationDot, data: {test_part: 'practice', correct_response: leftASCII}}, // 0 key
   {stimulusLeft: stimA[2], stimulusRight: stimA[3], feedbackLeft: feedbackA, feedbackRight: feedbackA, fixation: fixationDot, data: {test_part: 'practice', correct_response: rightASCII}}, // 0 key
   {stimulusLeft: stimA[1], stimulusRight: stimA[0], feedbackLeft: feedbackA, feedbackRight: feedbackA, fixation: fixationDot, data: {test_part: 'practice', correct_response: rightASCII}}, // 0 key
@@ -50,7 +50,7 @@ let versionA = [
 
 /* version B stimuli objects */
 
-let versionB = [
+let B = [
   {stimulusLeft: stimB[0], stimulusRight: stimB[1], feedbackLeft: feedbackA, feedbackRight: feedbackA, fixation: fixationDot, data: {test_part: 'practice', correct_response: leftASCII}}, // 0 key
   {stimulusLeft: stimB[2], stimulusRight: stimB[3], feedbackLeft: feedbackA, feedbackRight: feedbackA, fixation: fixationDot ,data: {test_part: 'practice', correct_response: rightASCII}}, // 0 key
   {stimulusLeft: stimB[1], stimulusRight: stimB[0], feedbackLeft: feedbackA, feedbackRight: feedbackA, fixation: fixationDot, data: {test_part: 'practice', correct_response: leftASCII}}, // 0 key
@@ -64,8 +64,8 @@ let versionB = [
 
 /* shuffle stim versions A & B */
 
-let shuffleA = jsPsych.randomization.repeat(versionA, 1); //shuffled array no repeats
-let shuffleB = jsPsych.randomization.repeat(versionB, 1); //shuffled array no repeats
+let shuffleA = jsPsych.randomization.repeat(A, 1); //shuffled array no repeats
+let shuffleB = jsPsych.randomization.repeat(B, 1); //shuffled array no repeats
 
 
 

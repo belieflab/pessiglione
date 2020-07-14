@@ -47,15 +47,15 @@ function saveData(name, data){
     xhr.send(JSON.stringify({filename: name, filedata: data}));
   }
 
-// function selectStim(version) {
-//     if (version == 'A') {
-//         masterStim = masterStim[0]
-//     } else if (version =='B') {
-//         masterStim = stimA,
-//     } else {
-//         prompt("enter 'A' or 'B'")
-//     }
-// }
+function versionSelect() {
+    if (version == 'A') {
+        version = A;
+    } else if (version =='B') {
+        version = B;
+    } else {
+        prompt("enter 'A' or 'B'");
+    }
+}
 
 // function shuffle(array) {
 //     for (let i = array.length - 1; i > 0; i--) {

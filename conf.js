@@ -6,8 +6,9 @@
 let workerID = prompt("Enter your subject id" );
 
 /* set task version */
-const version = 'A';
+let version = 'B';
 //const version = 'B';
+// versionSelect();
 
 /* Adjust Response Keys */
 let leftASCII= 49;
