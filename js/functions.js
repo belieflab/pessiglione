@@ -16,3 +16,52 @@
 //         }
 // //        shuffle(training_files);
 //     }
+
+function getParamFromURL(name)
+{
+  name = name.replace(/[\[]/,"\\[").replace(/[\]]/,"\\]");
+  let regexS = "[\?&]"+name+"=([^&#]*)";
+  let regex = new RegExp( regexS );
+  let results = regex.exec( window.location.href );
+  if( results == null )
+    return "";
+  else
+    return results[1];
+}
+
+
+/* start the experiment */
+function startExperiment(){
+  jsPsych.init({
+    timeline: timeline,
+    show_progress_bar: true,
+    preload_images: [stimA, stimB, feedbackA, feedbackB],
+    on_finish: function(){ saveData("pessiglione" + workerID, jsPsych.data.get().csv()); }
+    //on_finish: function(){
+      //jsPsych.data.get().filter([{test_part: 'test'},{test_part: 'prediction'},{test_part: 'c2_test'}]).localSave("csv", `test-self-deception-data.csv`);
+        //jsPsych.data.displayData(); 
+    //}
+  });
+}
+function pushInstructions() {
+for (let i = 0; i < instructionsText.length; i++) {
+    instructions.push({
+      type: "html-keyboard-response",
+      stimulus: instructionsText[i],
+      choices: [32]
+    });
+    timeline.push(instructions[i]);
+    }
+}
+
+
+
+// function selectStim(version) {
+//     if (version == 'A') {
+//         masterStim = masterStim[0]
+//     } else if (version =='B') {
+//         masterStim = stimA,
+//     } else {
+//         prompt("enter 'A' or 'B'")
+//     }
+// }

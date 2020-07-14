@@ -13,7 +13,7 @@ file_put_contents($name, $data);
   <head>
     <title>Pessiglione</title>
     <script src="js/saveData.js"></script>
-    <script src="js/startExperiment.js"></script>
+    <!-- <script src="js/startExperiment.js"></script> -->
     <script src="js/functions.js"></script>
     <script src="jsPsych/jspsych.js"></script>
     <script src="jsPsych/plugins/jspsych-html-keyboard-response.js"></script>
@@ -27,6 +27,9 @@ file_put_contents($name, $data);
   
 
 <footer>
+
+<script type="text/javascript" src="conf.js"></script>
+<script type="text/javascript" src="timeline.js"></script>
 <script type="text/javascript" src="main.js"></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-git.js"></script>
 
