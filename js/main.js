@@ -51,6 +51,7 @@ let stimuli = {
     feedbackValidity = jsPsych.data.get().last().values()[0].reward_type;
     if (feedbackValidity === 'win:stay') {
       if (data.key_press === data.correct_response) {
+        console.log(feedbackValidity);
         console.log('correct');
         data.accuracy = 1;
         feedbackContainer.pop();
@@ -58,11 +59,13 @@ let stimuli = {
       } else if (data.key_press !== data.correct_response) {
         feedbackContainer.pop();
         feedbackContainer.push(feedbackOptions[1]); //they lose nothing
+        console.log(feedbackValidity);
         console.log('incorrect');
         data.accuracy = 0;
       }
    } else if (feedbackValidity === 'avoid:lose') {
       if (data.key_press === data.correct_response) {
+        console.log(feedbackValidity);
         console.log('correct');
         data.accuracy = 1;
         feedbackContainer.pop();
@@ -70,6 +73,7 @@ let stimuli = {
       } else if (data.key_press !== data.correct_response) {
         feedbackContainer.pop();
         feedbackContainer.push(feedbackOptions[3]); //they lose their money
+        console.log(feedbackValidity);
         console.log('incorrect');
         data.accuracy = 0;
       }
@@ -106,12 +110,12 @@ let feedback = {
     console.log(participantResponse)
     if (participantResponse == leftASCII) { // if last correct_response == 49 (1 key)
       var html = "<img style='border: 5px solid #808080;' src='"+jsPsych.timelineVariable('stimulusLeft', true)+"'>" +
-      "<img style='width:200px; height:200px; margin-bottom: 0px;' src='"+jsPsych.timelineVariable('trialFeedback', true)+"'>" +
+      "<img style='width:100px; height:100px; padding-right: 75px; padding-left: 75px; margin-bottom: 50px;' src='"+jsPsych.timelineVariable('trialFeedback', true)+"'>" +
              "<img style='border: 5px solid #ffffff;  padding-left:15px;' src='"+jsPsych.timelineVariable('stimulusRight', true)+"'>";
              return html
     } else if (participantResponse == rightASCII) { // if last correct_response == 48 (0 key)
       var html = "<img style='border: 5px solid #ffffff; padding-right:15px;' src='"+jsPsych.timelineVariable('stimulusLeft', true)+"'>"+
-      "<img style='width:200px; height:200px; margin-bottom: 0px;' src='"+jsPsych.timelineVariable('trialFeedback', true)+"'>" +
+      "<img style='width:100px; height:100px; padding-right: 75px; padding-left: 75px; margin-bottom: 50px;' src='"+jsPsych.timelineVariable('trialFeedback', true)+"'>" +
              "<img style='border: 5px solid #808080;'src='"+jsPsych.timelineVariable('stimulusRight', true)+"'>";
              return html
     }
@@ -120,7 +124,7 @@ let feedback = {
   trial_duration: 1000,
   response_ends_trial: false,
   // post_trial_gap: jsPsych.randomization.sampleWithReplacement(isi, 5, [5,1]),
-  post_trial_gap: 1000, //ISI
+  post_trial_gap: 500, //ISI
   on_finish: function(data){
     // data.practice = jsPsych.pluginAPI.convertKeyCodeToKeyCharacter(data.key_press)
     // data.c1 = data.key_press == jsPsych.pluginAPI.convertKeyCharacterToKeyCode(data.correct_response);

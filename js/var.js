@@ -39,7 +39,7 @@ let choiceB = [];
 
 let feedbackOptions = ['stim/win.bmp', 'stim/not_winner.png', 'stim/keep_money.png', 'stim/lose.bmp'];
 let feedbackContainer = [];
-let upcoming_feedback;
+// let upcoming_feedback;
 
 /* fixation dot */
 let fixationDot = 'stim/fixation.png';
