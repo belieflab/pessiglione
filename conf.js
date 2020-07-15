@@ -41,13 +41,13 @@ let instructionsText = [
         '<img style="height:100px; width:100px" src="stim/win.bmp"</img>'+
         '<p>Because if you keep seeing this feedback:</p>'+
         // '<h3 style="color:red;">Not a winner. Try again. =[</h3>'+
-        '<img style="height:100px; width:100px" src="stim/not_winner.png"></img>'+
+        '<img style="height:125px; width:125px" src="stim/not_winner.png"></img>'+
         '<p>you probably aren\'t selecting the best picture...</p>'+
         '<p>Press the spacebar continue.</p>',
 
     '<p>On those trials where you can B) lose money, you will want to select the picture most likely to give this feedback:</p>'+
         // '<h3 style="color:blue;">Keep your money.</h3>'+
-        '<img style="height:100px; width:100px" src="stim/keep_money.png"></img>'+
+        '<img style="height:125px; width:125px" src="stim/keep_money.png"></img>'+
         '<p>Because if you keep seeing this:</p>'+
         '<img style="height:100px; width:100px" src="stim/lose.bmp"></img>'+
         '<p>you probably aren\'t selecting the best picture...</p>',
