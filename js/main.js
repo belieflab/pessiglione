@@ -48,58 +48,53 @@ let stimuli = {
   response_ends_trial: true,
   data: jsPsych.timelineVariable('data'),
   on_finish: function(data){
-    feedbackValidity = jsPsych.data.get().last().values()[0].reward_type;
-    if (feedbackValidity === 'win:stay') {
-      if (data.key_press === data.correct_response) {
-        console.log(feedbackValidity);
-        console.log('correct');
-        data.accuracy = 1;
-        feedbackContainer.pop();
-        feedbackContainer.push(feedbackOptions[0]); //they get a nickel
-      } else if (data.key_press !== data.correct_response) {
-        feedbackContainer.pop();
-        feedbackContainer.push(feedbackOptions[1]); //they lose nothing
-        console.log(feedbackValidity);
-        console.log('incorrect');
-        data.accuracy = 0;
-      }
-   } else if (feedbackValidity === 'avoid:lose') {
-      if (data.key_press === data.correct_response) {
-        console.log(feedbackValidity);
-        console.log('correct');
-        data.accuracy = 1;
-        feedbackContainer.pop();
-        feedbackContainer.push(feedbackOptions[2]); //they keep their money
-      } else if (data.key_press !== data.correct_response) {
-        feedbackContainer.pop();
-        feedbackContainer.push(feedbackOptions[3]); //they lose their money
-        console.log(feedbackValidity);
-        console.log('incorrect');
-        data.accuracy = 0;
-      }
-    }
-
     switch(data.key_press){
       case leftASCII:
         while(choiceA.length > 0 && choiceB.length > 0) {
           choiceA.pop();
           choiceB.pop();
-        }
+        };
         choiceA.push(jsPsych.timelineVariable('stimulusLeft', true))
         choiceB.push(jsPsych.timelineVariable('stimulusLeft', true))
-        break;
+//        break;
       case rightASCII:
         while(choiceA.length > 0 && choiceB.length > 0) {
           choiceA.pop();
           choiceB.pop();
-        }
+        };
         choiceA.push(jsPsych.timelineVariable('stimulusRight', true))
         choiceB.push(jsPsych.timelineVariable('stimulusRight', true))
-        break;
+//        break;
       default:
-    }
-  }
+    };
+    if (data.key_press === data.correct_response) {
+      data.accuracy = 1;
+      console.log('technically correct');
+    } else if (data.key_press !== data.correct_response) {
+      data.accuracy = 0;
+      console.log('technically incorrect');
+    };
+    console.log(determineTrialValidity(jsPsych.data.get().last().values()[0].pair, jsPsych.data.get().last().values()[0].pair_validity, 0, 6));
+    if (jsPsych.data.get().last().values()[0].reward_type === 'win:stay') {
+      if (data.accuracy) {
+       feedbackContainer.pop();
+       feedbackContainer.push(feedbackOptions[0]); //they get a nickel
+    } else {
+       feedbackContainer.pop();
+       feedbackContainer.push(feedbackOptions[1]); //they win nothing
+    };
+    } else if (jsPsych.data.get().last().values()[0].reward_type === 'avoid:lose') {
+      if (data.accuracy) {
+        feedbackContainer.pop();
+        feedbackContainer.push(feedbackOptions[2]); //they keep their money
+      } else {
+        feedbackContainer.pop();
+        feedbackContainer.push(feedbackOptions[3]); //they lose a nickel
+      };
+    };
+  },
 };
+      
 
 // create feedback trials
 let feedback = {
