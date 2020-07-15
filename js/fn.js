@@ -81,11 +81,13 @@ function determineTrialValidity(pairName, pairValidity, pairPresentationNumber, 
             validityArray_ab.push('invalid');
           };
         };
+        console.log(validityArray_ab);
       };
       if (pairPresentationNumber % totalPairPresentationsPerTrialBlock === 0) { //shuffle validity array to start each new block of trials
         shuffle(validityArray_ab);
+        console.log(validityArray_ab);
       };
-      return validityArray_ab[0];
+      return validityArray_ab[pairPresentationNumber % totalPairPresentationsPerTrialBlock];
 
     case 'cd':
       if (pairPresentationNumber === 0) { //first trial for this particular pair
@@ -98,11 +100,13 @@ function determineTrialValidity(pairName, pairValidity, pairPresentationNumber, 
             validityArray_cd.push('invalid');
           };
         };
+        console.log(validityArray_cd);
       };
       if (pairPresentationNumber % totalPairPresentationsPerTrialBlock === 0) { //shuffle validity array to start each new block of trials
         shuffle(validityArray_cd);
+        console.log(validityArray_cd);
       };
-      return validityArray_cd[0];
+      return validityArray_cd[pairPresentationNumber % totalPairPresentationsPerTrialBlock];
 
     case 'ef':
       if (pairPresentationNumber === 0) { //first trial for this particular pair
@@ -115,11 +119,13 @@ function determineTrialValidity(pairName, pairValidity, pairPresentationNumber, 
             validityArray_ef.push('invalid');
           };
         };
+        console.log(validityArray_ef);
       };
       if (pairPresentationNumber % totalPairPresentationsPerTrialBlock === 0) { //shuffle validity array to start each new block of trials
         shuffle(validityArray_ef);
+        console.log(validityArray_ef);
       };
-      return validityArray_ef[0];
+      return validityArray_ef[pairPresentationNumber % totalPairPresentationsPerTrialBlock];
 
     case 'gh':
       if (pairPresentationNumber === 0) { //first trial for this particular pair
@@ -132,11 +138,13 @@ function determineTrialValidity(pairName, pairValidity, pairPresentationNumber, 
             validityArray_gh.push('invalid');
           };
         };
+        console.log(validityArray_gh);
       };
       if (pairPresentationNumber % totalPairPresentationsPerTrialBlock === 0) { //shuffle validity array to start each new block of trials
         shuffle(validityArray_gh);
+        console.log(validityArray_gh);
       };
-      return validityArray_gh[0];
+      return validityArray_gh[pairPresentationNumber % totalPairPresentationsPerTrialBlock];
 
     default:
       
