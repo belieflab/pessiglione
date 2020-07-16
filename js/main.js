@@ -74,23 +74,46 @@ let stimuli = {
       data.accuracy = 0;
       console.log('technically incorrect');
     };
-    console.log(determineTrialValidity(jsPsych.data.get().last().values()[0].pair, jsPsych.data.get().last().values()[0].pair_validity, trial_number, jsPsych.data.get().last().values()[0].pairTrialsPerBlock));
-    determineTrialValidity(jsPsych.data.get().last().values()[0].pair, jsPsych.data.get().last().values()[0].pair_validity, trial_number, jsPsych.data.get().last().values()[0].pairTrialsPerBlock);
+    let currentpair = jsPsych.data.get().last().values()[0].pair; //ab, cd, ef, gh, etc
+    let currentpairvalidity = jsPsych.data.get().last().values()[0].pair_validity; //1.0, 0.9, 0.8, etc
+    // let trial_number = 
+    let pairtrialsperblock = jsPsych.data.get().last().values()[0].pairTrialsPerBlock; //6 for practice blocks, 10 for training blocks
+    determineTrialValidity(currentpair, currentpairvalidity, trial_number, pairtrialsperblock); //we need to supply a value true or false to data.validity
     if (jsPsych.data.get().last().values()[0].reward_type === 'win:stay') {
       if (data.accuracy) {
-       feedbackContainer.pop();
-       feedbackContainer.push(feedbackOptions[0]); //they get a nickel
-    } else {
-       feedbackContainer.pop();
-       feedbackContainer.push(feedbackOptions[1]); //they win nothing
-    };
+        if (data.validity) {
+          feedbackContainer.pop();
+          feedbackContainer.push(feedbackOptions[0]); //they get a nickel
+        } else {
+          feedbackContainer.pop();
+          feedbackContainer.push(feedbackOptions[1]); //they win nothing
+        }
+      } else {
+        if (data.validity) {
+          feedbackContainer.pop();
+          feedbackContainer.push(feedbackOptions[1]); //they win nothing
+        } else {
+          feedbackContainer.pop();
+          feedbackContainer.push(feedbackOptions[0]); //they get a nickel
+        };
+      };
     } else if (jsPsych.data.get().last().values()[0].reward_type === 'avoid:lose') {
       if (data.accuracy) {
-        feedbackContainer.pop();
-        feedbackContainer.push(feedbackOptions[2]); //they keep their money
+        if (data.validity) {
+          feedbackContainer.pop();
+          feedbackContainer.push(feedbackOptions[2]); //they keep their money
+        } else {
+          feedbackContainer.pop();
+          feedbackContainer.push(feedbackOptions[3]); //they lose a nickel
+        }
       } else {
-        feedbackContainer.pop();
-        feedbackContainer.push(feedbackOptions[3]); //they lose a nickel
+        if (data.validity) {
+          feedbackContainer.pop();
+          feedbackContainer.push(feedbackOptions[3]); //they lose a nickel
+        } else {
+          feedbackContainer.pop();
+          feedbackContainer.push(feedbackOptions[2]); //they keep their money
+        };
       };
     };
   },
