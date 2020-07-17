@@ -35,6 +35,10 @@ let fixation = {
   }, 
 };
 
+let abcount = 0;
+let cdcount = 0;
+let efcount = 0;
+let ghcount = 0;
 // create  stimuli trials
 let stimuli = {
   type: "html-keyboard-response",
@@ -78,7 +82,21 @@ let stimuli = {
     let currentpairvalidity = jsPsych.data.get().last().values()[0].pair_validity; //1.0, 0.9, 0.8, etc
     // let trial_number = 
     let pairtrialsperblock = jsPsych.data.get().last().values()[0].pairTrialsPerBlock; //6 for practice blocks, 10 for training blocks
-    determineTrialValidity(currentpair, currentpairvalidity, trial_number, pairtrialsperblock); //we need to supply a value true or false to data.validity
+    switch(currentpair){
+      case 'ab':
+        data.validity = determineTrialValidity(currentpair, currentpairvalidity, abcount, pairtrialsperblock); //we need to supply a value true or false to data.validity
+        abcount=+
+      case 'cd':
+        data.validity = determineTrialValidity(currentpair, currentpairvalidity, cdcount, pairtrialsperblock); //we need to supply a value true or false to data.validity
+        cdcount=+
+      case 'ef':
+        data.validity = determineTrialValidity(currentpair, currentpairvalidity, efcount, pairtrialsperblock); //we need to supply a value true or false to data.validity
+        efcount=+
+      case 'gh':
+        data.validity = determineTrialValidity(currentpair, currentpairvalidity, ghcount, pairtrialsperblock); //we need to supply a value true or false to data.validity
+        ghcount=+
+      default:
+    };
     if (jsPsych.data.get().last().values()[0].reward_type === 'win:stay') {
       if (data.accuracy) {
         if (data.validity) {
