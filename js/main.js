@@ -138,6 +138,16 @@ let practiceProcedure = {
   };
 timeline.push(practiceProcedure);
 
+/* training trials */
+let trainingProcedure = {
+  timeline: [fixation, stimuli, feedback],
+  timeline_variables: trainingStimVersion,
+  randomize_order: true,
+  type: 'fixed-repititions',
+  repetitions: 10
+};
+timeline.push(trainingProcedure);
+
 /* completion */
 let thankYou = {
   type: "html-keyboard-response",
