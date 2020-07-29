@@ -68,85 +68,81 @@ function shuffle(array) {
   }
 }
 
-function determineTrialValidity(pairName, pairValidity, pairPresentationNumber, totalPairPresentationsPerTrialBlock) {
-  switch (pairName) {
-    case 'ab':
-      if (pairPresentationNumber === 0) { //first trial for this particular pair
-        let validityArray_ab = [];
-        for (i=0; i<pairValidity*totalPairPresentationsPerTrialBlock; i++) {
-          validityArray_ab.push('valid');
-        };
-        if (validityArray_ab.length < totalPairPresentationsPerTrialBlock) {
-          for (i=pairValidity*totalPairPresentationsPerTrialBlock; i<totalPairPresentationsPerTrialBlock; i++) {
-            validityArray_ab.push('invalid');
-          };
-        };
-        console.log(validityArray_ab);
-      };
-      if (pairPresentationNumber % totalPairPresentationsPerTrialBlock === 0) { //shuffle validity array to start each new block of trials
-        shuffle(validityArray_ab);
-        console.log(validityArray_ab);
-      };
-      return validityArray_ab[pairPresentationNumber % totalPairPresentationsPerTrialBlock];
+// function determineTrialValidity(pairName, pairValidity, pairPresentationNumber, totalPairPresentationsPerTrialBlock) {
+//   switch (jsPsych.data.get().last().values()[0].pair) {
+//     case 'ab':
+//       if (pairPresentationNumber === 0) { //first trial for this particular pair
+//         for (i=0; i<jsPsych.data.get().last().values()[0].pair_validity*totalPairPresentationsPerTrialBlock; i++) {
+//           validityArray_ab.push('valid');
+//         };
+//         if (validityArray_ab.length < totalPairPresentationsPerTrialBlock) {
+//           for (i=pairValidity*totalPairPresentationsPerTrialBlock; i<totalPairPresentationsPerTrialBlock; i++) {
+//             validityArray_ab.push('invalid');
+//           };
+//         };
+//         console.log(validityArray_ab);
+//       };
+//       // if (pairPresentationNumber % totalPairPresentationsPerTrialBlock === 0) { //shuffle validity array to start each new block of trials
+//       //   shuffle(validityArray_ab);
+//       //   console.log(validityArray_ab);
+//       // };
+//       return validityArray_ab[pairPresentationNumber % totalPairPresentationsPerTrialBlock];
 
-    case 'cd':
-      if (pairPresentationNumber === 0) { //first trial for this particular pair
-        let validityArray_cd = [];
-        for (i=0; i<pairValidity*totalPairPresentationsPerTrialBlock; i++) {
-          validityArray_cd.push('valid');
-        };
-        if (validityArray_cd.length < totalPairPresentationsPerTrialBlock) {
-          for (i=pairValidity*totalPairPresentationsPerTrialBlock; i<totalPairPresentationsPerTrialBlock; i++) {
-            validityArray_cd.push('invalid');
-          };
-        };
-        console.log(validityArray_cd);
-      };
-      if (pairPresentationNumber % totalPairPresentationsPerTrialBlock === 0) { //shuffle validity array to start each new block of trials
-        shuffle(validityArray_cd);
-        console.log(validityArray_cd);
-      };
-      return validityArray_cd[pairPresentationNumber % totalPairPresentationsPerTrialBlock];
+//     case 'cd':
+//       if (pairPresentationNumber === 0) { //first trial for this particular pair
+//         for (i=0; i<pairValidity*totalPairPresentationsPerTrialBlock; i++) {
+//           validityArray_cd.push('valid');
+//         };
+//         if (validityArray_cd.length < totalPairPresentationsPerTrialBlock) {
+//           for (i=pairValidity*totalPairPresentationsPerTrialBlock; i<totalPairPresentationsPerTrialBlock; i++) {
+//             validityArray_cd.push('invalid');
+//           };
+//         };
+//         console.log(validityArray_cd);
+//       };
+//       // if (pairPresentationNumber % totalPairPresentationsPerTrialBlock === 0) { //shuffle validity array to start each new block of trials
+//       //   shuffle(validityArray_cd);
+//       //   console.log(validityArray_cd);
+//       // };
+//       return validityArray_cd[pairPresentationNumber % totalPairPresentationsPerTrialBlock];
 
-    case 'ef':
-      if (pairPresentationNumber === 0) { //first trial for this particular pair
-        let validityArray_ef = [];
-        for (i=0; i<pairValidity*totalPairPresentationsPerTrialBlock; i++) {
-          validityArray_ef.push('valid');
-        };
-        if (validityArray_ef.length < totalPairPresentationsPerTrialBlock) {
-          for (i=pairValidity*totalPairPresentationsPerTrialBlock; i<totalPairPresentationsPerTrialBlock; i++) {
-            validityArray_ef.push('invalid');
-          };
-        };
-        console.log(validityArray_ef);
-      };
-      if (pairPresentationNumber % totalPairPresentationsPerTrialBlock === 0) { //shuffle validity array to start each new block of trials
-        shuffle(validityArray_ef);
-        console.log(validityArray_ef);
-      };
-      return validityArray_ef[pairPresentationNumber % totalPairPresentationsPerTrialBlock];
+//     case 'ef':
+//       if (pairPresentationNumber === 0) { //first trial for this particular pair
+//         for (i=0; i<pairValidity*totalPairPresentationsPerTrialBlock; i++) {
+//           validityArray_ef.push('valid');
+//         };
+//         if (validityArray_ef.length < totalPairPresentationsPerTrialBlock) {
+//           for (i=pairValidity*totalPairPresentationsPerTrialBlock; i<totalPairPresentationsPerTrialBlock; i++) {
+//             validityArray_ef.push('invalid');
+//           };
+//         };
+//         console.log(validityArray_ef);
+//       };
+//       // if (pairPresentationNumber % totalPairPresentationsPerTrialBlock === 0) { //shuffle validity array to start each new block of trials
+//       //   shuffle(validityArray_ef);
+//       //   console.log(validityArray_ef);
+//       // };
+//       return validityArray_ef[pairPresentationNumber % totalPairPresentationsPerTrialBlock];
 
-    case 'gh':
-      if (pairPresentationNumber === 0) { //first trial for this particular pair
-        let validityArray_gh = [];
-        for (i=0; i<pairValidity*totalPairPresentationsPerTrialBlock; i++) {
-          validityArray_gh.push('valid');
-        };
-        if (validityArray_gh.length < totalPairPresentationsPerTrialBlock) {
-          for (i=pairValidity*totalPairPresentationsPerTrialBlock; i<totalPairPresentationsPerTrialBlock; i++) {
-            validityArray_gh.push('invalid');
-          };
-        };
-        console.log(validityArray_gh);
-      };
-      if (pairPresentationNumber % totalPairPresentationsPerTrialBlock === 0) { //shuffle validity array to start each new block of trials
-        shuffle(validityArray_gh);
-        console.log(validityArray_gh);
-      };
-      return validityArray_gh[pairPresentationNumber % totalPairPresentationsPerTrialBlock];
+//     case 'gh':
+//       if (pairPresentationNumber === 0) { //first trial for this particular pair
+//         for (i=0; i<pairValidity*totalPairPresentationsPerTrialBlock; i++) {
+//           validityArray_gh.push('valid');
+//         };
+//         if (validityArray_gh.length < totalPairPresentationsPerTrialBlock) {
+//           for (i=pairValidity*totalPairPresentationsPerTrialBlock; i<totalPairPresentationsPerTrialBlock; i++) {
+//             validityArray_gh.push('invalid');
+//           };
+//         };
+//         console.log(validityArray_gh);
+//       };
+//       // if (pairPresentationNumber % totalPairPresentationsPerTrialBlock === 0) { //shuffle validity array to start each new block of trials
+//       //   shuffle(validityArray_gh);
+//       //   console.log(validityArray_gh);
+//       // };
+//       return validityArray_gh[pairPresentationNumber % totalPairPresentationsPerTrialBlock];
 
-    default:
+//    default:
       
-  };
-}
+//  };
+//}

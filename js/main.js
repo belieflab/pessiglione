@@ -48,10 +48,10 @@ let stimuli = {
   response_ends_trial: true,
   data: jsPsych.timelineVariable('data'),
   on_finish: function(data){
-    feedbackValidity = jsPsych.data.get().last().values()[0].reward_type;
-    if (feedbackValidity === 'win:stay') {
+    pairType = jsPsych.data.get().last().values()[0].reward_type;
+    if (pairType === 'win:stay') {
       if (data.key_press === data.correct_response) {
-        console.log(feedbackValidity);
+        console.log(pairType);
         console.log('correct');
         data.accuracy = 1;
         feedbackContainer.pop();
@@ -59,13 +59,13 @@ let stimuli = {
       } else if (data.key_press !== data.correct_response) {
         feedbackContainer.pop();
         feedbackContainer.push(feedbackOptions[1]); //they lose nothing
-        console.log(feedbackValidity);
+        console.log(pairType);
         console.log('incorrect');
         data.accuracy = 0;
       }
-   } else if (feedbackValidity === 'avoid:lose') {
+   } else if (pairType === 'avoid:lose') {
       if (data.key_press === data.correct_response) {
-        console.log(feedbackValidity);
+        console.log(pairType);
         console.log('correct');
         data.accuracy = 1;
         feedbackContainer.pop();
@@ -73,29 +73,135 @@ let stimuli = {
       } else if (data.key_press !== data.correct_response) {
         feedbackContainer.pop();
         feedbackContainer.push(feedbackOptions[3]); //they lose their money
-        console.log(feedbackValidity);
+        console.log(pairType);
         console.log('incorrect');
         data.accuracy = 0;
       }
     }
-
     switch(data.key_press){
       case leftASCII:
         while(choice.length > 0) {
           choice.pop();
-          }
+        }
         choice.push(jsPsych.timelineVariable('stimulusLeft', true))
         break;
       case rightASCII:
         while(choice.length > 0) {
           choice.pop();
-          }
+        }
         choice.push(jsPsych.timelineVariable('stimulusRight', true))
         break;
       default:
     }
   }
 };
+
+
+
+
+
+// let stimuli = {
+//   type: "html-keyboard-response",
+//   stimulus: function(){
+//             var html="<img src='"+jsPsych.timelineVariable('stimulusLeft', true)+"'>" +
+//             "<img style='width:200px; height:200px; margin-bottom: 0px;' src='"+jsPsych.timelineVariable('fixation', true)+"'>" +
+//             "<img src='"+jsPsych.timelineVariable('stimulusRight', true)+"'>";
+//             return html;
+//   }, 
+//   choices: [leftASCII, rightASCII],
+//   response_ends_trial: true,
+//   data: jsPsych.timelineVariable('data'),
+//   on_finish: function(data){
+//     pair = jsPsych.data.get().last().values()[0].pair;
+//     pairType = jsPsych.data.get().last().values()[0].reward_type;
+//     validity = jsPsych.data.get().last().values()[0].trial_validity;
+//     if (pairType === 'win:stay') {
+//       if (data.key_press === data.correct_response) {
+//         if (validity === 'valid') {
+//           console.log(pairType);
+//           console.log('correct');
+//           data.accuracy = 1;
+//           feedbackContainer.pop();
+//           feedbackContainer.push(feedbackOptions[0]); //they get a nickel
+//         } else if (data.key_press !== data.correct_response) {
+//           feedbackContainer.pop();
+//           feedbackContainer.push(feedbackOptions[1]); //they lose nothing
+//           console.log(pairType);
+//           console.log('incorrect');
+//           data.accuracy = 0;
+//         }
+//         // else if (validity === 'invalid') {
+//         //   console.log(pairType);
+//         //   console.log('correct');
+//         //   data.accuracy = 1;
+//         //   feedbackContainer.pop();
+//         //   feedbackContainer.push(feedbackOptions[1]); //they lose nothing
+//         // } else if (data.key_press !== data.correct_response) {
+//         //   feedbackContainer.pop();
+//         //   feedbackContainer.push(feedbackOptions[0]); //they win a nickel
+//         //   console.log(pairType);
+//         //   console.log('incorrect');
+//         //   data.accuracy = 0;
+//         // }
+//         }
+//    } else if (pairType === 'avoid:lose') {
+//       if (data.key_press === data.correct_response) {
+//         if (validity === 'valid') {
+//           console.log(pairType);
+//           console.log('correct');
+//           data.accuracy = 1;
+//           feedbackContainer.pop();
+//           feedbackContainer.push(feedbackOptions[2]); //they keep their money
+//         } else if (data.key_press !== data.correct_response) {
+//           feedbackContainer.pop();
+//           feedbackContainer.push(feedbackOptions[3]); //they lose their money
+//           console.log(pairType);
+//           console.log('incorrect');
+//           data.accuracy = 0;
+//         }
+//         // else if (validity === 'invalid') {
+//         //   console.log(pairType);
+//         //   console.log('correct');
+//         //   data.accuracy = 1;
+//         //   feedbackContainer.pop();
+//         //   feedbackContainer.push(feedbackOptions[3]); //they lose their money
+//         // } else if (data.key_press !== data.correct_response) {
+//         //   feedbackContainer.pop();
+//         //   feedbackContainer.push(feedbackOptions[2]); //they keep their money
+//         //   console.log(pairType);
+//         //   console.log('incorrect');
+//         //   data.accuracy = 0;
+//         // }
+//         }
+//     }
+//     switch(pair){
+//       case 'ab':
+//         training_abvalidity.pop();
+//       case 'cd':
+//         training_cdvalidity.pop();
+//       case 'ef':
+//         training_efvalidity.pop();
+//       case 'gh':
+//         training_ghvalidity.pop();
+//       }
+
+//     switch(data.key_press){
+//       case leftASCII:
+//         while(choice.length > 0) {
+//           choice.pop();
+//           }
+//         choice.push(jsPsych.timelineVariable('stimulusLeft', true))
+//         break;
+//       case rightASCII:
+//         while(choice.length > 0) {
+//           choice.pop();
+//           }
+//         choice.push(jsPsych.timelineVariable('stimulusRight', true))
+//         break;
+//       default:
+//     }
+//   }
+// };
 
 // create feedback trials
 let feedback = {
