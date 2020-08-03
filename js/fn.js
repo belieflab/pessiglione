@@ -51,9 +51,11 @@ function versionSelect() {
     if (version == 'A') {
         practiceStimVersion = practiceA;
         trainingStimVersion = trainingA;
+        testStimVersion = testA;
     } else if (version =='B') {
         practiceStimVersion = practiceB;
         trainingStimVersion = trainingB;
+        testStimVersion = testB;
     } else {
         prompt("enter 'A' or 'B'");
     }

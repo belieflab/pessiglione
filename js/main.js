@@ -2,7 +2,7 @@
 /* create timeline */
 let timeline = [];
 
-// /* add instructions to timeline */
+/* add instructions to timeline */
 let instructions = [];
 
 for (let i = 0; i < instructionsText.length; i++) {
@@ -12,7 +12,7 @@ for (let i = 0; i < instructionsText.length; i++) {
     choices: [32]
   });
   timeline.push(instructions[i]);
-  }
+};
 
 /* announce start of practice trials */
 let practiceStart = {
@@ -170,6 +170,18 @@ let practiceProcedure = {
   };
 timeline.push(practiceProcedure);
 
+/* add instructions to timeline */
+let trainingInstructions = [];
+
+for (let i = 0; i < trainingInstructionsText.length; i++) {
+  trainingInstructions.push({
+    type: "html-keyboard-response",
+    stimulus: trainingInstructionsText[i],
+    choices: [32]
+  });
+  timeline.push(trainingInstructions[i]);
+};
+
 /* training trials */
 let trainingProcedure = {
   timeline: [fixation, stimuli, feedback],
@@ -179,6 +191,56 @@ let trainingProcedure = {
   repetitions: 1
 };
 timeline.push(trainingProcedure);
+
+/* announce start of 2nd block */
+let newBlockStart = {
+  type:  "html-keyboard-response",
+  stimulus: startNewBlockText,
+  choices: [leftASCII, rightASCII],
+};
+timeline.push(newBlockStart);
+
+/* training trials block 2 */
+//let trainingProcedure2 = trainingProcedure
+timeline.push(trainingProcedure);
+
+/* announce start of 3rd block */
+//let newBlockStart3 = newBlockStart
+timeline.push(newBlockStart);
+
+/* training trials block 3 */
+//let trainingProcedure3 = trainingProcedure
+timeline.push(trainingProcedure);
+
+/* add instructions to timeline */
+let testInstructions = [];
+
+for (let i = 0; i < testInstructionsText.length; i++) {
+  testInstructions.push({
+    type: "html-keyboard-response",
+    stimulus: testInstructionsText[i],
+    choices: [32]
+  });
+  timeline.push(testInstructions[i]);
+};
+
+/* announce start of test block */
+let testStart = {
+  type:  "html-keyboard-response",
+  stimulus: startTestText,
+  choices: [leftASCII, rightASCII],
+};
+timeline.push(testStart);
+
+/* test trials */
+let testProcedure = {
+  timeline: [fixation, stimuli],
+  timeline_variables: testStimVersion,
+  randomize_order: true,
+  type: 'fixed-repititions',
+  repetitions: 3
+};
+timeline.push(testProcedure);
 
 /* completion */
 let thankYou = {

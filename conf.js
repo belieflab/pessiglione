@@ -7,8 +7,8 @@
 let workerID = prompt("Enter your subject id" );
 
 /* set task version */
-// const version = 'A';
-const version = 'B';
+const version = 'A';
+//const version = 'B';
 
 
 /* Adjust Response Keys */
@@ -88,7 +88,7 @@ let testInstructionsText = [
         '<p>Press the spacebar continue.</p>'
 ];
 
-let startTextText = [
+let startTestText = [
 
     '<p>Press either button when you are ready to begin.</p>'
 
