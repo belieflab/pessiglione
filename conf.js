@@ -50,7 +50,8 @@ let instructionsText = [
         '<img style="height:125px; width:125px" src="stim/keep_money.png"></img>'+
         '<p>Because if you keep seeing this:</p>'+
         '<img style="height:100px; width:100px" src="stim/lose.bmp"></img>'+
-        '<p>you probably aren\'t selecting the best picture...</p>',
+        '<p>you probably aren\'t selecting the best picture...</p>'+
+        '<p>Press the spacebar continue.</p>',
 
     '<p>Press the '+leftKey+' key on your keyboard to select the picture on the LEFT.</p>'+
         '<p>Press the '+rightKey+' key on your keyboard to select the picture on the RIGHT.</p>'+
