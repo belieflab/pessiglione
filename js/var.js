@@ -17,6 +17,7 @@ let practice_good_stim =  ['a', 'e'];
 let practice_trial_type = ['win:stay', 'avoid:lose'];
 
 let validity_values =     ['valid', 'invalid'];
+let leftright_values =    ['left', 'right'];
 
 /* practice stim versions A & B */
 const pracA = ['Field4','Field10','Field13','Field17'];
@@ -51,33 +52,48 @@ let feedbackContainer = [];
 let fixationDot = 'stim/fixation.png';
 let blankDot = 'stim/blank.png';
 
-/* version A stimuli objects */
+/* prepare a full block of practice stimuli objects */
 
-let practiceA = [
-  {stimulusLeft: pracStimA[0], stimulusRight: pracStimA[1], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'practice', pair: practice_pairs[0], pair_validity: practice_validity[0], trial_validity: validity_values[0], pairTrialsPerBlock: practice_pairsPerBlock, good_stim: practice_good_stim[0], reward_type: practice_trial_type[0], correct_response: leftASCII}}, // 0 key
-  {stimulusLeft: pracStimA[1], stimulusRight: pracStimA[0], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'practice', pair: practice_pairs[0], pair_validity: practice_validity[0], trial_validity: validity_values[0], pairTrialsPerBlock: practice_pairsPerBlock, good_stim: practice_good_stim[0], reward_type: practice_trial_type[0], correct_response: rightASCII}}, // 0 key
-  {stimulusLeft: pracStimA[2], stimulusRight: pracStimA[3], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'practice', pair: practice_pairs[1], pair_validity: practice_validity[1], trial_validity: validity_values[0], pairTrialsPerBlock: practice_pairsPerBlock, good_stim: practice_good_stim[1], reward_type: practice_trial_type[1], correct_response: leftASCII}}, // 0 key
-  {stimulusLeft: pracStimA[3], stimulusRight: pracStimA[2], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'practice', pair: practice_pairs[1], pair_validity: practice_validity[1], trial_validity: validity_values[0], pairTrialsPerBlock: practice_pairsPerBlock, good_stim: practice_good_stim[1], reward_type: practice_trial_type[1], correct_response: rightASCII}}, // 0 key
-]
-
-/* version B stimuli objects */
-
-let practiceB = [
-  {stimulusLeft: pracStimB[0], stimulusRight: pracStimB[1], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'practice', pair: practice_pairs[0], pair_validity: practice_validity[0], trial_validity: validity_values[0], pairTrialsPerBlock: practice_pairsPerBlock, good_stim: practice_good_stim[0], reward_type: practice_trial_type[0], correct_response: leftASCII}}, // 0 key
-  {stimulusLeft: pracStimB[1], stimulusRight: pracStimB[0], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'practice', pair: practice_pairs[0], pair_validity: practice_validity[0], trial_validity: validity_values[0], pairTrialsPerBlock: practice_pairsPerBlock, good_stim: practice_good_stim[0], reward_type: practice_trial_type[0], correct_response: rightASCII}}, // 0 key
-  {stimulusLeft: pracStimB[2], stimulusRight: pracStimB[3], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'practice', pair: practice_pairs[1], pair_validity: practice_validity[1], trial_validity: validity_values[0], pairTrialsPerBlock: practice_pairsPerBlock, good_stim: practice_good_stim[1], reward_type: practice_trial_type[1], correct_response: leftASCII}}, // 0 key
-  {stimulusLeft: pracStimB[3], stimulusRight: pracStimB[2], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'practice', pair: practice_pairs[1], pair_validity: practice_validity[1], trial_validity: validity_values[0], pairTrialsPerBlock: practice_pairsPerBlock, good_stim: practice_good_stim[1], reward_type: practice_trial_type[1], correct_response: rightASCII}}, // 0 key
-]
-
+let practiceA = []
+let practiceB = []
+let leftright_ab = jsPsych.randomization.repeat(['left','left','left','right','right','right'], 1);
+let leftright_ef = jsPsych.randomization.repeat(['left','left','left','right','right','right'], 1);
+// shuffle the order of the pairs within the block
+// shuffle whether the good_stim in each pair appears on the left or right
+// do the above two steps for as many repetitions as their are pairsPerBlock
+for (let j=0; j<practice_pairsPerBlock; j++) {
+  
+  let practice_pairs_shuffle               = jsPsych.randomization.repeat(practice_pairs, 1);
+  
+  for (let i=0; i<practice_pairs_shuffle.length; i++) {
+    if (practice_pairs_shuffle[i] == 'ab') { // ab pair
+      if (leftright_ab[j] == 'left') { // good stim on left
+        practiceA.push({stimulusLeft: pracStimA[0], stimulusRight: pracStimA[1], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'practice', pair: practice_pairs[0], pair_validity: practice_validity[0], trial_validity: validity_values[0], pairTrialsPerBlock: practice_pairsPerBlock, good_stim: practice_good_stim[0], reward_type: practice_trial_type[0], correct_response: leftASCII}});
+        practiceB.push({stimulusLeft: pracStimB[0], stimulusRight: pracStimB[1], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'practice', pair: practice_pairs[0], pair_validity: practice_validity[0], trial_validity: validity_values[0], pairTrialsPerBlock: practice_pairsPerBlock, good_stim: practice_good_stim[0], reward_type: practice_trial_type[0], correct_response: leftASCII}});
+      } else if (leftright_ab[j] == 'right') { // good stim on right
+        practiceA.push({stimulusLeft: pracStimA[1], stimulusRight: pracStimA[0], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'practice', pair: practice_pairs[0], pair_validity: practice_validity[0], trial_validity: validity_values[0], pairTrialsPerBlock: practice_pairsPerBlock, good_stim: practice_good_stim[0], reward_type: practice_trial_type[0], correct_response: rightASCII}});
+        practiceB.push({stimulusLeft: pracStimB[1], stimulusRight: pracStimB[0], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'practice', pair: practice_pairs[0], pair_validity: practice_validity[0], trial_validity: validity_values[0], pairTrialsPerBlock: practice_pairsPerBlock, good_stim: practice_good_stim[0], reward_type: practice_trial_type[0], correct_response: rightASCII}});
+      }
+    } else if (practice_pairs_shuffle[i] == 'ef') { // ef pair
+      if (leftright_ef[j] == 'left') { // good stim on left
+        practiceA.push({stimulusLeft: pracStimA[2], stimulusRight: pracStimA[3], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'practice', pair: practice_pairs[1], pair_validity: practice_validity[1], trial_validity: validity_values[0], pairTrialsPerBlock: practice_pairsPerBlock, good_stim: practice_good_stim[1], reward_type: practice_trial_type[1], correct_response: leftASCII}});
+        practiceB.push({stimulusLeft: pracStimB[2], stimulusRight: pracStimB[3], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'practice', pair: practice_pairs[1], pair_validity: practice_validity[1], trial_validity: validity_values[0], pairTrialsPerBlock: practice_pairsPerBlock, good_stim: practice_good_stim[1], reward_type: practice_trial_type[1], correct_response: leftASCII}});
+      } else if (leftright_ef[j] == 'right') { // good stim on right
+        practiceA.push({stimulusLeft: pracStimA[3], stimulusRight: pracStimA[2], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'practice', pair: practice_pairs[1], pair_validity: practice_validity[1], trial_validity: validity_values[0], pairTrialsPerBlock: practice_pairsPerBlock, good_stim: practice_good_stim[1], reward_type: practice_trial_type[1], correct_response: rightASCII}});
+        practiceB.push({stimulusLeft: pracStimB[3], stimulusRight: pracStimB[2], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'practice', pair: practice_pairs[1], pair_validity: practice_validity[1], trial_validity: validity_values[0], pairTrialsPerBlock: practice_pairsPerBlock, good_stim: practice_good_stim[1], reward_type: practice_trial_type[1], correct_response: rightASCII}});
+      }
+    }
+  };
+};
   /////////////////////////
  // * TRAINING CONFIG * //
 /////////////////////////
 
-let training_pairs =      ["ab" ,"cd" ,"ef" ,"gh"];
+let training_pairs =      ['ab','cd','ef','gh'];
 let training_validity =   [0.9  ,0.8  ,0.9  ,0.8];
-let training_pairsPerBlock = 20; //40 total training trials per block of training, 20 trials for each pair
-let training_good_stim =  ["a"  ,"c"  ,"e"  ,"g"];
-let training_trial_type = ["win:stay","win:stay","avoid:lose","avoid:lose"];
+let training_pairsPerBlock = 10; //40 total training trials per block of training, 10 trials for each pair
+let training_good_stim =  ['a'  ,'c'  ,'e'  ,'g'];
+let training_trial_type = ['win:stay','win:stay','avoid:lose','avoid:lose'];
 
 /* stim paths */
 
@@ -90,7 +106,215 @@ let trainStimB = [];
 for (let i=0; i<trainB.length; i++) {
     trainStimB.push('stim/b/'+trainB[i]+'.jpg');
 }
-/* version A stimuli objects */
+
+/* prepare a full block of practice stimuli objects */
+
+let trainingA1 = []
+let trainingB1 = []
+let trainingA2 = []
+let trainingB2 = []
+let trainingA3 = []
+let trainingB3 = []
+let trainingA4 = []
+let trainingB4 = []
+let leftright_train_ab = jsPsych.randomization.repeat(['left','left','left','left','left','right','right','right','right','right'], 1);
+let leftright_train_cd = jsPsych.randomization.repeat(['left','left','left','left','left','right','right','right','right','right'], 1);
+let leftright_train_ef = jsPsych.randomization.repeat(['left','left','left','left','left','right','right','right','right','right'], 1);
+let leftright_train_gh = jsPsych.randomization.repeat(['left','left','left','left','left','right','right','right','right','right'], 1);
+let validity_ab = jsPsych.randomization.repeat(['invalid','valid','valid','valid','valid','valid','valid','valid','valid','valid'], 1);
+let validity_cd = jsPsych.randomization.repeat(['invalid','invalid','valid','valid','valid','valid','valid','valid','valid','valid'], 1);
+let validity_ef = jsPsych.randomization.repeat(['invalid','valid','valid','valid','valid','valid','valid','valid','valid','valid'], 1);
+let validity_gh = jsPsych.randomization.repeat(['invalid','invalid','valid','valid','valid','valid','valid','valid','valid','valid'], 1);
+// shuffle the order of the pairs within the block
+// shuffle whether the good_stim in each pair appears on the left or right
+// do the above two steps for as many repetitions as their are pairsPerBlock
+let training_pairs_shuffle = []
+for (let j=0; j<training_pairsPerBlock; j++) {
+
+  training_pairs_shuffle = jsPsych.randomization.repeat(training_pairs, 1);
+
+  for (let i=0; i<training_pairs_shuffle.length; i++) {
+    if (training_pairs_shuffle[i] == 'ab') { // ab pair
+      console.log(j, i, training_pairs_shuffle[i], leftright_train_ab[j], validity_ab[j])
+      if (leftright_train_ab[j] == 'left') { // good stim on left
+        trainingA1.push({stimulusLeft: trainStimA[0], stimulusRight: trainStimA[1], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[0], pair_validity: training_validity[0], trial_validity: validity_ab[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[0], reward_type: training_trial_type[0], correct_response: leftASCII}});
+        trainingB1.push({stimulusLeft: trainStimB[0], stimulusRight: trainStimB[1], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[0], pair_validity: training_validity[0], trial_validity: validity_ab[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[0], reward_type: training_trial_type[0], correct_response: leftASCII}});
+      } else if (leftright_train_ab[j] == 'right') {
+        trainingA1.push({stimulusLeft: trainStimA[1], stimulusRight: trainStimA[0], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[0], pair_validity: training_validity[0], trial_validity: validity_ab[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[0], reward_type: training_trial_type[0], correct_response: leftASCII}});
+        trainingB1.push({stimulusLeft: trainStimB[1], stimulusRight: trainStimB[0], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[0], pair_validity: training_validity[0], trial_validity: validity_ab[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[0], reward_type: training_trial_type[0], correct_response: leftASCII}});
+      }
+    } else if (training_pairs_shuffle[i] == 'cd') {
+      console.log(j, i, training_pairs_shuffle[i], leftright_train_cd[j], validity_cd[j])
+      if (leftright_train_cd[j] == 'left') { // good stim on left
+        trainingA1.push({stimulusLeft: trainStimA[2], stimulusRight: trainStimA[3], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[1], pair_validity: training_validity[1], trial_validity: validity_cd[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[1], reward_type: training_trial_type[1], correct_response: leftASCII}});
+        trainingB1.push({stimulusLeft: trainStimB[2], stimulusRight: trainStimB[3], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[1], pair_validity: training_validity[1], trial_validity: validity_cd[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[1], reward_type: training_trial_type[1], correct_response: leftASCII}});
+      } else if (leftright_train_cd[j] == 'right') {
+        trainingA1.push({stimulusLeft: trainStimA[3], stimulusRight: trainStimA[2], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[1], pair_validity: training_validity[1], trial_validity: validity_cd[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[1], reward_type: training_trial_type[1], correct_response: leftASCII}});
+        trainingB1.push({stimulusLeft: trainStimB[3], stimulusRight: trainStimB[2], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[1], pair_validity: training_validity[1], trial_validity: validity_cd[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[1], reward_type: training_trial_type[1], correct_response: leftASCII}});
+      }
+    } else if (training_pairs_shuffle[i] == 'ef') {
+      console.log(j, i, training_pairs_shuffle[i], leftright_train_ef[j], validity_ef[j])
+      if (leftright_train_ef[j] == 'left') { // good stim on left
+        trainingA1.push({stimulusLeft: trainStimA[4], stimulusRight: trainStimA[5], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[2], pair_validity: training_validity[2], trial_validity: validity_ef[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[2], reward_type: training_trial_type[2], correct_response: leftASCII}});
+        trainingB1.push({stimulusLeft: trainStimB[4], stimulusRight: trainStimB[5], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[2], pair_validity: training_validity[2], trial_validity: validity_ef[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[2], reward_type: training_trial_type[2], correct_response: leftASCII}});
+      } else if (leftright_train_ef[j] == 'right') {
+        trainingA1.push({stimulusLeft: trainStimA[5], stimulusRight: trainStimA[4], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[2], pair_validity: training_validity[2], trial_validity: validity_ef[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[2], reward_type: training_trial_type[2], correct_response: leftASCII}});
+        trainingB1.push({stimulusLeft: trainStimB[5], stimulusRight: trainStimB[4], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[2], pair_validity: training_validity[2], trial_validity: validity_ef[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[2], reward_type: training_trial_type[2], correct_response: leftASCII}});
+      }
+    } else if (training_pairs_shuffle[i] == 'gh') {
+      console.log(j, i, training_pairs_shuffle[i], leftright_train_gh[j], validity_gh[j])
+      if (leftright_train_gh[j] == 'left') { // good stim on left
+        trainingA1.push({stimulusLeft: trainStimA[6], stimulusRight: trainStimA[7], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[3], pair_validity: training_validity[3], trial_validity: validity_gh[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[3], reward_type: training_trial_type[3], correct_response: leftASCII}});
+        trainingB1.push({stimulusLeft: trainStimB[6], stimulusRight: trainStimB[7], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[3], pair_validity: training_validity[3], trial_validity: validity_gh[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[3], reward_type: training_trial_type[3], correct_response: leftASCII}});
+      } else if (leftright_train_gh[j] == 'right') {
+        trainingA1.push({stimulusLeft: trainStimA[7], stimulusRight: trainStimA[6], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[3], pair_validity: training_validity[3], trial_validity: validity_gh[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[3], reward_type: training_trial_type[3], correct_response: leftASCII}});
+        trainingB1.push({stimulusLeft: trainStimB[7], stimulusRight: trainStimB[6], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[3], pair_validity: training_validity[3], trial_validity: validity_gh[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[3], reward_type: training_trial_type[3], correct_response: leftASCII}});
+      }
+    }
+  };
+
+  training_pairs_shuffle = jsPsych.randomization.repeat(training_pairs, 1);
+
+  for (let i=0; i<training_pairs_shuffle.length; i++) {
+    if (training_pairs_shuffle[i] == 'ab') { // ab pair
+      console.log(j, i, training_pairs_shuffle[i], leftright_train_ab[j], validity_ab[j])
+      if (leftright_train_ab[j] == 'left') { // good stim on left
+        trainingA2.push({stimulusLeft: trainStimA[0], stimulusRight: trainStimA[1], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[0], pair_validity: training_validity[0], trial_validity: validity_ab[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[0], reward_type: training_trial_type[0], correct_response: leftASCII}});
+        trainingB2.push({stimulusLeft: trainStimB[0], stimulusRight: trainStimB[1], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[0], pair_validity: training_validity[0], trial_validity: validity_ab[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[0], reward_type: training_trial_type[0], correct_response: leftASCII}});
+      } else if (leftright_train_ab[j] == 'right') {
+        trainingA2.push({stimulusLeft: trainStimA[1], stimulusRight: trainStimA[0], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[0], pair_validity: training_validity[0], trial_validity: validity_ab[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[0], reward_type: training_trial_type[0], correct_response: leftASCII}});
+        trainingB2.push({stimulusLeft: trainStimB[1], stimulusRight: trainStimB[0], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[0], pair_validity: training_validity[0], trial_validity: validity_ab[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[0], reward_type: training_trial_type[0], correct_response: leftASCII}});
+      }
+    } else if (training_pairs_shuffle[i] == 'cd') {
+      console.log(j, i, training_pairs_shuffle[i], leftright_train_cd[j], validity_cd[j])
+      if (leftright_train_cd[j] == 'left') { // good stim on left
+        trainingA2.push({stimulusLeft: trainStimA[2], stimulusRight: trainStimA[3], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[1], pair_validity: training_validity[1], trial_validity: validity_cd[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[1], reward_type: training_trial_type[1], correct_response: leftASCII}});
+        trainingB2.push({stimulusLeft: trainStimB[2], stimulusRight: trainStimB[3], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[1], pair_validity: training_validity[1], trial_validity: validity_cd[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[1], reward_type: training_trial_type[1], correct_response: leftASCII}});
+      } else if (leftright_train_cd[j] == 'right') {
+        trainingA2.push({stimulusLeft: trainStimA[3], stimulusRight: trainStimA[2], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[1], pair_validity: training_validity[1], trial_validity: validity_cd[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[1], reward_type: training_trial_type[1], correct_response: leftASCII}});
+        trainingB2.push({stimulusLeft: trainStimB[3], stimulusRight: trainStimB[2], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[1], pair_validity: training_validity[1], trial_validity: validity_cd[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[1], reward_type: training_trial_type[1], correct_response: leftASCII}});
+      }
+    } else if (training_pairs_shuffle[i] == 'ef') {
+      console.log(j, i, training_pairs_shuffle[i], leftright_train_ef[j], validity_ef[j])
+      if (leftright_train_ef[j] == 'left') { // good stim on left
+        trainingA2.push({stimulusLeft: trainStimA[4], stimulusRight: trainStimA[5], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[2], pair_validity: training_validity[2], trial_validity: validity_ef[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[2], reward_type: training_trial_type[2], correct_response: leftASCII}});
+        trainingB2.push({stimulusLeft: trainStimB[4], stimulusRight: trainStimB[5], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[2], pair_validity: training_validity[2], trial_validity: validity_ef[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[2], reward_type: training_trial_type[2], correct_response: leftASCII}});
+      } else if (leftright_train_ef[j] == 'right') {
+        trainingA2.push({stimulusLeft: trainStimA[5], stimulusRight: trainStimA[4], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[2], pair_validity: training_validity[2], trial_validity: validity_ef[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[2], reward_type: training_trial_type[2], correct_response: leftASCII}});
+        trainingB2.push({stimulusLeft: trainStimB[5], stimulusRight: trainStimB[4], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[2], pair_validity: training_validity[2], trial_validity: validity_ef[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[2], reward_type: training_trial_type[2], correct_response: leftASCII}});
+      }
+    } else if (training_pairs_shuffle[i] == 'gh') {
+      console.log(j, i, training_pairs_shuffle[i], leftright_train_gh[j], validity_gh[j])
+      if (leftright_train_gh[j] == 'left') { // good stim on left
+        trainingA2.push({stimulusLeft: trainStimA[6], stimulusRight: trainStimA[7], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[3], pair_validity: training_validity[3], trial_validity: validity_gh[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[3], reward_type: training_trial_type[3], correct_response: leftASCII}});
+        trainingB2.push({stimulusLeft: trainStimB[6], stimulusRight: trainStimB[7], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[3], pair_validity: training_validity[3], trial_validity: validity_gh[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[3], reward_type: training_trial_type[3], correct_response: leftASCII}});
+      } else if (leftright_train_gh[j] == 'right') {
+        trainingA2.push({stimulusLeft: trainStimA[7], stimulusRight: trainStimA[6], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[3], pair_validity: training_validity[3], trial_validity: validity_gh[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[3], reward_type: training_trial_type[3], correct_response: leftASCII}});
+        trainingB2.push({stimulusLeft: trainStimB[7], stimulusRight: trainStimB[6], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[3], pair_validity: training_validity[3], trial_validity: validity_gh[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[3], reward_type: training_trial_type[3], correct_response: leftASCII}});
+      }
+    }
+  };
+
+  training_pairs_shuffle = jsPsych.randomization.repeat(training_pairs, 1);
+ 
+  for (let i=0; i<training_pairs_shuffle.length; i++) {
+    if (training_pairs_shuffle[i] == 'ab') { // ab pair
+      console.log(j, i, training_pairs_shuffle[i], leftright_train_ab[j], validity_ab[j])
+      if (leftright_train_ab[j] == 'left') { // good stim on left
+        trainingA3.push({stimulusLeft: trainStimA[0], stimulusRight: trainStimA[1], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[0], pair_validity: training_validity[0], trial_validity: validity_ab[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[0], reward_type: training_trial_type[0], correct_response: leftASCII}});
+        trainingB3.push({stimulusLeft: trainStimB[0], stimulusRight: trainStimB[1], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[0], pair_validity: training_validity[0], trial_validity: validity_ab[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[0], reward_type: training_trial_type[0], correct_response: leftASCII}});
+      } else if (leftright_train_ab[j] == 'right') {
+        trainingA3.push({stimulusLeft: trainStimA[1], stimulusRight: trainStimA[0], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[0], pair_validity: training_validity[0], trial_validity: validity_ab[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[0], reward_type: training_trial_type[0], correct_response: leftASCII}});
+        trainingB3.push({stimulusLeft: trainStimB[1], stimulusRight: trainStimB[0], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[0], pair_validity: training_validity[0], trial_validity: validity_ab[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[0], reward_type: training_trial_type[0], correct_response: leftASCII}});
+      }
+    } else if (training_pairs_shuffle[i] == 'cd') {
+      console.log(j, i, training_pairs_shuffle[i], leftright_train_cd[j], validity_cd[j])
+      if (leftright_train_cd[j] == 'left') { // good stim on left
+        trainingA3.push({stimulusLeft: trainStimA[2], stimulusRight: trainStimA[3], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[1], pair_validity: training_validity[1], trial_validity: validity_cd[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[1], reward_type: training_trial_type[1], correct_response: leftASCII}});
+        trainingB3.push({stimulusLeft: trainStimB[2], stimulusRight: trainStimB[3], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[1], pair_validity: training_validity[1], trial_validity: validity_cd[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[1], reward_type: training_trial_type[1], correct_response: leftASCII}});
+      } else if (leftright_train_cd[j] == 'right') {
+        trainingA3.push({stimulusLeft: trainStimA[3], stimulusRight: trainStimA[2], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[1], pair_validity: training_validity[1], trial_validity: validity_cd[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[1], reward_type: training_trial_type[1], correct_response: leftASCII}});
+        trainingB3.push({stimulusLeft: trainStimB[3], stimulusRight: trainStimB[2], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[1], pair_validity: training_validity[1], trial_validity: validity_cd[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[1], reward_type: training_trial_type[1], correct_response: leftASCII}});
+      }
+    } else if (training_pairs_shuffle[i] == 'ef') {
+      console.log(j, i, training_pairs_shuffle[i], leftright_train_ef[j], validity_ef[j])
+      if (leftright_train_ef[j] == 'left') { // good stim on left
+        trainingA3.push({stimulusLeft: trainStimA[4], stimulusRight: trainStimA[5], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[2], pair_validity: training_validity[2], trial_validity: validity_ef[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[2], reward_type: training_trial_type[2], correct_response: leftASCII}});
+        trainingB3.push({stimulusLeft: trainStimB[4], stimulusRight: trainStimB[5], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[2], pair_validity: training_validity[2], trial_validity: validity_ef[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[2], reward_type: training_trial_type[2], correct_response: leftASCII}});
+      } else if (leftright_train_ef[j] == 'right') {
+        trainingA3.push({stimulusLeft: trainStimA[5], stimulusRight: trainStimA[4], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[2], pair_validity: training_validity[2], trial_validity: validity_ef[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[2], reward_type: training_trial_type[2], correct_response: leftASCII}});
+        trainingB3.push({stimulusLeft: trainStimB[5], stimulusRight: trainStimB[4], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[2], pair_validity: training_validity[2], trial_validity: validity_ef[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[2], reward_type: training_trial_type[2], correct_response: leftASCII}});
+      }
+    } else if (training_pairs_shuffle[i] == 'gh') {
+      console.log(j, i, training_pairs_shuffle[i], leftright_train_gh[j], validity_gh[j])
+      if (leftright_train_gh[j] == 'left') { // good stim on left
+        trainingA3.push({stimulusLeft: trainStimA[6], stimulusRight: trainStimA[7], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[3], pair_validity: training_validity[3], trial_validity: validity_gh[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[3], reward_type: training_trial_type[3], correct_response: leftASCII}});
+        trainingB3.push({stimulusLeft: trainStimB[6], stimulusRight: trainStimB[7], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[3], pair_validity: training_validity[3], trial_validity: validity_gh[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[3], reward_type: training_trial_type[3], correct_response: leftASCII}});
+      } else if (leftright_train_gh[j] == 'right') {
+        trainingA3.push({stimulusLeft: trainStimA[7], stimulusRight: trainStimA[6], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[3], pair_validity: training_validity[3], trial_validity: validity_gh[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[3], reward_type: training_trial_type[3], correct_response: leftASCII}});
+        trainingB3.push({stimulusLeft: trainStimB[7], stimulusRight: trainStimB[6], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[3], pair_validity: training_validity[3], trial_validity: validity_gh[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[3], reward_type: training_trial_type[3], correct_response: leftASCII}});
+      }
+    }
+  };
+
+  training_pairs_shuffle = jsPsych.randomization.repeat(training_pairs, 1);
+
+  for (let i=0; i<training_pairs_shuffle.length; i++) {
+    if (training_pairs_shuffle[i] == 'ab') { // ab pair
+      console.log(j, i, training_pairs_shuffle[i], leftright_train_ab[j], validity_ab[j])
+      if (leftright_train_ab[j] == 'left') { // good stim on left
+        trainingA4.push({stimulusLeft: trainStimA[0], stimulusRight: trainStimA[1], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[0], pair_validity: training_validity[0], trial_validity: validity_ab[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[0], reward_type: training_trial_type[0], correct_response: leftASCII}});
+        trainingB4.push({stimulusLeft: trainStimB[0], stimulusRight: trainStimB[1], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[0], pair_validity: training_validity[0], trial_validity: validity_ab[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[0], reward_type: training_trial_type[0], correct_response: leftASCII}});
+      } else if (leftright_train_ab[j] == 'right') {
+        trainingA4.push({stimulusLeft: trainStimA[1], stimulusRight: trainStimA[0], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[0], pair_validity: training_validity[0], trial_validity: validity_ab[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[0], reward_type: training_trial_type[0], correct_response: leftASCII}});
+        trainingB4.push({stimulusLeft: trainStimB[1], stimulusRight: trainStimB[0], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[0], pair_validity: training_validity[0], trial_validity: validity_ab[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[0], reward_type: training_trial_type[0], correct_response: leftASCII}});
+      }
+    } else if (training_pairs_shuffle[i] == 'cd') {
+      console.log(j, i, training_pairs_shuffle[i], leftright_train_cd[j], validity_cd[j])
+      if (leftright_train_cd[j] == 'left') { // good stim on left
+        trainingA4.push({stimulusLeft: trainStimA[2], stimulusRight: trainStimA[3], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[1], pair_validity: training_validity[1], trial_validity: validity_cd[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[1], reward_type: training_trial_type[1], correct_response: leftASCII}});
+        trainingB4.push({stimulusLeft: trainStimB[2], stimulusRight: trainStimB[3], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[1], pair_validity: training_validity[1], trial_validity: validity_cd[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[1], reward_type: training_trial_type[1], correct_response: leftASCII}});
+      } else if (leftright_train_cd[j] == 'right') {
+        trainingA4.push({stimulusLeft: trainStimA[3], stimulusRight: trainStimA[2], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[1], pair_validity: training_validity[1], trial_validity: validity_cd[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[1], reward_type: training_trial_type[1], correct_response: leftASCII}});
+        trainingB4.push({stimulusLeft: trainStimB[3], stimulusRight: trainStimB[2], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[1], pair_validity: training_validity[1], trial_validity: validity_cd[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[1], reward_type: training_trial_type[1], correct_response: leftASCII}});
+      }
+    } else if (training_pairs_shuffle[i] == 'ef') {
+      console.log(j, i, training_pairs_shuffle[i], leftright_train_ef[j], validity_ef[j])
+      if (leftright_train_ef[j] == 'left') { // good stim on left
+        trainingA4.push({stimulusLeft: trainStimA[4], stimulusRight: trainStimA[5], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[2], pair_validity: training_validity[2], trial_validity: validity_ef[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[2], reward_type: training_trial_type[2], correct_response: leftASCII}});
+        trainingB4.push({stimulusLeft: trainStimB[4], stimulusRight: trainStimB[5], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[2], pair_validity: training_validity[2], trial_validity: validity_ef[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[2], reward_type: training_trial_type[2], correct_response: leftASCII}});
+      } else if (leftright_train_ef[j] == 'right') {
+        trainingA4.push({stimulusLeft: trainStimA[5], stimulusRight: trainStimA[4], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[2], pair_validity: training_validity[2], trial_validity: validity_ef[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[2], reward_type: training_trial_type[2], correct_response: leftASCII}});
+        trainingB4.push({stimulusLeft: trainStimB[5], stimulusRight: trainStimB[4], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[2], pair_validity: training_validity[2], trial_validity: validity_ef[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[2], reward_type: training_trial_type[2], correct_response: leftASCII}});
+      }
+    } else if (training_pairs_shuffle[i] == 'gh') {
+      console.log(j, i, training_pairs_shuffle[i], leftright_train_gh[j], validity_gh[j])
+      if (leftright_train_gh[j] == 'left') { // good stim on left
+        trainingA4.push({stimulusLeft: trainStimA[6], stimulusRight: trainStimA[7], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[3], pair_validity: training_validity[3], trial_validity: validity_gh[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[3], reward_type: training_trial_type[3], correct_response: leftASCII}});
+        trainingB4.push({stimulusLeft: trainStimB[6], stimulusRight: trainStimB[7], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[3], pair_validity: training_validity[3], trial_validity: validity_gh[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[3], reward_type: training_trial_type[3], correct_response: leftASCII}});
+      } else if (leftright_train_gh[j] == 'right') {
+        trainingA4.push({stimulusLeft: trainStimA[7], stimulusRight: trainStimA[6], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[3], pair_validity: training_validity[3], trial_validity: validity_gh[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[3], reward_type: training_trial_type[3], correct_response: leftASCII}});
+        trainingB4.push({stimulusLeft: trainStimB[7], stimulusRight: trainStimB[6], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[3], pair_validity: training_validity[3], trial_validity: validity_gh[j], pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[3], reward_type: training_trial_type[3], correct_response: leftASCII}});
+      }
+    }
+  };
+};
+ 
+
+ /* 
+ let practiceA = [
+  {stimulusLeft: pracStimA[0], stimulusRight: pracStimA[1], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'practice', pair: practice_pairs[0], pair_validity: practice_validity[0], trial_validity: validity_values[0], pairTrialsPerBlock: practice_pairsPerBlock, good_stim: practice_good_stim[0], reward_type: practice_trial_type[0], correct_response: leftASCII}}, // 0 key
+  {stimulusLeft: pracStimA[1], stimulusRight: pracStimA[0], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'practice', pair: practice_pairs[0], pair_validity: practice_validity[0], trial_validity: validity_values[0], pairTrialsPerBlock: practice_pairsPerBlock, good_stim: practice_good_stim[0], reward_type: practice_trial_type[0], correct_response: rightASCII}}, // 0 key
+  {stimulusLeft: pracStimA[2], stimulusRight: pracStimA[3], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'practice', pair: practice_pairs[1], pair_validity: practice_validity[1], trial_validity: validity_values[0], pairTrialsPerBlock: practice_pairsPerBlock, good_stim: practice_good_stim[1], reward_type: practice_trial_type[1], correct_response: leftASCII}}, // 0 key
+  {stimulusLeft: pracStimA[3], stimulusRight: pracStimA[2], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'practice', pair: practice_pairs[1], pair_validity: practice_validity[1], trial_validity: validity_values[0], pairTrialsPerBlock: practice_pairsPerBlock, good_stim: practice_good_stim[1], reward_type: practice_trial_type[1], correct_response: rightASCII}}, // 0 key
+]
+
+ let practiceB = [
+  {stimulusLeft: pracStimB[0], stimulusRight: pracStimB[1], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'practice', pair: practice_pairs[0], pair_validity: practice_validity[0], trial_validity: validity_values[0], pairTrialsPerBlock: practice_pairsPerBlock, good_stim: practice_good_stim[0], reward_type: practice_trial_type[0], correct_response: leftASCII}}, // 0 key
+  {stimulusLeft: pracStimB[1], stimulusRight: pracStimB[0], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'practice', pair: practice_pairs[0], pair_validity: practice_validity[0], trial_validity: validity_values[0], pairTrialsPerBlock: practice_pairsPerBlock, good_stim: practice_good_stim[0], reward_type: practice_trial_type[0], correct_response: rightASCII}}, // 0 key
+  {stimulusLeft: pracStimB[2], stimulusRight: pracStimB[3], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'practice', pair: practice_pairs[1], pair_validity: practice_validity[1], trial_validity: validity_values[0], pairTrialsPerBlock: practice_pairsPerBlock, good_stim: practice_good_stim[1], reward_type: practice_trial_type[1], correct_response: leftASCII}}, // 0 key
+  {stimulusLeft: pracStimB[3], stimulusRight: pracStimB[2], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'practice', pair: practice_pairs[1], pair_validity: practice_validity[1], trial_validity: validity_values[0], pairTrialsPerBlock: practice_pairsPerBlock, good_stim: practice_good_stim[1], reward_type: practice_trial_type[1], correct_response: rightASCII}}, // 0 key
+]
 
 let trainingA = [
   {stimulusLeft: trainStimA[0], stimulusRight: trainStimA[1], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[0], pair_validity: training_validity[0], trial_validity: 'invalid', pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[0], reward_type: training_trial_type[0], correct_response: leftASCII}}, // 0 key
@@ -175,8 +399,6 @@ let trainingA = [
   {stimulusLeft: trainStimA[7], stimulusRight: trainStimA[6], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[3], pair_validity: training_validity[3], trial_validity: 'valid', pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[3], reward_type: training_trial_type[3], correct_response: rightASCII}}, // 0 key
 ]
 
-/* version B stimuli objects */
-
 let trainingB = [
   {stimulusLeft: trainStimB[0], stimulusRight: trainStimB[1], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[0], pair_validity: training_validity[0], trial_validity: 'invalid', pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[0], reward_type: training_trial_type[0], correct_response: leftASCII}}, // 0 key
   {stimulusLeft: trainStimB[1], stimulusRight: trainStimB[0], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[0], pair_validity: training_validity[0], trial_validity: 'invalid', pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[0], reward_type: training_trial_type[0], correct_response: rightASCII}}, // 0 key
@@ -259,6 +481,7 @@ let trainingB = [
   {stimulusLeft: trainStimB[6], stimulusRight: trainStimB[7], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[3], pair_validity: training_validity[3], trial_validity: 'valid', pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[3], reward_type: training_trial_type[3], correct_response: leftASCII}}, // 0 key
   {stimulusLeft: trainStimB[7], stimulusRight: trainStimB[6], chooseLeft: choice, chooseRight: choice, fixation: fixationDot, trialFeedback: feedbackContainer, data: {test_part: 'training', pair: training_pairs[3], pair_validity: training_validity[3], trial_validity: 'valid', pairTrialsPerBlock: training_pairsPerBlock, good_stim: training_good_stim[3], reward_type: training_trial_type[3], correct_response: rightASCII}}, // 0 key
 ]
+*/
 
   /////////////////////
  // * TEST CONFIG * //

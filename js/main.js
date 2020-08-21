@@ -164,9 +164,9 @@ let feedback = {
 let practiceProcedure = {
     timeline: [fixation, stimuli, feedback],
     timeline_variables: practiceStimVersion,
-    randomize_order: true,
+    randomize_order: false,
     type: 'fixed-repititions',
-    repetitions: 3
+    repetitions: 1
   };
 timeline.push(practiceProcedure);
 
@@ -183,14 +183,14 @@ for (let i = 0; i < trainingInstructionsText.length; i++) {
 };
 
 /* training trials */
-let trainingProcedure = {
+let trainingProcedureBlock1 = {
   timeline: [fixation, stimuli, feedback],
-  timeline_variables: trainingStimVersion,
-  randomize_order: true,
+  timeline_variables: trainingStimBlock1,
+  randomize_order: false,
   type: 'fixed-repititions',
   repetitions: 1
 };
-timeline.push(trainingProcedure);
+timeline.push(trainingProcedureBlock1);
 
 /* announce start of 2nd block */
 let newBlockStart = {
@@ -202,7 +202,14 @@ timeline.push(newBlockStart);
 
 /* training trials block 2 */
 //let trainingProcedure2 = trainingProcedure
-timeline.push(trainingProcedure);
+let trainingProcedureBlock2 = {
+  timeline: [fixation, stimuli, feedback],
+  timeline_variables: trainingStimBlock2,
+  randomize_order: false,
+  type: 'fixed-repititions',
+  repetitions: 1
+};
+timeline.push(trainingProcedureBlock2);
 
 /* announce start of 3rd block */
 //let newBlockStart3 = newBlockStart
@@ -210,7 +217,29 @@ timeline.push(newBlockStart);
 
 /* training trials block 3 */
 //let trainingProcedure3 = trainingProcedure
-timeline.push(trainingProcedure);
+let trainingProcedureBlock3 = {
+  timeline: [fixation, stimuli, feedback],
+  timeline_variables: trainingStimBlock3,
+  randomize_order: false,
+  type: 'fixed-repititions',
+  repetitions: 1
+};
+timeline.push(trainingProcedureBlock3);
+
+/* announce start of 4th block */
+//let newBlockStart3 = newBlockStart
+timeline.push(newBlockStart);
+
+/* training trials block 3 */
+//let trainingProcedure3 = trainingProcedure
+let trainingProcedureBlock4 = {
+  timeline: [fixation, stimuli, feedback],
+  timeline_variables: trainingStimBlock4,
+  randomize_order: false,
+  type: 'fixed-repititions',
+  repetitions: 1
+};
+timeline.push(trainingProcedureBlock4);
 
 /* add instructions to timeline */
 let testInstructions = [];

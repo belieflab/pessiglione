@@ -50,11 +50,17 @@ function saveData(name, data){
 function versionSelect() {
     if (version == 'A') {
         practiceStimVersion = practiceA;
-        trainingStimVersion = trainingA;
+        trainingStimBlock1 = trainingA1;
+        trainingStimBlock2 = trainingA2;
+        trainingStimBlock3 = trainingA3;
+        trainingStimBlock4 = trainingA4;
         testStimVersion = testA;
     } else if (version =='B') {
         practiceStimVersion = practiceB;
-        trainingStimVersion = trainingB;
+        trainingStimBlock1 = trainingB1;
+        trainingStimBlock2 = trainingB2;
+        trainingStimBlock3 = trainingB3;
+        trainingStimBlock4 = trainingB4;
         testStimVersion = testB;
     } else {
         prompt("enter 'A' or 'B'");
