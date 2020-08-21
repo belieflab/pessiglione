@@ -12,7 +12,7 @@ file_put_contents($name, $data);
 <html>
   <head>
     <title>Pessiglione</title>
-    <script type="text/javascript" src="conf.js"></script>
+
     <script type="text/javascript" src="jsPsych/jspsych.js"></script>
     <script type="text/javascript" src="jsPsych/plugins/jspsych-html-keyboard-response.js"></script>
     <script type="text/javascript" src="jsPsych/plugins/jspsych-image-keyboard-response.js"></script>
@@ -23,9 +23,11 @@ file_put_contents($name, $data);
     <?php include "include/consent.php"?>
   </body>
   <footer>
-    <script type="text/javascript" src="js/fn.js"></script>
-    <script type="text/javascript" src="js/var.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="exp/conf.js"></script>
+    <script type="text/javascript" src="exp/fn.js"></script>
+    <script type="text/javascript" src="exp/var.js"></script>
+    <script type="text/javascript" src="exp/timeline.js"></script>
+    <script type="text/javascript" src="exp/main.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-git.js"></script>
   </footer>
 </html>
