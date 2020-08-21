@@ -1,7 +1,9 @@
-<div class="screening" style="background-color:powderblue; text-align:center; margin:35px; vertical-align:middle">
+<div class="screening" style="background-color:lightgray; text-align:center; margin:35px; vertical-align:middle">
+<br>
+<h1 style="text-align:center;">CAPR Participant Intake</h1>
   <div id="intake">
-  <br>
-  <h1 style="text-align:center;">CAPR Participant Intake</h1>
+
+
 
 
     <p><b>Select your Research Site:</b></p>
@@ -69,10 +71,10 @@
 </form>
 
 <br>
-<button class="loadMain" onclick="submitIntake(), startExperiment()" type="button">submit</button>
+<button class="loadMain" onclick="submitIntake()" type="button">submit</button>
 
 </div>
-<div id="validation">
+<div id="validation" style="display: none">
     <br>
     <form>
 
@@ -80,15 +82,18 @@
 </form>
 
 
-<!-- </div>
-<button id="nextButton" style="display: none" onclick="startExperiment()">CONSENT/NEXT</button>
+</div>
+
+<div>
+<button id="nextButton" style="display: none" onclick="startExperiment()">START</button>
+<!-- <p id="nextButton" style="display: none" >please make sure you are in a quiet place. When you are ready to begin, click 'START'</p> -->
 <br>
-</div> -->
+</div>
 
 <script type="text/javascript" src="js/jquery-git.js"></script>
 
 <script>$("button.loadMain").click(function(){
-    // $.getScript("exp/main.js");
+    $.getScript("exp/main.js");
     // $.load("include/consent.php");
   }); </script>
 
