@@ -4,7 +4,7 @@
 //******************************************/
 
 /* enable subjectID prompt */
-let workerID = prompt("Enter your subject id" );
+// let workerID = prompt("Enter your subject id" );
 
 /* set task version either 'A' or 'B' */
 const version = 'A';

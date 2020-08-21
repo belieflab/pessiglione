@@ -20,9 +20,10 @@ file_put_contents($name, $data);
     <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
   <body  style="background-color: white;">  
-    <?php include "include/consent.php"?>
+    <?php include "include/intake.php"?>
   </body>
   <footer>
+    <script type="text/javascript" src="db/submit.js"></script>
     <script type="text/javascript" src="exp/conf.js"></script>
     <script type="text/javascript" src="exp/fn.js"></script>
     <script type="text/javascript" src="exp/var.js"></script>
