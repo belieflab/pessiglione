@@ -1,5 +1,5 @@
-# pessiglionne
-refactor or Pessiglionne ePrime task from uMaryland
+# pessiglione
+refactor or Pessiglione ePrime task from uMaryland
 
 ## Development Guide
 

@@ -1,14 +1,14 @@
   
   //******************************************/
- //   PESSIGLIONNE                           /
+ //   PESSIGLIONE                            /
 //******************************************/
 
 /* enable subjectID prompt */
-let workerID = prompt("Enter your subject id" );
+// let workerID = prompt("Enter your subject id" );
 
-/* set task version */
+/* set task version either 'A' or 'B' */
 const version = 'A';
-//const version = 'B';
+// const version = 'B';
 
 
 /* Adjust Response Keys */
