@@ -20,7 +20,7 @@ let validity_values =     ['valid', 'invalid'];
 let leftright_values =    ['left', 'right'];
 
 /* practice stim versions A & B */
-const pracA = ['Field4','Field10','Field13','Field17'];
+const pracA = ['Field4','Field10','Field13','newfield'];
 const pracB = ['African_landscape','closeWater_pines_mountains','Trees_with_flowers','wheat_with_farmhouse'];
 const trainA = ['Field3','Field5','Field14','Field11','Field9','Field12','Field15','Field16'];
 const trainB = ['3d-landscape-background-10','2822landscape','lsingeltree_tallergrass_clouds','orangey_field','water_fall_images','water_pines_distantMountains','water_pines_snowy_moutain','waterfall_waterBelow'];

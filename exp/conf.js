@@ -72,7 +72,9 @@ let trainingInstructionsText = [
         '<h3 style="color:red;">For the picture pairs where the best you can do is keep your money:</h3>'+
         '<p>You will not be able to keep your money every time you choose the "best" picture;</p>'+
         '<p>However, one picture allows you to keep your money much more often than the other picture.</p>'+
-        '<p>Press the spacebar continue.</p>'
+        '<p>Press the spacebar continue.</p>',
+
+        '<p>Press the spacebar when you are ready to begin.</p>'
 ];
 
 let testInstructionsText = [
@@ -86,19 +88,14 @@ let testInstructionsText = [
     '<p>If you see new combinations of objects in this next block,</p>'+
         '<p>please choose the object that "feels" like more of a winner based on what you have learned during the previous blocks.</p>'+
         '<p>If you\'re not sure which object to pick, just go with your gut instinct!</p>'+
-        '<p>Press the spacebar continue.</p>'
-];
+        '<p>Press the spacebar continue.</p>',
 
-let startTestText = [
-
-    '<p>Press either button when you are ready to begin.</p>'
-
+    '<p>Press the spacebar when you are ready to begin.</p>'
 ];
     
 let startNewBlockText = [
 
-    '<p>Starting a new block of trials.</p> <p>Press either button when you are ready to begin.</p>'
-    
+    '<p>Starting a new block of trials.</p> <p>Press the spacebar to begin.</p>'
 ];
 
 // Qualtrics survery link 

@@ -45,7 +45,7 @@ timeline.push(trainingProcedureBlock1);
 let newBlockStart = {
   type:  "html-keyboard-response",
   stimulus: startNewBlockText,
-  choices: [leftASCII, rightASCII],
+  choices: [32],
 };
 timeline.push(newBlockStart);
 
@@ -101,14 +101,6 @@ for (let i = 0; i < testInstructionsText.length; i++) {
   });
   timeline.push(testInstructions[i]);
 };
-
-/* announce start of test block */
-let testStart = {
-  type:  "html-keyboard-response",
-  stimulus: startTestText,
-  choices: [leftASCII, rightASCII],
-};
-timeline.push(testStart);
 
 /* test trials */
 let testProcedure = {
