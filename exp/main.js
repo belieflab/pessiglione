@@ -115,9 +115,7 @@ timeline.push(testProcedure);
 /* completion */
 let thankYou = {
   type: "html-keyboard-response",
-  stimulus: '<p">Thank you.</p>', 
-      // +"<a href=" + link + ' target="_blank">' + link + "</a>",
-  // choices: jsPsych.NO_KEYS,
+  stimulus: '<p>Thank you.</p>', 
   trial_duration: 5000,
 };
 timeline.push(thankYou);
