@@ -14,7 +14,7 @@ let practiceStart = {
   
   // create fixation dot
   let fixation = {
-    data: {test_part: 'fixation'},
+  //  data: {test_part: 'fixation'},
     type: 'html-keyboard-response',
     choices: jsPsych.NO_KEYS,
     trial_duration: 500,
@@ -37,15 +37,37 @@ let practiceStart = {
     response_ends_trial: true,
     data: jsPsych.timelineVariable('data'),
     on_finish: function(data){
-      test_part = jsPsych.data.get().last().values()[0].test_part;
+      block_type = jsPsych.data.get().last().values()[0].block_type;
+      if (block_type === 'practice') {
+        trial_number = indexIterator;
+        indexIterator++;
+        if (indexIterator === numberOfPracticeTrials) {
+          indexIterator = 0;
+        }
+        block_number = 0;
+      } else if (block_type === 'training') {
+        trial_number = indexIterator;
+        indexIterator++;
+        if (indexIterator === numberOfTrainingTrials) {
+          indexIterator = 0;
+          blockIterator++;
+        }
+        block_number = blockIterator;
+      } else if (block_type === 'test') {
+        trial_number = indexIterator;
+        indexIterator++;
+        block_number = 0;
+      }
       pair = jsPsych.data.get().last().values()[0].pair;
       pair_validity = jsPsych.data.get().last().values()[0].pair_validity;
       trial_validity = jsPsych.data.get().last().values()[0].trial_validity;
       pairTrialsPerBlock = jsPsych.data.get().last().values()[0].pairTrialsPerBlock;
       reward_type = jsPsych.data.get().last().values()[0].reward_type;
-      good_stim = jsPsych.data.get().last().values()[0].good_stim;
+      better_stim = jsPsych.data.get().last().values()[0].better_stim;
       correct_response = jsPsych.data.get().last().values()[0].correct_response;
-      console.log(test_part, pair, pair_validity, trial_validity, pairTrialsPerBlock, reward_type, good_stim, correct_response);
+      filename_left = jsPsych.data.get().last().values()[0].filename_left;
+      filename_right = jsPsych.data.get().last().values()[0].filename_right;
+      filename_better = jsPsych.data.get().last().values()[0].filename_better;
       if (trial_validity === 'valid') {
         if (reward_type === 'win:stay') {
           if (data.key_press === data.correct_response) {
@@ -99,6 +121,8 @@ let practiceStart = {
           }
         }
       }
+      filename_feedback = feedbackContainer[0];
+      console.log(block_number,trial_number,block_type,pair,pair_validity,trial_validity,pairTrialsPerBlock,reward_type,better_stim,correct_response,filename_left,filename_right,filename_better,filename_feedback);
       switch(data.key_press){
         case leftASCII:
           while(choice.length > 0) {
@@ -120,7 +144,7 @@ let practiceStart = {
   
   // create feedback trials
   let feedback = {
-    data: {test_part: 'feedback'},
+  //  data: {test_part: 'feedback'},
     type: 'html-keyboard-response',
     stimulus: function() {
       let participantResponse = jsPsych.data.get().last(1).values()[0].key_press;
