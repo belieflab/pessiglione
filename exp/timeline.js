@@ -37,33 +37,34 @@ let practiceStart = {
     response_ends_trial: true,
     data: jsPsych.timelineVariable('data'),
     on_finish: function(data){
-      src_subject_id = workerID;
-      site = '?? yale, mprc, etc.';
-      interview_date = 'must be formatted exactly thusly: MM/DD/YYYY';
-      session = '??';
-      sex = '??';
-      sample_group = '?? maybe 1=Clinical; 2=Healthy control';
-      interview_age = 'integer number of months';
+      data.subjectKey = 'GUID';
+      data.src_subject_id = workerID;
+      data.site = siteNumber;
+      data.interview_date = 'must be formatted exactly thusly: MM/DD/YYYY';
+      data.session = '??';
+      data.sex = '??';
+      data.sample_group = '?? maybe 1=Clinical; 2=Healthy control';
+      data.interview_age = 'integer number of months';
       block_type = jsPsych.data.get().last().values()[0].block_type;
       if (block_type === 'practice') {
-        trial_number = indexIterator;
+        data.trial_number = indexIterator;
         indexIterator++;
-        block_number = 0;
+        data.block_number = 0;
         if (indexIterator === numberOfPracticeTrials) {
           indexIterator = 0;
         }
       } else if (block_type === 'training') {
-        trial_number = indexIterator;
+        data.trial_number = indexIterator;
         indexIterator++;
-        block_number = blockIterator;
+        data.block_number = blockIterator;
         if (indexIterator === numberOfTrainingTrials) {
           indexIterator = 0;
           blockIterator++;
         }
       } else if (block_type === 'test') {
-        trial_number = indexIterator;
+        data.trial_number = indexIterator;
         indexIterator++;
-        block_number = 0;
+        data.block_number = 0;
       }
       pair = jsPsych.data.get().last().values()[0].pair;
       pair_validity = jsPsych.data.get().last().values()[0].pair_validity;
