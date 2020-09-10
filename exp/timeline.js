@@ -37,6 +37,13 @@ let practiceStart = {
     response_ends_trial: true,
     data: jsPsych.timelineVariable('data'),
     on_finish: function(data){
+      src_subject_id = workerID;
+      site = '?? yale, mprc, etc.';
+      interview_date = 'must be formatted exactly thusly: MM/DD/YYYY';
+      session = '??';
+      sex = '??';
+      sample_group = '?? maybe 1=Clinical; 2=Healthy control';
+      interview_age = 'integer number of months';
       block_type = jsPsych.data.get().last().values()[0].block_type;
       if (block_type === 'practice') {
         trial_number = indexIterator;
@@ -65,6 +72,7 @@ let practiceStart = {
       reward_type = jsPsych.data.get().last().values()[0].reward_type;
       better_stim = jsPsych.data.get().last().values()[0].better_stim;
       correct_response = jsPsych.data.get().last().values()[0].correct_response;
+      participant_response = jsPsych.data.get().last().values()[0].key_press;
       filename_left = jsPsych.data.get().last().values()[0].filename_left;
       filename_right = jsPsych.data.get().last().values()[0].filename_right;
       filename_better = jsPsych.data.get().last().values()[0].filename_better;
@@ -122,7 +130,7 @@ let practiceStart = {
         }
       }
       filename_feedback = feedbackContainer[0];
-      console.log(block_number,trial_number,block_type,pair,pair_validity,trial_validity,pairTrialsPerBlock,reward_type,better_stim,correct_response,filename_left,filename_right,filename_better,filename_feedback);
+      console.log(src_subject_id,site,interview_date,session,sex,sample_group,interview_age,block_number,trial_number,block_type,pair,pair_validity,trial_validity,pairTrialsPerBlock,reward_type,better_stim,correct_response,participant_response,filename_left,filename_right,filename_better,filename_feedback);
       switch(data.key_press){
         case leftASCII:
           while(choice.length > 0) {

@@ -6,6 +6,7 @@ interview_age,Integer,,Required,Age in months at the time of the interview/test/
 session,Integer,,Recommended,Session,,,
 sex,String,20,Recommended,Sex of the subject,M;F,M = Male; F = Female,gender
 sample_group,Integer,,Recommended,Sample group selection,1;2,1=Clinical; 2=Healthy control,
+site,String,,Recommended,"(yale, mprc, etc.)",,,
 block_type,String,,Recommended,Block type,practice;training;test,,
 block_number,Integer,,Recommended,Block number,,,
 trial_number,Integer,,Recommended,Trial number,,,
@@ -18,4 +19,5 @@ filename_left,String,,Recommended,which image is presented on the left of the sc
 filename_right,String,,Recommended,which image is presented on the right of the screen,,,
 filename_better,String,,Recommended,which of the two images is most often rewarded,,,
 filename_feedback,String,,Recommended,which feedback image is displayed,,,
-correct_response,String,,Recommended,,left;right,,
+correct_response,Integer,,Recommended,allowable responses are left and right arrow keys (ascii codes 37 and 39),,,
+participant_respose,Integer,,Recommended,allowable responses are left and right arrow keys (ascii codes 37 and 39),,,
