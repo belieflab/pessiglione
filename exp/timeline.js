@@ -41,18 +41,18 @@ let practiceStart = {
       if (block_type === 'practice') {
         trial_number = indexIterator;
         indexIterator++;
+        block_number = 0;
         if (indexIterator === numberOfPracticeTrials) {
           indexIterator = 0;
         }
-        block_number = 0;
       } else if (block_type === 'training') {
         trial_number = indexIterator;
         indexIterator++;
+        block_number = blockIterator;
         if (indexIterator === numberOfTrainingTrials) {
           indexIterator = 0;
           blockIterator++;
         }
-        block_number = blockIterator;
       } else if (block_type === 'test') {
         trial_number = indexIterator;
         indexIterator++;
