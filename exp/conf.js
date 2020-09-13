@@ -12,11 +12,11 @@ const version = 'B';
 
 
 /* Adjust Response Keys */
-let leftASCII= 49; //49;
-let rightASCII = 50; //50;
+let leftASCII= 49;
+let rightASCII = 48;
 
-let leftKey = '1'; //'1';
-let rightKey = '0'; //'2';
+let leftKey = '1';
+let rightKey = '0';
 
 // define inter-stimulus interval
 let isi = [1000, 5000];
