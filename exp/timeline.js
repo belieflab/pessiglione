@@ -131,7 +131,7 @@ let practiceStart = {
         }
       }
       filename_feedback = feedbackContainer[0];
-      console.log(block_number,trial_number,block_type,pair,pair_validity,trial_validity,pairTrialsPerBlock,reward_type,better_stim,correct_response,participant_response,filename_left,filename_right,filename_better,filename_feedback);
+      console.log(pair_validity,trial_validity,pairTrialsPerBlock,reward_type,better_stim,correct_response,participant_response,filename_left,filename_right,filename_better,filename_feedback);
       switch(data.key_press){
         case leftASCII:
           while(choice.length > 0) {
