@@ -3,8 +3,8 @@ subjectkey,GUID,,Required,The NDAR Global Unique Identifier (GUID) for research 
 src_subject_id,String,20,Required,Subject ID how it's defined in lab/project,,,
 interview_date,Date,,Required,Date on which the interview/genetic test/sampling/imaging/biospecimen was completed. MM/DD/YYYY,,Required field,sessiondate
 interview_age,Integer,,Required,Age in months at the time of the interview/test/sampling/imaging.,0 :: 1260,"Age is rounded to chronological month. If the research participant is 15-days-old at time of interview, the appropriate value would be 0 months. If the participant is 16-days-old, the value would be 1 month.",
+sex,String,20,Required,Sex of the subject,M;F,M = Male; F = Female,gender
 session,Integer,,Recommended,Session,,,
-sex,String,20,Recommended,Sex of the subject,M;F,M = Male; F = Female,gender
 sample_group,Integer,,Recommended,Sample group selection,1;2,1=Clinical; 2=Healthy control,
 site,String,,Recommended,"(yale, mprc, etc.)",,,
 block_type,String,,Recommended,Block type,practice;training;test,,
@@ -20,4 +20,6 @@ filename_right,String,,Recommended,which image is presented on the right of the 
 filename_better,String,,Recommended,which of the two images is most often rewarded,,,
 filename_feedback,String,,Recommended,which feedback image is displayed,,,
 correct_response,Integer,,Recommended,allowable responses are left and right arrow keys (ascii codes 37 and 39),,,
-participant_respose,Integer,,Recommended,allowable responses are left and right arrow keys (ascii codes 37 and 39),,,
+participant_response,Integer,,Recommended,allowable responses are left and right arrow keys (ascii codes 37 and 39),,,
+rt,Float,,Recommended,reaction time,,,
+accuracy,Integer,,Recommended,did they choose the better_stim,,,

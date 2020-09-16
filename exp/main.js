@@ -117,5 +117,6 @@ let thankYou = {
   type: "html-keyboard-response",
   stimulus: '<p>Thank you.</p>', 
   trial_duration: 5000,
+  choices: [32],
 };
 timeline.push(thankYou);
