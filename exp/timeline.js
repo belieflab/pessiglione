@@ -37,14 +37,12 @@ let practiceStart = {
     response_ends_trial: true,
     data: jsPsych.timelineVariable('data'),
     on_finish: function(data){
-      data.subjectKey = 'GUID';
-      data.src_subject_id = workerID;
+      data.subjectkey = 'GUID';
+      data.src_subject_id = workerId;
       data.site = siteNumber;
-      data.interview_date = 'must be formatted exactly thusly: MM/DD/YYYY';
-      data.session = '??';
-      data.sex = '??';
-      data.sample_group = '?? maybe 1=Clinical; 2=Healthy control';
-      data.interview_age = 'integer number of months';
+      data.interview_date = today;
+      data.interview_age = ageAtAssessment;
+      data.sex = sexAtBirth;
       block_type = jsPsych.data.get().last().values()[0].block_type;
       if (block_type === 'practice') {
         data.trial_number = indexIterator;
