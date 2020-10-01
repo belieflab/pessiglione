@@ -67,7 +67,7 @@ let practiceStart = {
       pair = jsPsych.data.get().last().values()[0].pair;
       pair_validity = jsPsych.data.get().last().values()[0].pair_validity;
       trial_validity = jsPsych.data.get().last().values()[0].trial_validity;
-      pairTrialsPerBlock = jsPsych.data.get().last().values()[0].pairTrialsPerBlock;
+      pair_trials_per_block = jsPsych.data.get().last().values()[0].pair_trials_per_block;
       reward_type = jsPsych.data.get().last().values()[0].reward_type;
       better_stim = jsPsych.data.get().last().values()[0].better_stim;
       correct_response = jsPsych.data.get().last().values()[0].correct_response;
@@ -129,7 +129,7 @@ let practiceStart = {
         }
       }
       filename_feedback = feedbackContainer[0];
-      console.log(pair_validity,trial_validity,pairTrialsPerBlock,reward_type,better_stim,correct_response,participant_response,filename_left,filename_right,filename_better,filename_feedback);
+      console.log(pair_validity,trial_validity,pair_trials_per_block,reward_type,better_stim,correct_response,participant_response,filename_left,filename_right,filename_better,filename_feedback);
       switch(data.key_press){
         case leftASCII:
           while(choice.length > 0) {
