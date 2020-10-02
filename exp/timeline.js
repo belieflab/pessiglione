@@ -43,38 +43,38 @@ let practiceStart = {
       data.interview_date = today;
       data.interview_age = ageAtAssessment;
       data.sex = sexAtBirth;
-      block_type = jsPsych.data.get().last().values()[0].block_type;
-      if (block_type === 'practice') {
-        data.trial_number = indexIterator;
+      test_part = jsPsych.data.get().last().values()[0].test_part;
+      if (test_part === 'practice') {
+        data.trial = indexIterator;
         indexIterator++;
-        data.block_number = 0;
+        data.block = 0;
         if (indexIterator === numberOfPracticeTrials) {
           indexIterator = 0;
         }
-      } else if (block_type === 'training') {
-        data.trial_number = indexIterator;
+      } else if (test_part === 'training') {
+        data.trial = indexIterator;
         indexIterator++;
-        data.block_number = blockIterator;
+        data.block = blockIterator;
         if (indexIterator === numberOfTrainingTrials) {
           indexIterator = 0;
           blockIterator++;
         }
-      } else if (block_type === 'test') {
-        data.trial_number = indexIterator;
+      } else if (test_part === 'test') {
+        data.trial = indexIterator;
         indexIterator++;
-        data.block_number = 0;
+        data.block = 0;
       }
       pair = jsPsych.data.get().last().values()[0].pair;
       pair_validity = jsPsych.data.get().last().values()[0].pair_validity;
       trial_validity = jsPsych.data.get().last().values()[0].trial_validity;
       pair_trials_per_block = jsPsych.data.get().last().values()[0].pair_trials_per_block;
       reward_type = jsPsych.data.get().last().values()[0].reward_type;
-      better_stim = jsPsych.data.get().last().values()[0].better_stim;
+      pair_best_choice = jsPsych.data.get().last().values()[0].pair_best_choice;
       correct_response = jsPsych.data.get().last().values()[0].correct_response;
       participant_response = jsPsych.data.get().last().values()[0].key_press;
-      filename_left = jsPsych.data.get().last().values()[0].filename_left;
-      filename_right = jsPsych.data.get().last().values()[0].filename_right;
-      filename_better = jsPsych.data.get().last().values()[0].filename_better;
+      stim_left = jsPsych.data.get().last().values()[0].stim_left;
+      stim_right = jsPsych.data.get().last().values()[0].stim_right;
+      stim_best_choice = jsPsych.data.get().last().values()[0].stim_best_choice;
       if (trial_validity === 'valid') {
         if (reward_type === 'win:stay') {
           if (data.key_press === data.correct_response) {
@@ -128,8 +128,8 @@ let practiceStart = {
           }
         }
       }
-      filename_feedback = feedbackContainer[0];
-      console.log(pair_validity,trial_validity,pair_trials_per_block,reward_type,better_stim,correct_response,participant_response,filename_left,filename_right,filename_better,filename_feedback);
+      data.stim_feedback = feedbackContainer[0].slice(5);
+//      console.log(pair_validity,trial_validity,pair_trials_per_block,reward_type,pair_best_choice,correct_response,participant_response,stim_left,stim_right,stim_best_choice,stim_feedback);
       switch(data.key_press){
         case leftASCII:
           while(choice.length > 0) {
