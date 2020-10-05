@@ -151,11 +151,9 @@ let practiceStart = {
   
   // create feedback trials
   let feedback = {
-  //  data: {test_part: 'feedback'},
     type: 'html-keyboard-response',
     stimulus: function() {
       let participantResponse = jsPsych.data.get().last(1).values()[0].key_press;
-//      console.log(participantResponse)
       if (participantResponse == leftASCII) { // if last correct_response == 49 (1 key)
         var html = "<img style='border: 5px solid #808080;' src='"+jsPsych.timelineVariable('stimulusLeft', true)+"'>" +
           "<img style='width:150px; height:150px; padding-right: 50px; padding-left: 50px; margin-bottom: 50px;' src='"+jsPsych.timelineVariable('trialFeedback', true)+"'>" +
@@ -171,12 +169,31 @@ let practiceStart = {
     choices: jsPsych.NO_KEYS,
     trial_duration: 1000,
     response_ends_trial: false,
-    // post_trial_gap: jsPsych.randomization.sampleWithReplacement(isi, 5, [5,1]),
     post_trial_gap: 500, //ISI
-    on_finish: function(data){
-      // data.practice = jsPsych.pluginAPI.convertKeyCodeToKeyCharacter(data.key_press)
-      // data.c1 = data.key_press == jsPsych.pluginAPI.convertKeyCharacterToKeyCode(data.correct_response);
-      
-    }
+    on_finish: function(data){}
   };
+
+    // acknowledge participant response during test phase, but more briefly than prior feedback
+    let feedback_testphase = {
+      type: 'html-keyboard-response',
+      stimulus: function() {
+        let participantResponse = jsPsych.data.get().last(1).values()[0].key_press;
+        if (participantResponse == leftASCII) { // if last correct_response == 49 (1 key)
+          var html = "<img style='border: 5px solid #808080;' src='"+jsPsych.timelineVariable('stimulusLeft', true)+"'>" +
+            "<img style='width:200px; height:200px; margin-bottom: 0px;' src='"+jsPsych.timelineVariable('fixation', true)+"'>" +
+            "<img style='border: 5px solid #ffffff;  padding-left:15px;' src='"+jsPsych.timelineVariable('stimulusRight', true)+"'>";
+          return html
+        } else if (participantResponse == rightASCII) { // if last correct_response == 48 (0 key)
+          var html = "<img style='border: 5px solid #ffffff; padding-right:15px;' src='"+jsPsych.timelineVariable('stimulusLeft', true)+"'>"+
+            "<img style='width:200px; height:200px; margin-bottom: 0px;' src='"+jsPsych.timelineVariable('fixation', true)+"'>" +
+            "<img style='border: 5px solid #808080;'src='"+jsPsych.timelineVariable('stimulusRight', true)+"'>";
+          return html
+        }
+      },
+      choices: jsPsych.NO_KEYS,
+      trial_duration: 200,
+      response_ends_trial: false,
+      post_trial_gap: 300, //ISI
+      on_finish: function(data){}
+    };
   

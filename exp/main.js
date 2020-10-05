@@ -103,7 +103,7 @@ for (let i = 0; i < testInstructionsText.length; i++) {
 
 /* test trials */
 let testProcedure = {
-  timeline: [fixation, stimuli],
+  timeline: [fixation, stimuli, feedback_testphase],
   timeline_variables: testStimVersion,
   randomize_order: true,
   type: 'fixed-repititions',
