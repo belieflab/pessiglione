@@ -6,8 +6,8 @@
 // declare global timeline variable
 let stimVersion;
 
-let indexIterator = 0;
-let blockIterator = 0;
+let indexIterator = 1;
+let blockIterator = 1;
 
   /////////////////////////
  // * PRACTICE CONFIG * //
