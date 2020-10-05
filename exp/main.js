@@ -6,7 +6,6 @@ for (let i = 0; i < instructionsText.length; i++) {
   });
   timeline.push(instructions[i]);
 };
-
 timeline.push(practiceStart);
 
 /* practice trials */
