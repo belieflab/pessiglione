@@ -1,12 +1,24 @@
-for (let i = 0; i < instructionsText.length; i++) {
-  instructions.push({
-    type: "html-keyboard-response",
-    stimulus: instructionsText[i],
-    choices: [32]
-  });
-  timeline.push(instructions[i]);
-};
-timeline.push(practiceStart);
+if (reward == 'money') {
+  for (let i = 0; i < instructionsTextMoney.length; i++) {
+    instructions.push({
+      type: "html-keyboard-response",
+      stimulus: instructionsTextMoney[i],
+      choices: [32]
+    });
+    timeline.push(instructions[i]);
+  };
+  timeline.push(practiceStart);
+} else if (reward == 'points') {
+  for (let i = 0; i < instructionsTextPoints.length; i++) {
+    instructions.push({
+      type: "html-keyboard-response",
+      stimulus: instructionsTextPoints[i],
+      choices: [32]
+    });
+    timeline.push(instructions[i]);
+  };
+  timeline.push(practiceStart);
+}
 
 /* practice trials */
 let practiceProcedure = {
@@ -21,14 +33,25 @@ timeline.push(practiceProcedure);
 /* add instructions to timeline */
 let trainingInstructions = [];
 
-for (let i = 0; i < trainingInstructionsText.length; i++) {
-  trainingInstructions.push({
-    type: "html-keyboard-response",
-    stimulus: trainingInstructionsText[i],
-    choices: [32]
-  });
-  timeline.push(trainingInstructions[i]);
-};
+if (reward == 'money') {
+  for (let i = 0; i < trainingInstructionsTextMoney.length; i++) {
+    trainingInstructions.push({
+      type: "html-keyboard-response",
+      stimulus: trainingInstructionsTextMoney[i],
+      choices: [32]
+    });
+    timeline.push(trainingInstructions[i]);
+  };
+} else if (reward == 'points') {
+  for (let i = 0; i < trainingInstructionsTextPoints.length; i++) {
+    trainingInstructions.push({
+      type: "html-keyboard-response",
+      stimulus: trainingInstructionsTextPoints[i],
+      choices: [32]
+    });
+    timeline.push(trainingInstructions[i]);
+  };
+}
 
 /* training trials */
 let trainingProcedureBlock1 = {
@@ -92,14 +115,25 @@ timeline.push(trainingProcedureBlock4);
 /* add instructions to timeline */
 let testInstructions = [];
 
-for (let i = 0; i < testInstructionsText.length; i++) {
-  testInstructions.push({
-    type: "html-keyboard-response",
-    stimulus: testInstructionsText[i],
-    choices: [32]
-  });
-  timeline.push(testInstructions[i]);
-};
+if (reward == 'money') {
+  for (let i = 0; i < testInstructionsTextMoney.length; i++) {
+    testInstructions.push({
+      type: "html-keyboard-response",
+      stimulus: testInstructionsTextMoney[i],
+      choices: [32]
+    });
+    timeline.push(testInstructions[i]);
+  };
+} else if (reward == 'points') {
+  for (let i = 0; i < testInstructionsTextPoints.length; i++) {
+    testInstructions.push({
+      type: "html-keyboard-response",
+      stimulus: testInstructionsTextPoints[i],
+      choices: [32]
+    });
+    timeline.push(testInstructions[i]);
+  };
+}
 
 /* test trials */
 let testProcedure = {

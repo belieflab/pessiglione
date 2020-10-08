@@ -45,7 +45,7 @@ for (let i=0; i<pracB.length; i++) {
 let choice = [];
 //let feedbackOptions = ['stim/winwin.bmp', 'stim/not_winner.png', 'stim/keep_money.png', 'stim/loselose.bmp'];
 let feedbackOptionsMoney = ['stim/winwin.bmp', 'stim/not_winner.png', 'stim/keep_money.png', 'stim/loselose.bmp'];
-let feedbackOptionsPoints = ['stim/winwin.bmp', 'stim/not_winner.png', 'stim/keep_money.png', 'stim/loselose.bmp'];
+let feedbackOptionsPoints = ['stim/winpoints.bmp', 'stim/not_winner.png', 'stim/keep_points.png', 'stim/losepoints.bmp'];
 let feedbackContainer = [];
 // let upcoming_feedback;
 
