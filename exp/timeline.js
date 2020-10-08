@@ -84,7 +84,7 @@ let practiceStart = {
             if (reward == 'money') {
               feedbackContainer.push(feedbackOptionsMoney[0]); //they win a nickel
             } else if (reward == 'points') {
-              feedbackContainer.push(feedbackOptionsPoints[0]); //they win a nickel
+              feedbackContainer.push(feedbackOptionsPoints[0]); //they win points
             }
           } else if (data.key_press !== data.correct_response) {
             feedbackContainer.pop();
@@ -111,7 +111,7 @@ let practiceStart = {
             if (reward == 'money') {
               feedbackContainer.push(feedbackOptionsMoney[3]); //they lose a nickel
             } else if (reward == 'points') {
-              feedbackContainer.push(feedbackOptionsPoints[3]); //they lose a nickel
+              feedbackContainer.push(feedbackOptionsPoints[3]); //they lose points
             }
 //            console.log('incorrect');
             data.accuracy = 0;
@@ -133,7 +133,7 @@ let practiceStart = {
             if (reward == 'money') {
               feedbackContainer.push(feedbackOptionsMoney[0]); //they win a nickel
             } else if (reward == 'points') {
-              feedbackContainer.push(feedbackOptionsPoints[0]); //they win a nickel
+              feedbackContainer.push(feedbackOptionsPoints[0]); //they win points
             }
 //            console.log('technically incorrect');
             data.accuracy = 0;
@@ -146,7 +146,7 @@ let practiceStart = {
             if (reward == 'money') {
               feedbackContainer.push(feedbackOptionsMoney[3]); //they lose a nickel
             } else if (reward == 'points') {
-              feedbackContainer.push(feedbackOptionsPoints[3]); //they lose a nickel
+              feedbackContainer.push(feedbackOptionsPoints[3]); //they lose points
             }
           } else if (data.key_press !== data.correct_response) {
             feedbackContainer.pop();
