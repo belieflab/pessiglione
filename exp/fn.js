@@ -18,8 +18,13 @@ function startExperiment(){
   jsPsych.init({
     timeline: timeline,
     show_progress_bar: true,
+<<<<<<< HEAD
     preload_images: [pracStimA, pracStimB, trainStimA, trainStimB, testStimA, testStimB, choice, feedbackOptions],
     on_finish: function(){ saveData("pessiglione_" + workerId, jsPsych.data.get().csv()); }
+=======
+    preload_images: [pracStimA, pracStimB, trainStimA, trainStimB, testStimA, testStimB, choice, feedbackOptionsMoney, feedbackOptionsPoints],
+    on_finish: function(){ saveData("pessiglione" + workerId, jsPsych.data.get().csv()); }
+>>>>>>> 296df0988271904ffd97d8685393043f364e88d5
     //on_finish: function(){
       //jsPsych.data.get().filter([{test_part: 'test'},{test_part: 'prediction'},{test_part: 'c2_test'}]).localSave("csv", `test-self-deception-data.csv`);
         //jsPsych.data.displayData();

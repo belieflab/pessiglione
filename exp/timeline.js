@@ -81,10 +81,18 @@ let practiceStart = {
 //            console.log('correct');
             data.accuracy = 1;
             feedbackContainer.pop();
-            feedbackContainer.push(feedbackOptions[0]); //they win a nickel
+            if (reward == 'money') {
+              feedbackContainer.push(feedbackOptionsMoney[0]); //they win a nickel
+            } else if (reward == 'points') {
+              feedbackContainer.push(feedbackOptionsPoints[0]); //they win points
+            }
           } else if (data.key_press !== data.correct_response) {
             feedbackContainer.pop();
-            feedbackContainer.push(feedbackOptions[1]); //they win nothing
+            if (reward == 'money') {
+              feedbackContainer.push(feedbackOptionsMoney[1]); //they win nothing
+            } else if (reward == 'points') {
+              feedbackContainer.push(feedbackOptionsPoints[1]); //they win nothing
+            }
 //            console.log('incorrect');
             data.accuracy = 0;
           }
@@ -93,10 +101,18 @@ let practiceStart = {
 //            console.log('correct');
             data.accuracy = 1;
             feedbackContainer.pop();
-            feedbackContainer.push(feedbackOptions[2]); //they lose nothing
+            if (reward == 'money') {
+              feedbackContainer.push(feedbackOptionsMoney[2]); //they lose nothing
+            } else if (reward == 'points') {
+              feedbackContainer.push(feedbackOptionsPoints[2]); //they lose nothing
+            }
           } else if (data.key_press !== data.correct_response) {
             feedbackContainer.pop();
-            feedbackContainer.push(feedbackOptions[3]); //they lose a nickel
+            if (reward == 'money') {
+              feedbackContainer.push(feedbackOptionsMoney[3]); //they lose a nickel
+            } else if (reward == 'points') {
+              feedbackContainer.push(feedbackOptionsPoints[3]); //they lose points
+            }
 //            console.log('incorrect');
             data.accuracy = 0;
           }
@@ -107,10 +123,18 @@ let practiceStart = {
 //            console.log('technically correct');
             data.accuracy = 1;
             feedbackContainer.pop();
-            feedbackContainer.push(feedbackOptions[1]); //they win nothing
+            if (reward == 'money') {
+              feedbackContainer.push(feedbackOptionsMoney[1]); //they win nothing
+            } else if (reward == 'points') {
+              feedbackContainer.push(feedbackOptionsPoints[1]); //they win nothing
+            }
           } else if (data.key_press !== data.correct_response) {
             feedbackContainer.pop();
-            feedbackContainer.push(feedbackOptions[0]); //they win a nickel
+            if (reward == 'money') {
+              feedbackContainer.push(feedbackOptionsMoney[0]); //they win a nickel
+            } else if (reward == 'points') {
+              feedbackContainer.push(feedbackOptionsPoints[0]); //they win points
+            }
 //            console.log('technically incorrect');
             data.accuracy = 0;
           }
@@ -119,16 +143,26 @@ let practiceStart = {
 //            console.log('technically correct');
             data.accuracy = 1;
             feedbackContainer.pop();
-            feedbackContainer.push(feedbackOptions[3]); //they lose a nickel
+            if (reward == 'money') {
+              feedbackContainer.push(feedbackOptionsMoney[3]); //they lose a nickel
+            } else if (reward == 'points') {
+              feedbackContainer.push(feedbackOptionsPoints[3]); //they lose points
+            }
           } else if (data.key_press !== data.correct_response) {
             feedbackContainer.pop();
-            feedbackContainer.push(feedbackOptions[2]); //they lose nothing
+            if (reward == 'money') {
+              feedbackContainer.push(feedbackOptionsMoney[2]); //they lose nothing
+            } else if (reward == 'points') {
+              feedbackContainer.push(feedbackOptionsPoints[2]); //they lose nothing
+            }
 //            console.log('technically incorrect');
             data.accuracy = 0;
           }
         }
       }
       data.stim_feedback = feedbackContainer[0].slice(5);
+      data.stim_set = version;
+      data.reward_set = reward;
 //      console.log(pair_validity,trial_validity,pair_trials_per_block,reward_type,pair_best_choice,correct_response,participant_response,stim_left,stim_right,stim_best_choice,stim_feedback);
       switch(data.key_press){
         case leftASCII:
