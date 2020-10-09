@@ -5,6 +5,8 @@
 
 let indexIterator = 1;
 let blockIterator = 1;
+let version;
+let reward;
 
   /////////////////////////
  // * PRACTICE CONFIG * //
