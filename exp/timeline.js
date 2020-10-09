@@ -9,7 +9,7 @@ let practiceStart = {
     type:  "html-keyboard-response",
     stimulus: '<p>First you will do some practice trials.</p> <p>Press either button when you are ready to begin.</p>',
     choices: [leftASCII, rightASCII],
-    on_finish: versionSelect(),
+//    on_finish: versionSelect(),
   };
   
   // create fixation dot

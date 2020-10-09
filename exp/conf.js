@@ -7,10 +7,10 @@
 // let workerID = prompt("Enter your subject id" );
 
 /* set task version either 'A' or 'B' */
-let version = 'A';
+//const version = 'A';
 //const version = 'B';
 //const reward = 'money';
-let reward = 'points';
+//const reward = 'points';
 
 /* Adjust Response Keys */
 let leftASCII= 49;

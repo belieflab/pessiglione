@@ -76,9 +76,12 @@
 </div>
 <script type="text/javascript" src="//code.jquery.com/jquery-git.js"></script>
 <script>$("button.loadMain").click(function(){
-      // $.getScript("exp/timeline.js");
-    $.getScript("exp/main.js");
+    // $.getScript("exp/conf.js");
+    // $.getScript("exp/var.js");
+    // setTimeout(1000);
     // $.getScript("exp/timeline.js");
+    // setTimeout(1000);
+    $.getScript("exp/main.js");
     // $.load("include/consent.php");
   }); </script>
 <script>
