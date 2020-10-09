@@ -15,6 +15,25 @@ function getParamFromURL(name)
 
 /* start the experiment */
 function startExperiment(){
+  console.log(workerId%4)
+  switch(workerId%4){
+    case 0:
+      version = 'A';
+      reward = 'money';
+      break;
+    case 1:
+      version = 'A';
+      reward = 'points';
+      break;
+    case 2:
+      version = 'B';
+      reward = 'money';
+      break;
+    case 3:
+      version = 'B';
+      reward = 'points';
+      break;
+  }
   jsPsych.init({
     timeline: timeline,
     show_progress_bar: true,
@@ -32,17 +51,6 @@ function startExperiment(){
   });
 }
 
-/* insert instructions122 */
-function pushInstructions() {
-for (let i = 0; i < instructionsText.length; i++) {
-    instructions.push({
-      type: "html-keyboard-response",
-      stimulus: instructionsText[i],
-      choices: [32]
-    });
-    timeline.push(instructions[i]);
-    }
-}
 
 /* write to data/.csv */
 function saveData(name, data){
