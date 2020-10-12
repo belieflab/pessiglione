@@ -39,7 +39,6 @@ let practiceStart = {
     on_finish: function(data){
       data.subjectkey = 'GUID';
       data.src_subject_id = workerId;
-      data.site = siteNumber;
       data.interview_date = today;
       data.interview_age = ageAtAssessment;
       data.sex = sexAtBirth;
