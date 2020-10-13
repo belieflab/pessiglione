@@ -31,3 +31,8 @@ function saveData(name, data){
     xhr.send(JSON.stringify({filename: name, filedata: data}));
   }
 
+  //onbeforeunload in body
+  function areYouSure() {
+    return "Write something clever here...";
+  }
+  areYouSure();

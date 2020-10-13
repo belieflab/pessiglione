@@ -19,7 +19,7 @@ file_put_contents($name, $data);
     <link href="jsPsych/css/jspsych.css" rel="stylesheet" type="text/css"></link>
     <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
-  <body  style="background-color: white;">  
+  <body onbeforeunload="return areYouSure()" style="background-color: white;">  
     <?php include "include/intake.php"?>
   </body>
   <footer>
@@ -29,7 +29,12 @@ file_put_contents($name, $data);
     <script type="text/javascript" src="exp/var.js"></script>
     <script type="text/javascript" src="exp/fn.js"></script>
     <script type="text/javascript" src="exp/timeline.js"></script>
-    <!-- <script type="text/javascript" src="exp/main.js"></script> -->
+    <script>
+function areYouSure() {
+  return "Write something clever here...";
+}
+</script>
     <script type="text/javascript" src="//code.jquery.com/jquery-git.js"></script>
+
   </footer>
 </html>
