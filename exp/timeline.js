@@ -7,7 +7,7 @@ let instructions = [];
 /* announce start of practice trials */
 let practiceStart = {
     type:  "html-keyboard-response",
-    stimulus: '<p>First you will do some practice trials.</p> <p>Press either button when you are ready to begin.</p>',
+    stimulus: '<p>First, you will do some practice trials.</p> <p>Press either response button when you are ready to begin.</p>',
     choices: [leftASCII, rightASCII],
 //    on_finish: versionSelect(),
   };
@@ -42,11 +42,11 @@ let practiceStart = {
       data.interview_date = today;
       data.interview_age = ageAtAssessment;
       data.sex = sexAtBirth;
-      data.handedness = handendess;
+      data.handedness = handedness;
       test_part = jsPsych.data.get().last().values()[0].test_part;
       if (test_part === 'practice') {
         data.trial = practiceIterator;
-        indexIterator--;
+        practiceIterator--;
         data.block = 1;
         if (practiceIterator === numberOfPracticeTrials+1) {
           practiceIterator = -1;
@@ -83,15 +83,23 @@ let practiceStart = {
             feedbackContainer.pop();
             if (reward == 'money') {
               feedbackContainer.push(feedbackOptionsMoney[0]); //they win a nickel
+              data.reward_tally = rewardTally +=(0.05);
+              // document.getElementById("rewardCounter").innerHTML = rewardTally+=(0.05);
             } else if (reward == 'points') {
               feedbackContainer.push(feedbackOptionsPoints[0]); //they win points
+              data.reward_tally = rewardTally +=(5);
+              // document.getElementById("rewardCounter").innerHTML = rewardTally+=(5);
             }
           } else if (data.key_press !== data.correct_response) {
             feedbackContainer.pop();
             if (reward == 'money') {
               feedbackContainer.push(feedbackOptionsMoney[1]); //they win nothing
+              data.reward_tally = rewardTally;
+              // document.getElementById("rewardCounter").innerHTML = rewardTally;
             } else if (reward == 'points') {
               feedbackContainer.push(feedbackOptionsPoints[1]); //they win nothing
+              // document.getElementById("rewardCounter").innerHTML = rewardTally;
+              data.reward_tally = rewardTally;
             }
 //            console.log('incorrect');
             data.accuracy = 0;
@@ -103,15 +111,23 @@ let practiceStart = {
             feedbackContainer.pop();
             if (reward == 'money') {
               feedbackContainer.push(feedbackOptionsMoney[2]); //they lose nothing
+              data.reward_tally = rewardTally;
+              // document.getElementById("rewardCounter").innerHTML = rewardTally;
             } else if (reward == 'points') {
               feedbackContainer.push(feedbackOptionsPoints[2]); //they lose nothing
+              data.reward_tally = rewardTally;
+              // document.getElementById("rewardCounter").innerHTML = rewardTally;
             }
           } else if (data.key_press !== data.correct_response) {
             feedbackContainer.pop();
             if (reward == 'money') {
               feedbackContainer.push(feedbackOptionsMoney[3]); //they lose a nickel
+              data.reward_tally = rewardTally -=(0.05);
             } else if (reward == 'points') {
+              // document.getElementById("rewardCounter").innerHTML = rewardTally-=(0.05);
               feedbackContainer.push(feedbackOptionsPoints[3]); //they lose points
+              data.reward_tally = rewardTally -=(5);
+              // document.getElementById("rewardCounter").innerHTML = rewardTally-=(5);
             }
 //            console.log('incorrect');
             data.accuracy = 0;
@@ -125,15 +141,23 @@ let practiceStart = {
             feedbackContainer.pop();
             if (reward == 'money') {
               feedbackContainer.push(feedbackOptionsMoney[1]); //they win nothing
+              data.reward_tally = rewardTally;
+              // document.getElementById("rewardCounter").innerHTML = rewardTally;
             } else if (reward == 'points') {
               feedbackContainer.push(feedbackOptionsPoints[1]); //they win nothing
+              data.reward_tally = rewardTally;
+              // document.getElementById("rewardCounter").innerHTML = rewardTally;
             }
           } else if (data.key_press !== data.correct_response) {
             feedbackContainer.pop();
             if (reward == 'money') {
               feedbackContainer.push(feedbackOptionsMoney[0]); //they win a nickel
+              data.reward_tally = rewardTally +=(0.05);
+              // document.getElementById("rewardCounter").innerHTML = rewardTally+=(0.05);
             } else if (reward == 'points') {
               feedbackContainer.push(feedbackOptionsPoints[0]); //they win points
+              data.reward_tally = rewardTally +=(5);
+              // document.getElementById("rewardCounter").innerHTML = rewardTally+=(5);
             }
 //            console.log('technically incorrect');
             data.accuracy = 0;
@@ -145,15 +169,23 @@ let practiceStart = {
             feedbackContainer.pop();
             if (reward == 'money') {
               feedbackContainer.push(feedbackOptionsMoney[3]); //they lose a nickel
+              data.reward_tally = rewardTally -=(0.05);
+              // document.getElementById("rewardCounter").innerHTML = rewardTally-=(0.05);
             } else if (reward == 'points') {
               feedbackContainer.push(feedbackOptionsPoints[3]); //they lose points
+              data.reward_tally = rewardTally -=(5);
+              // document.getElementById("rewardCounter").innerHTML = rewardTally-=(5);
             }
           } else if (data.key_press !== data.correct_response) {
             feedbackContainer.pop();
             if (reward == 'money') {
               feedbackContainer.push(feedbackOptionsMoney[2]); //they lose nothing
+              data.reward_tally = rewardTally;
+              // document.getElementById("rewardCounter").innerHTML = rewardTally;
             } else if (reward == 'points') {
               feedbackContainer.push(feedbackOptionsPoints[2]); //they lose nothing
+              data.reward_tally = rewardTally;
+              // document.getElementById("rewardCounter").innerHTML = rewardTally;
             }
 //            console.log('technically incorrect');
             data.accuracy = 0;
@@ -255,6 +287,7 @@ let practiceStart = {
         $(document).ready(function(){
         $("body").addClass("showCursor"); // returns cursor functionality
     });
+
       }
     };
     
@@ -268,5 +301,12 @@ let practiceStart = {
       "<p>You may now close the expriment window at anytime.</p>",
       choices: jsPsych.NO_KEYS,
       trial_duration: 60000,
+      on_load: function(){
+        if (reward === "money"){
+          alert("You won: $ "+rewardTally+"!");
+      } else if (reward === 'points'){
+          alert("Thanks for playing!");
+      }
+      }
     };
     

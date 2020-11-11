@@ -9,7 +9,7 @@ let ageAtAssessment;
 // let age;
 let sexAtBirth;
 // let currentAge;
-// let handedness;
+let handedness;
 // let antihandedness;
 // let EasyKey_uCase;
 // let HardKey_uCase;
