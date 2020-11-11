@@ -52,7 +52,7 @@ let practiceStart = {
         }
       } else if (test_part === 'training') {
         data.trial = indexIterator;
-        indexIterator++;
+        indexIterator++;0
         data.block = blockIterator;
         if (indexIterator === numberOfTrainingTrials+1) {
           indexIterator = 1;
@@ -189,12 +189,12 @@ let practiceStart = {
       let participantResponse = jsPsych.data.get().last(1).values()[0].key_press;
       if (participantResponse == leftASCII) { // if last correct_response == 49 (1 key)
         var html = "<img style='border: 5px solid #808080;' src='"+jsPsych.timelineVariable('stimulusLeft', true)+"'>" +
-          "<img style='width:150px; height:150px; padding-right: 50px; padding-left: 50px; margin-bottom: 50px;' src='"+jsPsych.timelineVariable('trialFeedback', true)+"'>" +
+          "<img style='width:150px; height:150px; padding-right: 50px; padding-left: 50px; margin-bottom: 25px;' src='"+jsPsych.timelineVariable('trialFeedback', true)+"'>" +
           "<img style='border: 5px solid #ffffff;  padding-left:15px;' src='"+jsPsych.timelineVariable('stimulusRight', true)+"'>";
         return html
       } else if (participantResponse == rightASCII) { // if last correct_response == 48 (0 key)
         var html = "<img style='border: 5px solid #ffffff; padding-right:15px;' src='"+jsPsych.timelineVariable('stimulusLeft', true)+"'>"+
-          "<img style='width:150px; height:150px; padding-right: 50px; padding-left: 50px; margin-bottom: 50px;' src='"+jsPsych.timelineVariable('trialFeedback', true)+"'>" +
+          "<img style='width:150px; height:150px; padding-right: 50px; padding-left: 50px; margin-bottom: 25px;' src='"+jsPsych.timelineVariable('trialFeedback', true)+"'>" +
           "<img style='border: 5px solid #808080;'src='"+jsPsych.timelineVariable('stimulusRight', true)+"'>";
         return html
       }
@@ -213,13 +213,13 @@ let practiceStart = {
         let participantResponse = jsPsych.data.get().last(1).values()[0].key_press;
         if (participantResponse == leftASCII) { // if last correct_response == 49 (1 key)
           var html = "<img style='border: 5px solid #808080;' src='"+jsPsych.timelineVariable('stimulusLeft', true)+"'>" +
-            "<img style='width:200px; height:200px; margin-bottom: 0px;' src='"+jsPsych.timelineVariable('fixation', true)+"'>" +
-            "<img style='border: 5px solid #ffffff;  padding-left:15px;' src='"+jsPsych.timelineVariable('stimulusRight', true)+"'>";
+            "<img style='width:200px; height:200px; margin-bottom: 5px; padding-left:20px; padding-right:20px;' src='"+jsPsych.timelineVariable('fixation', true)+"'>" +
+            "<img style='border: 5px solid #ffffff;' src='"+jsPsych.timelineVariable('stimulusRight', true)+"'>";
           return html
         } else if (participantResponse == rightASCII) { // if last correct_response == 48 (0 key)
-          var html = "<img style='border: 5px solid #ffffff; padding-right:15px;' src='"+jsPsych.timelineVariable('stimulusLeft', true)+"'>"+
-            "<img style='width:200px; height:200px; margin-bottom: 0px;' src='"+jsPsych.timelineVariable('fixation', true)+"'>" +
-            "<img style='border: 5px solid #808080;'src='"+jsPsych.timelineVariable('stimulusRight', true)+"'>";
+          var html = "<img style='border: 5px solid #ffffff;' src='"+jsPsych.timelineVariable('stimulusLeft', true)+"'>"+
+            "<img style='width:200px; height:200px; margin-bottom: 5px; padding-left:20px; padding-right:20px;' src='"+jsPsych.timelineVariable('fixation', true)+"'>" +
+            "<img style='border: 5px solid #808080;' src='"+jsPsych.timelineVariable('stimulusRight', true)+"'>";
           return html
         }
       },
@@ -250,6 +250,10 @@ let practiceStart = {
       trial_duration: 5000,
       on_finish: function(){
         saveData("pessiglione_" + workerId, jsPsych.data.get().csv());
+        document.getElementById("unload").onbeforeunload='';
+        $(document).ready(function(){
+        $("body").addClass("showCursor"); // returns cursor functionality
+    });
       }
     };
     

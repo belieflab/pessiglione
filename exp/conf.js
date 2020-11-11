@@ -61,7 +61,7 @@ let isi = [1000, 5000];
     
     let trainingInstructionsTextMoney = [
     
-        '<p>Great!</p> <p>Press the spacebar continue.</p>',
+        '<p>Great!</p> <p>Press the spacebar to continue.</p>',
         
         
         '<p>Now you will see some more pictures.</p>'+
@@ -86,7 +86,7 @@ let isi = [1000, 5000];
     
     let testInstructionsTextMoney = [
     
-        '<p>Great!</p> <p>Press the spacebar continue.</p>',
+        '<p>Great!</p> <p>Press the spacebar to continue.</p>',
         
         '<p>It\'s time to test what you\'ve learned!</p>'+
             '<p>During this block of trials you will not be shown whether the object you choose wins money.</p>'+
