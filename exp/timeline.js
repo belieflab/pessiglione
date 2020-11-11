@@ -44,11 +44,11 @@ let practiceStart = {
       data.sex = sexAtBirth;
       test_part = jsPsych.data.get().last().values()[0].test_part;
       if (test_part === 'practice') {
-        data.trial = indexIterator;
+        data.trial = practiceIterator;
         indexIterator--;
         data.block = 1;
-        if (indexIterator === numberOfPracticeTrials+1) {
-          indexIterator = 1;
+        if (practiceIterator === numberOfPracticeTrials+1) {
+          practiceIterator = -1;
         }
       } else if (test_part === 'training') {
         data.trial = indexIterator;
@@ -58,10 +58,10 @@ let practiceStart = {
           indexIterator = 1;
           blockIterator++;
         }
-      } else if (test_part === 'test') {
+      } else if (test_part === 'transfer') {
         data.trial = indexIterator;
         indexIterator++;
-        data.block = 1;
+        data.block = 5;
       }
       pair = jsPsych.data.get().last().values()[0].pair;
       pair_validity = jsPsych.data.get().last().values()[0].pair_validity;

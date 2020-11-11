@@ -63,9 +63,11 @@ let isi = [1000, 5000];
     
         '<p>Great!</p> <p>Press the spacebar continue.</p>',
         
+        
         '<p>Now you will see some more pictures.</p>'+
             '<p>Do as before by pressing the '+leftKey+' to choose the picture on the left, and pressing the '+rightKey+' to choose the picture on the right.</p>'+
             '<p>Press the spacebar continue.</p>',
+            
     
         '<h3 style="color:red;">For the picture pairs where you can win money:</h3>'+
             '<p>You will not win every time you choose the "best" picture;</p>'+
@@ -74,8 +76,12 @@ let isi = [1000, 5000];
             '<p>You will not be able to keep your money every time you choose the "best" picture;</p>'+
             '<p>However, one picture allows you to keep your money much more often than the other picture.</p>'+
             '<p>Press the spacebar continue.</p>',
-    
-            '<p>Press the spacebar when you are ready to begin.</p>'
+
+
+        '<p>There is no ABSOLUTE right answer for any pair of pictures, but some pictures have a higher chance of either winning you some money or preventing you from losing money.</p>'+
+        '<p>Try to pick the picture that you think is best.<p>'+
+        '<p>Once you decide which picture in a pair of pictures is better, stick with it for the rest of the experiment (unless you determine that you were initially wrong about the selection).</p>'+
+        '<p>Press the spacebar when you are ready to begin.</p>',
     ];
     
     let testInstructionsTextMoney = [
