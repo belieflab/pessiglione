@@ -42,6 +42,7 @@ let practiceStart = {
       data.interview_date = today;
       data.interview_age = ageAtAssessment;
       data.sex = sexAtBirth;
+      data.handedness = handendess;
       test_part = jsPsych.data.get().last().values()[0].test_part;
       if (test_part === 'practice') {
         data.trial = practiceIterator;

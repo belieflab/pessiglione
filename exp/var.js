@@ -3,9 +3,8 @@
  /// *  make sure you know what you are doing with these buttons and levers; you may break the experiment  * ///
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-let practriceIterator = -1;
+let practiceIterator = -1;
 let indexIterator = 1;
-// let practiceBlockIterator = 1;
 let blockIterator = 0;
 let version;
 let reward;

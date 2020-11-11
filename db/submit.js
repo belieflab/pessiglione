@@ -54,9 +54,15 @@ function ageFinder() {
 
 function submitIntake() {
     let subjectID = document.getElementById("subjectid").value;
+    let rightHandedness = document.getElementById("rightHanded").checked;
+    let leftHandedness = document.getElementById("leftHanded").checked;
     let siteID = document.getElementById("siteid");
     
-
+    if (rightHandedness === true) {
+        handedness = "right";
+    } else if (leftHandedness === true) {
+        handedness = "left";
+    }
     const zeroPad = (num, places) => String(num).padStart(places, '0');
     switch(siteID.options[siteID.selectedIndex].value){
         case "Maryland":

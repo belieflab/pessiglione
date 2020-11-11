@@ -44,6 +44,17 @@
   <label for="female">Female</label>
   <input type="radio" id="female" name="sex" value="female" onclick="sexFinder(this.value)">
   </form>
+  <form>
+    <!-- <label for="handedness"><b>Are you right or left handed?</b></label> -->
+    <p><b>Which is your dominant hand?</b></p>
+        <label for="right">Right</label>
+        <input type="radio" name="handedness" id="rightHanded" value="rightHanded">
+
+        <label for="left">Left</label>
+        <input type="radio" name="handedness" id="leftHanded" value="leftHanded">
+
+        <!-- <span class="checkmark"></span> -->
+  </form>
 <form>
     <p><b>Before proceeding to the task, please confirm that the following are true:</b></p>
     <label class="container">Screen brightness is up to 100% &nbsp&nbsp&nbsp&nbsp   
@@ -70,14 +81,16 @@
 </form>
 </div>
 <div>
-<button id="nextButton" style="display: none" onclick="startExperiment()">START</button>
+<button id="nextButton" class="noCursor" style="display: none" onclick="startExperiment()">START</button>
 <!-- <p id="nextButton" style="display: none" >please make sure you are in a quiet place. When you are ready to begin, click 'START'</p> -->
 <br>
 </div>
 <script type="text/javascript" src="//code.jquery.com/jquery-git.js"></script>
 <script>$("button.loadMain").click(function(){
     $.getScript("exp/main.js");
-    $("body").addClass("hideCursor");
   }); </script>
 <script>
+$("button.noCursor").click(function(){
+$("body").addClass("hideCursor");
+}); 
 </script>
