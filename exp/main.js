@@ -53,64 +53,64 @@ if (reward == 'money') {
   };
 }
 
-// /* training trials */
-// let trainingProcedureBlock1 = {
-//   timeline: [fixation, stimuli, feedback],
-//   timeline_variables: trainingStimBlock1,
-//   randomize_order: false,
-//   type: 'fixed-repititions',
-//   repetitions: 1
-// };
-// timeline.push(trainingProcedureBlock1);
+/* training trials */
+let trainingProcedureBlock1 = {
+  timeline: [fixation, stimuli, feedback],
+  timeline_variables: trainingStimBlock1,
+  randomize_order: false,
+  type: 'fixed-repititions',
+  repetitions: 1
+};
+timeline.push(trainingProcedureBlock1);
 
-// /* announce start of 2nd block */
-// let newBlockStart = {
-//   type:  "html-keyboard-response",
-//   stimulus: startNewBlockText,
-//   choices: [32],
-// };
-// timeline.push(newBlockStart);
+/* announce start of 2nd block */
+let newBlockStart = {
+  type:  "html-keyboard-response",
+  stimulus: startNewBlockText,
+  choices: [32],
+};
+timeline.push(newBlockStart);
 
-// /* training trials block 2 */
-// //let trainingProcedure2 = trainingProcedure
-// let trainingProcedureBlock2 = {
-//   timeline: [fixation, stimuli, feedback],
-//   timeline_variables: trainingStimBlock2,
-//   randomize_order: false,
-//   type: 'fixed-repititions',
-//   repetitions: 1
-// };
-// timeline.push(trainingProcedureBlock2);
+/* training trials block 2 */
+//let trainingProcedure2 = trainingProcedure
+let trainingProcedureBlock2 = {
+  timeline: [fixation, stimuli, feedback],
+  timeline_variables: trainingStimBlock2,
+  randomize_order: false,
+  type: 'fixed-repititions',
+  repetitions: 1
+};
+timeline.push(trainingProcedureBlock2);
 
-// /* announce start of 3rd block */
-// //let newBlockStart3 = newBlockStart
-// timeline.push(newBlockStart);
+/* announce start of 3rd block */
+//let newBlockStart3 = newBlockStart
+timeline.push(newBlockStart);
 
-// /* training trials block 3 */
-// //let trainingProcedure3 = trainingProcedure
-// let trainingProcedureBlock3 = {
-//   timeline: [fixation, stimuli, feedback],
-//   timeline_variables: trainingStimBlock3,
-//   randomize_order: false,
-//   type: 'fixed-repititions',
-//   repetitions: 1
-// };
-// timeline.push(trainingProcedureBlock3);
+/* training trials block 3 */
+//let trainingProcedure3 = trainingProcedure
+let trainingProcedureBlock3 = {
+  timeline: [fixation, stimuli, feedback],
+  timeline_variables: trainingStimBlock3,
+  randomize_order: false,
+  type: 'fixed-repititions',
+  repetitions: 1
+};
+timeline.push(trainingProcedureBlock3);
 
-// /* announce start of 4th block */
-// //let newBlockStart3 = newBlockStart
-// timeline.push(newBlockStart);
+/* announce start of 4th block */
+//let newBlockStart3 = newBlockStart
+timeline.push(newBlockStart);
 
-// /* training trials block 3 */
-// //let trainingProcedure3 = trainingProcedure
-// let trainingProcedureBlock4 = {
-//   timeline: [fixation, stimuli, feedback],
-//   timeline_variables: trainingStimBlock4,
-//   randomize_order: false,
-//   type: 'fixed-repititions',
-//   repetitions: 1
-// };
-// timeline.push(trainingProcedureBlock4);
+/* training trials block 3 */
+//let trainingProcedure3 = trainingProcedure
+let trainingProcedureBlock4 = {
+  timeline: [fixation, stimuli, feedback],
+  timeline_variables: trainingStimBlock4,
+  randomize_order: false,
+  type: 'fixed-repititions',
+  repetitions: 1
+};
+timeline.push(trainingProcedureBlock4);
 
 /* add instructions to timeline */
 let testInstructions = [];
@@ -135,15 +135,15 @@ if (reward == 'money') {
   };
 }
 
-// /* test trials */
-// let testProcedure = {
-//   timeline: [fixation, stimuli, feedback_testphase],
-//   timeline_variables: testStimVersion,
-//   randomize_order: true,
-//   type: 'fixed-repititions',
-//   repetitions: 3
-// };
-// timeline.push(testProcedure);
+/* test trials */
+let testProcedure = {
+  timeline: [fixation, stimuli, feedback_testphase],
+  timeline_variables: testStimVersion,
+  randomize_order: true,
+  type: 'fixed-repititions',
+  repetitions: 3
+};
+timeline.push(testProcedure);
 
 timeline.push(save_data);
 timeline.push(end);

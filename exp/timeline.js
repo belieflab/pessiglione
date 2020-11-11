@@ -28,9 +28,9 @@ let practiceStart = {
   let stimuli = {
     type: "html-keyboard-response",
     stimulus: function(){
-              var html="<img src='"+jsPsych.timelineVariable('stimulusLeft', true)+"'>" +
+              var html="<img src='"+jsPsych.timelineVariable('stimulusLeft', true)+"' width='750px' height='500px'>" +
               "<img style='width:200px; height:200px; margin-bottom: 0px;' src='"+jsPsych.timelineVariable('fixation', true)+"'>" +
-              "<img src='"+jsPsych.timelineVariable('stimulusRight', true)+"'>";
+              "<img src='"+jsPsych.timelineVariable('stimulusRight', true)+"' width='750px' height='500px'>";
               return html;
     }, 
     choices: [leftASCII, rightASCII],
@@ -221,14 +221,14 @@ let practiceStart = {
     stimulus: function() {
       let participantResponse = jsPsych.data.get().last(1).values()[0].key_press;
       if (participantResponse == leftASCII) { // if last correct_response == 49 (1 key)
-        var html = "<img style='border: 5px solid #808080;' src='"+jsPsych.timelineVariable('stimulusLeft', true)+"'>" +
+        var html = "<img style='border: 5px solid #808080;' src='"+jsPsych.timelineVariable('stimulusLeft', true)+"' width='750px' height='500px'>" +
           "<img style='width:150px; height:150px; padding-right: 50px; padding-left: 50px; margin-bottom: 25px;' src='"+jsPsych.timelineVariable('trialFeedback', true)+"'>" +
-          "<img style='border: 5px solid #ffffff;  padding-left:15px;' src='"+jsPsych.timelineVariable('stimulusRight', true)+"'>";
+          "<img style='border: 5px solid #ffffff;  padding-left:15px;' src='"+jsPsych.timelineVariable('stimulusRight', true)+"' width='750px' height='500px'>";
         return html
       } else if (participantResponse == rightASCII) { // if last correct_response == 48 (0 key)
-        var html = "<img style='border: 5px solid #ffffff; padding-right:15px;' src='"+jsPsych.timelineVariable('stimulusLeft', true)+"'>"+
+        var html = "<img style='border: 5px solid #ffffff; padding-right:15px;' src='"+jsPsych.timelineVariable('stimulusLeft', true)+"' width='750px' height='500px'>"+
           "<img style='width:150px; height:150px; padding-right: 50px; padding-left: 50px; margin-bottom: 25px;' src='"+jsPsych.timelineVariable('trialFeedback', true)+"'>" +
-          "<img style='border: 5px solid #808080;'src='"+jsPsych.timelineVariable('stimulusRight', true)+"'>";
+          "<img style='border: 5px solid #808080;'src='"+jsPsych.timelineVariable('stimulusRight', true)+"' width='750px' height='500px'>";
         return html
       }
     },
@@ -245,14 +245,14 @@ let practiceStart = {
       stimulus: function() {
         let participantResponse = jsPsych.data.get().last(1).values()[0].key_press;
         if (participantResponse == leftASCII) { // if last correct_response == 49 (1 key)
-          var html = "<img style='border: 5px solid #808080;' src='"+jsPsych.timelineVariable('stimulusLeft', true)+"'>" +
+          var html = "<img style='border: 5px solid #808080;' src='"+jsPsych.timelineVariable('stimulusLeft', true)+"' width='750px' height='500px'>" +
             "<img style='width:200px; height:200px; margin-bottom: 5px; padding-left:20px; padding-right:20px;' src='"+jsPsych.timelineVariable('fixation', true)+"'>" +
-            "<img style='border: 5px solid #ffffff;' src='"+jsPsych.timelineVariable('stimulusRight', true)+"'>";
+            "<img style='border: 5px solid #ffffff;' src='"+jsPsych.timelineVariable('stimulusRight', true)+"' width='750px' height='500px'>";
           return html
         } else if (participantResponse == rightASCII) { // if last correct_response == 48 (0 key)
-          var html = "<img style='border: 5px solid #ffffff;' src='"+jsPsych.timelineVariable('stimulusLeft', true)+"'>"+
+          var html = "<img style='border: 5px solid #ffffff;' src='"+jsPsych.timelineVariable('stimulusLeft', true)+"' width='750px' height='500px'>"+
             "<img style='width:200px; height:200px; margin-bottom: 5px; padding-left:20px; padding-right:20px;' src='"+jsPsych.timelineVariable('fixation', true)+"'>" +
-            "<img style='border: 5px solid #808080;' src='"+jsPsych.timelineVariable('stimulusRight', true)+"'>";
+            "<img style='border: 5px solid #808080;' src='"+jsPsych.timelineVariable('stimulusRight', true)+"' width='750px' height='500px'>";
           return html
         }
       },
