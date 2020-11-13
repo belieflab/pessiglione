@@ -7,7 +7,7 @@ let instructions = [];
 /* announce start of practice trials */
 let practiceStart = {
     type:  "html-keyboard-response",
-    stimulus: '<p>First, you will do some practice trials.</p> <p>Press either response button when you are ready to begin.</p>',
+    stimulus: '<p>First, you will do some practice trials.</p> <p><i>Press either response button when you are ready to begin.</i></p>',
     choices: [leftASCII, rightASCII],
 //    on_finish: versionSelect(),
   };
