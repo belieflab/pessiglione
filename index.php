@@ -29,7 +29,6 @@ $studyId = $_GET["studyId"];
     <script type="text/javascript" src="db/validate.js"></script>
     <script type="text/javascript" src="exp/var.js"></script>
     <script type="text/javascript" src="exp/fn.js"></script>
-    <script type="text/javascript" src="exp/timeline.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-git.js"></script>
     <script type="text/javascript">
     let feedbackLink = "https://omnibus.sh/eCRFs/feedback/tasks/pessiglione.php?studyId=<?php echo $studyId?>";

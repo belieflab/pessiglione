@@ -39,10 +39,13 @@ let practiceStart = {
     on_finish: function(data){
       data.subjectkey = 'GUID';
       data.src_subject_id = workerId;
+      data.site = siteNumber;
       data.interview_date = today;
       data.interview_age = ageAtAssessment;
       data.sex = sexAtBirth;
       data.handedness = handedness;
+      data.task_version = reward;
+      data.task_condition = version;
       test_part = jsPsych.data.get().last().values()[0].test_part;
       if (test_part === 'practice') {
         data.trial = practiceIterator;
@@ -296,16 +299,16 @@ let practiceStart = {
       stimulus:   "<p>Thank you!</p>"+
       "<p>You have successfully completed the experiment and your data has been saved.</p>"+
       "<p>To leave feedback on this task, please click the following link:</p>"+
-      "<p><a href='https://omnibus.sh/eCRFs/feedback/pessiglione.php'>Leave Task Feedback!</a></p>"+
-          // "<p>Please wait for the experimenter to continue.</p>"+
+      "<p style='color:white;'><a href="+feedbackLink+">Leave Task Feedback!</a></p>"+
+      // "<p>Please wait for the experimenter to continue.</p>"+
       "<p>You may now close the expriment window at anytime.</p>",
       choices: jsPsych.NO_KEYS,
-      trial_duration: 60000,
+      // trial_duration: 60000,
       on_load: function(){
         if (reward === "money"){
           alert("You won: $ "+rewardTally+"!");
       } else if (reward === 'points'){
-          alert("Thanks for playing!");
+        alert("You won: "+rewardTally+" points!");
       }
       }
     };
