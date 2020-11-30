@@ -37,7 +37,7 @@ let practiceStart = {
     response_ends_trial: true,
     data: jsPsych.timelineVariable('data'),
     on_finish: function(data){
-      data.subjectkey = 'GUID';
+      data.subjectkey = GUID;
       data.src_subject_id = workerId;
       data.site = siteNumber;
       data.interview_date = today;
