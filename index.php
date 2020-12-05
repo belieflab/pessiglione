@@ -10,13 +10,16 @@ include_once ("db/config.php");
 
 $studyId = $_GET["studyId"];
 $candidateId = $_GET["candidateId"];
-$query = "SELECT GUID from candidate where sub_id = $candidateId";
-$prepare = $db_connection->prepare($query);
-$prepare->execute();
-$result = $prepare->get_result();
-$row = $result->fetch_assoc();
-$guid = $row["GUID"];
-$prepare->close();
+if (isset($candidateId)) {
+  $query = "SELECT GUID from candidate where sub_id = $candidateId";
+  $prepare = $db_connection->prepare($query);
+  $prepare->execute();
+  $result = $prepare->get_result();
+  $row = $result->fetch_assoc();
+  $guid = $row["GUID"];
+  $prepare->close();
+  } else {
+}
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +44,7 @@ $prepare->close();
     <script type="text/javascript" src="exp/fn.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-git.js"></script>
     <script type="text/javascript">
-    let feedbackLink = "https://omnibus.sh/eCRFs/feedback/tasks/pessiglione.php?studyId=<?php echo $studyId?>";
+    let feedbackLink = "https://omnibus.sh/eCRFs/feedback/tasks/pessiglione.php?candidateId=<?php echo $candidateId?>&studyId=<?php echo $studyId?>";
     </script>
   </footer>
 </html>
