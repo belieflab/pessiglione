@@ -48,14 +48,14 @@ let practiceStart = {
       data.task_condition = version;
       test_part = jsPsych.data.get().last().values()[0].test_part;
       if (test_part === 'practice') {
-        data.trial = practiceIterator;
+        data.index = practiceIterator;
         practiceIterator--;
         data.block = 1;
         if (practiceIterator === numberOfPracticeTrials+1) {
           practiceIterator = -1;
         }
       } else if (test_part === 'training') {
-        data.trial = indexIterator;
+        data.index = indexIterator;
         indexIterator++;0
         data.block = blockIterator;
         if (indexIterator === numberOfTrainingTrials+1) {
@@ -63,11 +63,11 @@ let practiceStart = {
           blockIterator++;
         }
       } else if (test_part === 'transfer') {
-        data.trial = indexIterator;
+        data.index = indexIterator;
         indexIterator++;
         data.block = 5;
       }
-      pair = jsPsych.data.get().last().values()[0].pair;
+      pair_set = jsPsych.data.get().last().values()[0].pair;
       pair_validity = jsPsych.data.get().last().values()[0].pair_validity;
       trial_validity = jsPsych.data.get().last().values()[0].trial_validity;
       pair_trials_per_block = jsPsych.data.get().last().values()[0].pair_trials_per_block;
