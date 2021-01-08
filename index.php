@@ -31,7 +31,7 @@ $ageInMonths = $_GET["interview_age"];
 <html>
   <head>
     <title>Pessiglione</title>
-
+    <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
     <script type="text/javascript" src="jsPsych/jspsych.js"></script>
     <script type="text/javascript" src="jsPsych/plugins/jspsych-html-keyboard-response.js"></script>
     <script type="text/javascript" src="jsPsych/plugins/jspsych-image-keyboard-response.js"></script>
@@ -46,7 +46,6 @@ $ageInMonths = $_GET["interview_age"];
     <script type="text/javascript" src="db/validate.js"></script>
     <script type="text/javascript" src="exp/var.js"></script>
     <script type="text/javascript" src="exp/fn.js"></script>
-    <script type="text/javascript" src="//code.jquery.com/jquery-git.js"></script>
     <script type="text/javascript">
     let feedbackLink = "https://belieflab.yale.edu/omnibus/eCRFs/feedback/tasks/pessiglione.php?candidateId=<?php echo $candidateId?>&studyId=<?php echo $studyId?>";
     let GUID = "<?php echo $subjectKey?>";
