@@ -56,7 +56,7 @@ let practiceStart = {
         }
       } else if (test_part === 'training') {
         data.index = indexIterator;
-        indexIterator++;0
+        indexIterator++;
         data.block = blockIterator;
         if (indexIterator === numberOfTrainingTrials+1) {
           indexIterator = 1;
