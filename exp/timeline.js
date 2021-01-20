@@ -67,7 +67,7 @@ let practiceStart = {
         indexIterator++;
         data.block = 5;
       }
-      pair_set = jsPsych.data.get().last().values()[0].pair;
+      pair_set = jsPsych.data.get().last().values()[0].pair_set;
       pair_validity = jsPsych.data.get().last().values()[0].pair_validity;
       trial_validity = jsPsych.data.get().last().values()[0].trial_validity;
       pair_trials_per_block = jsPsych.data.get().last().values()[0].pair_trials_per_block;
