@@ -23,7 +23,6 @@ if (file_exists($_SERVER["DOCUMENT_ROOT"] . '/config.php')) {
     $institutionAlias = '';
     $ageInMonths = '';
     $groupStatus = '';
-    $guid = '';
     $candidateId = '';
     $studyId = '';
   }
