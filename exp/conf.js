@@ -149,7 +149,7 @@ let isi = [1000, 5000];
             '<p>However, one picture allows you to keep your points much more often than the other picture.</p>'+
             '<p><i>Press the spacebar to continue.</i></p>',
     
-            '<p>There is no ABSOLUTE right answer for any pair of pictures, but some pictures have a higher chance of either winning you some money or preventing you from losing money.</p>'+
+            '<p>There is no ABSOLUTE right answer for any pair of pictures, but some pictures have a higher chance of either winning you points or preventing you from losing points.</p>'+
             '<p>Try to pick the picture that you think is best.<p>'+
             '<p>Once you decide which picture in a pair of pictures is better, stick with it for the rest of the experiment (unless you determine that you were initially wrong about the selection).</p>'+
             '<p><i>Press the spacebar when you are ready to begin.</i></p>',
