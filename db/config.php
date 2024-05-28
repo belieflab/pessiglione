@@ -11,7 +11,6 @@ if ($_GET["src_subject_id"]) {
  $institutionAlias = $_GET["site"];
  $ageInMonths = $_GET["interview_age"];
  $groupStatus = $_GET["phenotype"];
- $visit = $_GET["visit"];
 }
 
 /**
