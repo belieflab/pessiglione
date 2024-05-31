@@ -314,4 +314,5 @@ let practiceStart = {
       }
       }
     };
-    
+$.getScript("exp/main.js");
+  

@@ -60,7 +60,6 @@
 <script>$("button.loadMain").click(function(){
         $.getScript("exp/rand.js");
       $.getScript("exp/timeline.js");
-      $.getScript("exp/main.js");
   }); </script>
 <script>
 $("button.noCursor").click(function(){
