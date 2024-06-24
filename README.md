@@ -1,5 +1,13 @@
-# pessiglione
-refactor or Pessiglione ePrime task from uMaryland
+# Pessiglione
+_refactor Pessiglione ePrime task from uMaryland_
+
+## Overview 
+In this task participants are shown two photos side by side and asked to choose which is the best picture. 
+They will select the one key for the image on the left and the 0 key for the images on the right. After selecting the photos, 
+they will be given feedback either, “+5 win!”, “-5 lose!”, “keep your points!”, or “lose your points!” 
+This will help them determine if the picture they selected is the best picture.
+
+**Approx run time: 15 minutes**
 
 ## Development Guide
 
